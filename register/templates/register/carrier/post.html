@@ -1,0 +1,96 @@
+{% extends "register/base.html" %}
+{% load i18n cp_i18n %}
+{% block title %}{% trans "Post Equipment — Cargo Pulse" %}{% endblock %}
+{% block body %}
+<div class="cp-page">
+  <div class="cp-shell">
+    <a class="cp-back" href="{% url 'carrier_dashboard' %}">← {% trans "Back to dashboard" %}</a>
+    <div class="cp-card">
+      <div class="brand-accent-top"></div>
+      <div class="cp-card-top">{% include "register/includes/logo.html" %}</div>
+      <div class="cp-card-body">
+        <div class="cp-header">
+          <h1>{% trans "Post equipment" %}</h1>
+          <span class="cp-badge">{{ company.company_name }}</span>
+        </div>
+
+        {% if errors %}<div class="cp-err">{{ errors }}</div>{% endif %}
+
+        <form method="post" id="cp-post-form">
+          {% csrf_token %}
+
+          <div class="cp-dev-tools">
+            <p>{% trans "Dev tools — quick verification" %}</p>
+            <button type="button" class="mock-btn mock-btn--fill" id="cp-mock-fill">{% trans "Fill test data" %}</button>
+            <button type="button" class="mock-btn mock-btn--submit" id="cp-mock-submit">{% trans "Fill & submit test" %}</button>
+          </div>
+
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Type" %}</div>
+
+            <label>{% trans "Type" %} <span class="req">*</span></label>
+            <select name="lane_type" required>
+              <option value="LANE"{% if f.lane_type == "LANE" or not f.lane_type %} selected{% endif %}>{{ "LANE"|lane_type_label }}</option>
+              <option value="POTENTIAL_LANE"{% if f.lane_type == "POTENTIAL_LANE" %} selected{% endif %}>{{ "POTENTIAL_LANE"|lane_type_label }}</option>
+              <option value="SPOT_LANE"{% if f.lane_type == "SPOT_LANE" %} selected{% endif %}>{{ "SPOT_LANE"|lane_type_label }}</option>
+            </select>
+          </div>
+
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Cross-border" %}</div>
+
+            <label>{% trans "Port of entry" %}</label>
+            <select name="port_of_entry">
+              <option value="">{% trans "— Not specified —" %}</option>
+              {% for value, label in port_of_entry_choices %}
+              <option value="{{ value }}"{% if f.port_of_entry == value %} selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Route detail" %}</div>
+
+            <label>{% trans "Origin city" %} <span class="req">*</span></label>
+            <input name="current_city" required value="{{ f.current_city|default:'' }}" placeholder="{% trans 'Where the truck is now' %}"/>
+
+            <label>{% trans "Origin state / region" %}</label>
+            <input name="current_state" value="{{ f.current_state|default:'' }}"/>
+
+            <label>{% trans "Destination city" %} <span class="req">*</span></label>
+            <input name="destination_city" required value="{{ f.destination_city|default:'' }}" placeholder="{% trans 'Where the truck is headed' %}"/>
+
+            <label>{% trans "Destination state / region" %}</label>
+            <input name="destination_state" value="{{ f.destination_state|default:'' }}"/>
+          </div>
+
+          <label>{% trans "Equipment notes" %}</label>
+          <textarea name="equipment_notes" placeholder="{% trans '53 ft dry van, team drivers, etc.' %}">{{ f.equipment_notes|default:'' }}</textarea>
+
+          <button type="submit" class="gold-btn">{% trans "Submit availability" %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  function fillMock() {
+    var form = document.getElementById("cp-post-form");
+    if (!form) return;
+    form.lane_type.value = "LANE";
+    form.port_of_entry.value = "LAREDO";
+    form.current_city.value = "Guadalajara";
+    form.current_state.value = "Jalisco";
+    form.destination_city.value = "Houston";
+    form.destination_state.value = "Texas";
+    form.equipment_notes.value = "53' dry van · mock test entry";
+  }
+  document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);
+  document.getElementById("cp-mock-submit")?.addEventListener("click", function () {
+    fillMock();
+    document.getElementById("cp-post-form")?.requestSubmit();
+  });
+})();
+</script>
+{% endblock %}

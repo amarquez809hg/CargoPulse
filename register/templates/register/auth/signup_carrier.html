@@ -1,0 +1,92 @@
+{% extends "register/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Carrier Sign Up — Cargo Pulse" %}{% endblock %}
+{% block body %}
+<div class="cp-page">
+  <div class="cp-shell">
+    <a class="cp-back" href="{% url 'home' %}">← {% trans "Back to portals" %}</a>
+    <div class="cp-card">
+      <div class="brand-accent-top"></div>
+      <div class="cp-card-top">{% include "register/includes/logo.html" %}</div>
+      <div class="cp-card-body">
+        <div class="cp-header">
+          <h1>{% trans "Carrier registration" %}</h1>
+          <span class="cp-badge">{% trans "Fleet & equipment" %}</span>
+        </div>
+
+        {% if error %}<div class="cp-err">{{ error }}</div>{% endif %}
+
+        <form method="post" id="cp-carrier-signup-form">
+          {% csrf_token %}
+
+          <div class="cp-dev-tools">
+            <p>{% trans "Dev tools — quick verification" %}</p>
+            <button type="button" class="mock-btn mock-btn--fill" id="cp-mock-fill">{% trans "Fill random test data" %}</button>
+            <button type="button" class="mock-btn mock-btn--submit" id="cp-mock-submit">{% trans "Fill & create account" %}</button>
+          </div>
+
+          <div class="cp-section">{% trans "Account" %}</div>
+          <label>{% trans "Username" %} <span class="req">*</span></label>
+          <input name="username" required value="{{ f.username|default:'' }}"/>
+          <label>{% trans "Email" %} <span class="req">*</span></label>
+          <input name="email" type="email" required value="{{ f.email|default:'' }}"/>
+          <label>{% trans "Password" %} <span class="req">*</span></label>
+          <input name="password" type="password" required autocomplete="new-password"/>
+          <label>{% trans "Confirm password" %} <span class="req">*</span></label>
+          <input name="password2" type="password" required autocomplete="new-password"/>
+
+          <div class="cp-section">{% trans "Company profile" %}</div>
+          <label>{% trans "Company name" %} <span class="req">*</span></label>
+          <input name="company_name" required value="{{ f.company_name|default:'' }}"/>
+          <label>{% trans "WhatsApp" %} <span class="req">*</span></label>
+          <div class="cp-phone">
+            <select name="whatsapp_code">
+              <option value="+1"{% if f.whatsapp_code == "+1" %} selected{% endif %}>+1 US</option>
+              <option value="+52"{% if f.whatsapp_code == "+52" or not f.whatsapp_code %} selected{% endif %}>+52 MX</option>
+            </select>
+            <input name="whatsapp_number" type="tel" required value="{{ f.whatsapp_number|default:'' }}"/>
+          </div>
+          <label>{% trans "Headquarters city" %} <span class="req">*</span></label>
+          <input name="hq_city" required value="{{ f.hq_city|default:'' }}"/>
+          <label>{% trans "HQ state / region" %}</label>
+          <input name="hq_state" value="{{ f.hq_state|default:'' }}"/>
+
+          <button type="submit" class="gold-btn">{% trans "Create carrier account" %}</button>
+        </form>
+        <p class="cp-footer">{% trans "Already registered?" %} <a href="{% url 'login' %}?role=carrier">{% trans "Sign in" %}</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var cities = [
+    { city: "Monterrey", state: "Nuevo León" },
+    { city: "Guadalajara", state: "Jalisco" },
+    { city: "Querétaro", state: "Querétaro" },
+    { city: "Laredo", state: "Tamaulipas" },
+  ];
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function fillMock() {
+    var form = document.getElementById("cp-carrier-signup-form");
+    if (!form) return;
+    var id = Date.now().toString().slice(-6);
+    var loc = pick(cities);
+    form.username.value = "carrier_" + id;
+    form.email.value = "carrier" + id + "@test.cargopulse.local";
+    form.password.value = "TestPass123!";
+    form.password2.value = "TestPass123!";
+    form.company_name.value = "Transportes Test " + id + " SA de CV";
+    form.whatsapp_code.value = "+52";
+    form.whatsapp_number.value = "81" + String(Math.floor(10000000 + Math.random() * 89999999));
+    form.hq_city.value = loc.city;
+    form.hq_state.value = loc.state;
+  }
+  document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);
+  document.getElementById("cp-mock-submit")?.addEventListener("click", function () {
+    fillMock();
+    document.getElementById("cp-carrier-signup-form")?.requestSubmit();
+  });
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "register/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Broker Sign Up — Cargo Pulse" %}{% endblock %}
+{% block body %}
+<div class="cp-page">
+  <div class="cp-shell">
+    <a class="cp-back" href="{% url 'home' %}">← {% trans "Back to portals" %}</a>
+    <div class="cp-card">
+      <div class="brand-accent-top"></div>
+      <div class="cp-card-top">{% include "register/includes/logo.html" %}</div>
+      <div class="cp-card-body">
+        <div class="cp-header">
+          <h1>{% trans "Broker registration" %}</h1>
+          <span class="cp-badge">{% trans "Find available trucks" %}</span>
+        </div>
+
+        {% if error %}<div class="cp-err">{{ error }}</div>{% endif %}
+
+        <form method="post" id="cp-broker-signup-form">
+          {% csrf_token %}
+
+          <div class="cp-dev-tools">
+            <p>{% trans "Dev tools — quick verification" %}</p>
+            <button type="button" class="mock-btn mock-btn--fill" id="cp-mock-fill">{% trans "Fill random test data" %}</button>
+            <button type="button" class="mock-btn mock-btn--submit" id="cp-mock-submit">{% trans "Fill & create account" %}</button>
+          </div>
+
+          <label>{% trans "Username" %} <span class="req">*</span></label>
+          <input name="username" required value="{{ f.username|default:'' }}"/>
+          <label>{% trans "Email" %} <span class="req">*</span></label>
+          <input name="email" type="email" required value="{{ f.email|default:'' }}"/>
+          <label>{% trans "Your name" %}</label>
+          <input name="display_name" value="{{ f.display_name|default:'' }}" placeholder="{% trans 'Optional' %}"/>
+          <label>{% trans "Brokerage / company" %}</label>
+          <input name="brokerage_name" value="{{ f.brokerage_name|default:'' }}" placeholder="{% trans 'Optional' %}"/>
+          <label>{% trans "Password" %} <span class="req">*</span></label>
+          <input name="password" type="password" required autocomplete="new-password"/>
+          <label>{% trans "Confirm password" %} <span class="req">*</span></label>
+          <input name="password2" type="password" required autocomplete="new-password"/>
+
+          <button type="submit" class="gold-btn">{% trans "Create broker account" %}</button>
+        </form>
+        <p class="cp-footer">{% trans "Already registered?" %} <a href="{% url 'login' %}?role=broker">{% trans "Sign in" %}</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var names = ["Ana Ruiz", "Carlos Mendez", "Laura Vega", "Miguel Torres"];
+  var firms = ["Horizon Freight Partners", "Valle Load Solutions", "North Star Logistics", "Pulse Brokerage MX"];
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function fillMock() {
+    var form = document.getElementById("cp-broker-signup-form");
+    if (!form) return;
+    var id = Date.now().toString().slice(-6);
+    form.username.value = "broker_" + id;
+    form.email.value = "broker" + id + "@test.cargopulse.local";
+    form.display_name.value = pick(names);
+    form.brokerage_name.value = pick(firms);
+    form.password.value = "TestPass123!";
+    form.password2.value = "TestPass123!";
+  }
+  document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);
+  document.getElementById("cp-mock-submit")?.addEventListener("click", function () {
+    fillMock();
+    document.getElementById("cp-broker-signup-form")?.requestSubmit();
+  });
+})();
+</script>
+{% endblock %}

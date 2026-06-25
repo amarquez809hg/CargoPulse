@@ -1,0 +1,38 @@
+{% extends "register/base.html" %}
+{% load static i18n %}
+{% block title %}{% trans "Cargo Pulse — Dashboard" %}{% endblock %}
+{% block body %}
+<div class="cp-page cp-page--dashboard">
+  <div class="cp-shell cp-shell-dashboard">
+    <div class="cp-dashboard">
+      <div class="cp-dashboard-header">
+        {% include "register/includes/logo.html" %}
+        <p>{% trans "Select where you want to work." %}</p>
+      </div>
+
+      <div class="cp-circle-grid">
+        <a class="cp-circle cp-circle--carrier" href="{% url 'carrier_signup' %}" title="{% trans 'Register as a carrier' %}">
+          <span class="cp-circle-title">{% trans "Carrier" %}</span>
+          <span class="cp-circle-sub">{% trans "Post equipment" %}</span>
+        </a>
+        <a class="cp-circle cp-circle--broker" href="{% url 'broker_signup' %}" title="{% trans 'Register as a broker' %}">
+          <span class="cp-circle-title">{% trans "Broker" %}</span>
+          <span class="cp-circle-sub">{% trans "Find trucks" %}</span>
+        </a>
+      </div>
+
+      <div class="cp-dashboard-footer">
+        <p class="cp-dashboard-footer-label">{% trans "Already have an account?" %}</p>
+        <div class="cp-dashboard-signin-row">
+          <a class="cp-btn cp-btn--outline" href="{% url 'login' %}?role=carrier">{% trans "Carrier sign in" %}</a>
+          <a class="cp-btn cp-btn--outline" href="{% url 'login' %}?role=broker">{% trans "Broker sign in" %}</a>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:14px;">
+      {% if debug %}<span class="cp-local-badge">localhost · dev</span>{% endif %}
+    </p>
+  </div>
+</div>
+{% endblock %}

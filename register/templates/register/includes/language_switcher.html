@@ -1,0 +1,21 @@
+{% load i18n %}
+<form action="{% url 'set_language' %}" method="post" class="cp-lang-bar">
+  {% csrf_token %}
+  <input name="next" type="hidden" value="{{ request.get_full_path }}"/>
+  <span class="cp-lang-label">{% trans "Language" %}</span>
+  {% get_current_language as CURRENT_LANG %}
+  <button
+    type="submit"
+    name="language"
+    value="en"
+    class="cp-lang-btn{% if CURRENT_LANG == 'en' %} cp-lang-btn--active{% endif %}"
+    aria-pressed="{% if CURRENT_LANG == 'en' %}true{% else %}false{% endif %}"
+  >{% trans "English" %}</button>
+  <button
+    type="submit"
+    name="language"
+    value="es"
+    class="cp-lang-btn{% if CURRENT_LANG == 'es' %} cp-lang-btn--active{% endif %}"
+    aria-pressed="{% if CURRENT_LANG == 'es' %}true{% else %}false{% endif %}"
+  >{% trans "Spanish" %}</button>
+</form>

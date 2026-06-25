@@ -1,0 +1,315 @@
+# Spanish translations for Cargo Pulse
+msgid ""
+msgstr ""
+"Project-Id-Version: Cargo Pulse\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Cargo Pulse — Dashboard"
+msgstr "Cargo Pulse — Panel"
+
+msgid "Select where you want to work."
+msgstr "Selecciona dónde quieres trabajar."
+
+msgid "Register as a carrier"
+msgstr "Registrarse como transportista"
+
+msgid "Carrier"
+msgstr "Transportista"
+
+msgid "Post equipment"
+msgstr "Publicar equipo"
+
+msgid "Register as a broker"
+msgstr "Registrarse como broker"
+
+msgid "Broker"
+msgstr "Broker"
+
+msgid "Find trucks"
+msgstr "Buscar camiones"
+
+msgid "Already have an account?"
+msgstr "¿Ya tienes una cuenta?"
+
+msgid "Carrier sign in"
+msgstr "Iniciar sesión transportista"
+
+msgid "Broker sign in"
+msgstr "Iniciar sesión broker"
+
+msgid "Sign In — Cargo Pulse"
+msgstr "Iniciar sesión — Cargo Pulse"
+
+msgid "Back to portals"
+msgstr "Volver a portales"
+
+msgid "Sign in"
+msgstr "Iniciar sesión"
+
+msgid "Carrier portal"
+msgstr "Portal transportista"
+
+msgid "Broker portal"
+msgstr "Portal broker"
+
+msgid "Username"
+msgstr "Usuario"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "Admin user?"
+msgstr "¿Usuario admin?"
+
+msgid "Django admin"
+msgstr "Admin Django"
+
+msgid "New carrier?"
+msgstr "¿Nuevo transportista?"
+
+msgid "Create account"
+msgstr "Crear cuenta"
+
+msgid "New broker?"
+msgstr "¿Nuevo broker?"
+
+msgid "Invalid username or password."
+msgstr "Usuario o contraseña incorrectos."
+
+msgid "Welcome back, %(username)s."
+msgstr "Bienvenido de nuevo, %(username)s."
+
+msgid "Passwords do not match."
+msgstr "Las contraseñas no coinciden."
+
+msgid "Username already taken."
+msgstr "El nombre de usuario ya está en uso."
+
+msgid "Email already registered."
+msgstr "El correo ya está registrado."
+
+msgid "Carrier account created. You can post equipment now."
+msgstr "Cuenta de transportista creada. Ya puedes publicar equipo."
+
+msgid "Broker account created. Browse available trucks."
+msgstr "Cuenta de broker creada. Explora camiones disponibles."
+
+msgid "Carrier Dashboard — Cargo Pulse"
+msgstr "Panel transportista — Cargo Pulse"
+
+msgid "Home"
+msgstr "Inicio"
+
+msgid "Signed in as <strong>%(username)s</strong> · Carrier"
+msgstr "Sesión: <strong>%(username)s</strong> · Transportista"
+
+msgid "Sign out"
+msgstr "Cerrar sesión"
+
+msgid "Carrier dashboard"
+msgstr "Panel transportista"
+
+msgid "Your postings"
+msgstr "Tus publicaciones"
+
+msgid "Posted"
+msgstr "Publicado"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Port of entry"
+msgstr "Puerto de entrada"
+
+msgid "Origin"
+msgstr "Origen"
+
+msgid "Destination"
+msgstr "Destino"
+
+msgid "Equipment"
+msgstr "Equipo"
+
+msgid "No equipment posted yet. Use"
+msgstr "Aún no hay equipo publicado. Usa"
+
+msgid "to list availability."
+msgstr "para listar disponibilidad."
+
+msgid "Available Trucks — Cargo Pulse"
+msgstr "Camiones disponibles — Cargo Pulse"
+
+msgid "Signed in as <strong>%(username)s</strong> · Broker"
+msgstr "Sesión: <strong>%(username)s</strong> · Broker"
+
+msgid "Available trucks"
+msgstr "Camiones disponibles"
+
+msgid "Equipment board"
+msgstr "Tablero de equipo"
+
+msgid "Filter by origin or destination city…"
+msgstr "Filtrar por ciudad de origen o destino…"
+
+msgid "Search"
+msgstr "Buscar"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "No trucks posted yet matching \"%(query)s\"."
+msgstr "No hay camiones publicados que coincidan con \"%(query)s\"."
+
+msgid "No trucks posted yet."
+msgstr "Aún no hay camiones publicados."
+
+msgid "Post Equipment — Cargo Pulse"
+msgstr "Publicar equipo — Cargo Pulse"
+
+msgid "Back to dashboard"
+msgstr "Volver al panel"
+
+msgid "Dev tools — quick verification"
+msgstr "Herramientas dev — verificación rápida"
+
+msgid "Fill test data"
+msgstr "Llenar datos de prueba"
+
+msgid "Fill & submit test"
+msgstr "Llenar y enviar prueba"
+
+msgid "Cross-border"
+msgstr "Cruce fronterizo"
+
+msgid "— Not specified —"
+msgstr "— Sin especificar —"
+
+msgid "Route detail"
+msgstr "Detalle de ruta"
+
+msgid "Origin city"
+msgstr "Ciudad de origen"
+
+msgid "Where the truck is now"
+msgstr "Dónde está el camión ahora"
+
+msgid "Origin state / region"
+msgstr "Estado / región de origen"
+
+msgid "Destination city"
+msgstr "Ciudad de destino"
+
+msgid "Where the truck is headed"
+msgstr "Hacia dónde va el camión"
+
+msgid "Destination state / region"
+msgstr "Estado / región de destino"
+
+msgid "Equipment notes"
+msgstr "Notas de equipo"
+
+msgid "53 ft dry van, team drivers, etc."
+msgstr "53 ft dry van, operadores en equipo, etc."
+
+msgid "Submit availability"
+msgstr "Enviar disponibilidad"
+
+msgid "Type, origin city, and destination city are required."
+msgstr "Tipo, ciudad de origen y ciudad de destino son obligatorios."
+
+msgid "Select a valid type."
+msgstr "Selecciona un tipo válido."
+
+msgid "Select a valid port of entry."
+msgstr "Selecciona un puerto de entrada válido."
+
+msgid "Equipment availability posted."
+msgstr "Disponibilidad de equipo publicada."
+
+msgid "Lane"
+msgstr "Ruta"
+
+msgid "Potential Lane"
+msgstr "Ruta potencial"
+
+msgid "Spot Lane"
+msgstr "Ruta spot"
+
+msgid "English"
+msgstr "Inglés"
+
+msgid "Spanish"
+msgstr "Español"
+
+msgid "Carrier Sign Up — Cargo Pulse"
+msgstr "Registro transportista — Cargo Pulse"
+
+msgid "Carrier registration"
+msgstr "Registro de transportista"
+
+msgid "Fleet & equipment"
+msgstr "Flota y equipo"
+
+msgid "Fill random test data"
+msgstr "Llenar datos aleatorios"
+
+msgid "Fill & create account"
+msgstr "Llenar y crear cuenta"
+
+msgid "Account"
+msgstr "Cuenta"
+
+msgid "Email"
+msgstr "Correo"
+
+msgid "Confirm password"
+msgstr "Confirmar contraseña"
+
+msgid "Company profile"
+msgstr "Perfil de empresa"
+
+msgid "Company name"
+msgstr "Nombre de empresa"
+
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+msgid "Headquarters city"
+msgstr "Ciudad de sede"
+
+msgid "HQ state / region"
+msgstr "Estado / región de sede"
+
+msgid "Create carrier account"
+msgstr "Crear cuenta transportista"
+
+msgid "Already registered?"
+msgstr "¿Ya registrado?"
+
+msgid "Broker Sign Up — Cargo Pulse"
+msgstr "Registro broker — Cargo Pulse"
+
+msgid "Broker registration"
+msgstr "Registro de broker"
+
+msgid "Find available trucks"
+msgstr "Buscar camiones disponibles"
+
+msgid "Your name"
+msgstr "Tu nombre"
+
+msgid "Optional"
+msgstr "Opcional"
+
+msgid "Brokerage / company"
+msgstr "Brokerage / empresa"
+
+msgid "Create broker account"
+msgstr "Crear cuenta broker"

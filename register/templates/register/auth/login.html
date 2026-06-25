@@ -1,0 +1,43 @@
+{% extends "register/base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Sign In — Cargo Pulse" %}{% endblock %}
+{% block body %}
+<div class="cp-page">
+  <div class="cp-shell">
+    <a class="cp-back" href="{% url 'home' %}">← {% trans "Back to portals" %}</a>
+    <div class="cp-card">
+      <div class="brand-accent-top"></div>
+      <div class="cp-card-top">{% include "register/includes/logo.html" %}</div>
+      <div class="cp-card-body">
+        <div class="cp-header">
+          <h1>{% trans "Sign in" %}</h1>
+          {% if role_hint == "carrier" %}
+          <span class="cp-badge">{% trans "Carrier portal" %}</span>
+          {% elif role_hint == "broker" %}
+          <span class="cp-badge">{% trans "Broker portal" %}</span>
+          {% endif %}
+        </div>
+
+        {% if error %}<div class="cp-err">{{ error }}</div>{% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+          <label>{% trans "Username" %}</label>
+          <input name="username" required autocomplete="username"/>
+
+          <label>{% trans "Password" %}</label>
+          <input name="password" type="password" required autocomplete="current-password"/>
+
+          <button type="submit" class="gold-btn">{% trans "Sign in" %}</button>
+        </form>
+
+        <p class="cp-footer">
+          {% trans "Admin user?" %} <a href="/admin/">{% trans "Django admin" %}</a><br/>
+          {% trans "New carrier?" %} <a href="{% url 'carrier_signup' %}">{% trans "Create account" %}</a>
+          · {% trans "New broker?" %} <a href="{% url 'broker_signup' %}">{% trans "Create account" %}</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

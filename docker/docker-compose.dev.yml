@@ -1,0 +1,12 @@
+# Local Docker dev: live code mount + Django runserver
+# Usage: docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+
+services:
+  web:
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      DEBUG: "True"
+      ALLOWED_HOSTS: "*"
+    volumes:
+      - ..:/app
+      - static_data:/app/staticfiles
