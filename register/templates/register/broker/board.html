@@ -93,7 +93,7 @@
                 <td>
                   <strong>{{ truck.company.company_name }}</strong>
                   {% if truck.company.hq_city %}
-                  <div class="cp-cell-sub">{% trans "HQ:" %} {{ truck.company.hq_city }}{% if truck.company.hq_state %}, {{ truck.company.hq_state }}{% endif %}</div>
+                  <div class="cp-cell-sub">{% trans "HQ:" %} {{ truck.company.hq_city }}</div>
                   {% endif %}
                   {% if truck.company.popular_destinations %}
                   <div class="cp-cell-sub">{% trans "Runs:" %} {{ truck.company.popular_destinations|truncatechars:48 }}</div>

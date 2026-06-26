@@ -27,7 +27,7 @@
         <div class="cp-company-card">
           <strong>{{ company.company_name }}</strong><br/>
           {% if company.company_address %}{{ company.company_address }}<br/>{% endif %}
-          <span class="cp-company-meta">{% trans "HQ:" %} {{ company.hq_city }}{% if company.hq_state %}, {{ company.hq_state }}{% endif %}</span><br/>
+          <span class="cp-company-meta">{% trans "HQ:" %} {{ company.hq_city }}</span><br/>
           {% if company.primary_port_of_entry %}
           <span class="cp-company-meta">{% trans "Border crossing:" %} {{ company.get_primary_port_of_entry_display }}</span><br/>
           {% endif %}

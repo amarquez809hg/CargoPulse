@@ -19,7 +19,6 @@ CARRIER_PROFILE_FIELDS = (
     "company_name",
     "company_address",
     "hq_city",
-    "hq_state",
     "primary_port_of_entry",
     "popular_destinations",
     "whatsapp_number",
@@ -167,7 +166,6 @@ def carrier_signup(request):
             whatsapp=_build_whatsapp(f["whatsapp_code"], f["whatsapp_number"]),
             company_address=f["company_address"],
             hq_city=f["hq_city"],
-            hq_state=f["hq_state"],
             primary_port_of_entry=f["primary_port_of_entry"],
             popular_destinations=f["popular_destinations"],
         )

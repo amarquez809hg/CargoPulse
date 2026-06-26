@@ -44,10 +44,7 @@
             <input name="company_address" value="{{ f.company_address|default:'' }}" placeholder="{% trans 'Street, number, colonia' %}"/>
 
             <label>{% trans "Headquarters city" %} <span class="req">*</span></label>
-            <input name="hq_city" required value="{{ f.hq_city|default:'' }}" placeholder="{% trans 'e.g. Monterrey' %}"/>
-
-            <label>{% trans "HQ state / region" %}</label>
-            <input name="hq_state" value="{{ f.hq_state|default:'' }}" placeholder="{% trans 'e.g. Nuevo León' %}"/>
+            <input name="hq_city" required value="{{ f.hq_city|default:'' }}" placeholder="{% trans 'e.g. Monterrey, Nuevo León' %}"/>
 
             <label>{% trans "Primary border crossing" %}</label>
             <select name="primary_port_of_entry">
@@ -100,8 +97,7 @@
     form.password2.value = "TestPass123!";
     form.company_name.value = "Transportes Test " + id + " SA de CV";
     form.company_address.value = "Av. Industria 1200, Col. Centro";
-    form.hq_city.value = loc.city;
-    form.hq_state.value = loc.state;
+    form.hq_city.value = loc.city + ", " + loc.state;
     form.primary_port_of_entry.value = "LAREDO";
     form.popular_destinations.value = "Houston, Dallas, Laredo, El Paso";
     form.whatsapp_code.value = "+52";

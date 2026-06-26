@@ -320,11 +320,8 @@ msgstr "Dirección de empresa"
 msgid "Street, number, colonia"
 msgstr "Calle, número, colonia"
 
-msgid "e.g. Monterrey"
-msgstr "ej. Monterrey"
-
-msgid "e.g. Nuevo León"
-msgstr "ej. Nuevo León"
+msgid "e.g. Monterrey, Nuevo León"
+msgstr "ej. Monterrey, Nuevo León"
 
 msgid "Primary border crossing"
 msgstr "Cruce fronterizo principal"
