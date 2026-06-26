@@ -313,3 +313,156 @@ msgstr "Brokerage / empresa"
 
 msgid "Create broker account"
 msgstr "Crear cuenta broker"
+
+msgid "Company address"
+msgstr "Dirección de empresa"
+
+msgid "Street, number, colonia"
+msgstr "Calle, número, colonia"
+
+msgid "e.g. Monterrey"
+msgstr "ej. Monterrey"
+
+msgid "e.g. Nuevo León"
+msgstr "ej. Nuevo León"
+
+msgid "Primary border crossing"
+msgstr "Cruce fronterizo principal"
+
+msgid "Popular destinations"
+msgstr "Destinos frecuentes"
+
+msgid "Corridors or cities you run often — e.g. Houston, Dallas, Laredo, El Paso"
+msgstr "Corredores o ciudades que manejas — ej. Houston, Dallas, Laredo, El Paso"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Port of entry / border crossing"
+msgstr "Puerto de entrada / cruce fronterizo"
+
+msgid "Company default:"
+msgstr "Predeterminado de la empresa:"
+
+msgid "Equipment"
+msgstr "Equipo"
+
+msgid "Equipment type"
+msgstr "Tipo de equipo"
+
+msgid "Trailer length (ft.)"
+msgstr "Longitud del remolque (pies)"
+
+msgid "Load type"
+msgstr "Tipo de carga"
+
+msgid "Weight (lbs.)"
+msgstr "Peso (lbs.)"
+
+msgid "Min. rate / mile"
+msgstr "Tarifa mín. / milla"
+
+msgid "Reference ID"
+msgstr "ID de referencia"
+
+msgid "Your internal load or unit ID"
+msgstr "Tu ID interno de carga o unidad"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Team drivers, hazmat, etc."
+msgstr "Operadores en equipo, hazmat, etc."
+
+msgid "HQ:"
+msgstr "Sede:"
+
+msgid "Border crossing:"
+msgstr "Cruce fronterizo:"
+
+msgid "Port"
+msgstr "Puerto"
+
+msgid "Rate/mi"
+msgstr "Tarifa/mi"
+
+msgid "Ref"
+msgstr "Ref"
+
+msgid "Posts"
+msgstr "Publicaciones"
+
+msgid "Carriers"
+msgstr "Transportistas"
+
+msgid "Destinations"
+msgstr "Destinos"
+
+msgid "City, corridor, or HQ…"
+msgstr "Ciudad, corredor o sede…"
+
+msgid "All types"
+msgstr "Todos los tipos"
+
+msgid "All ports"
+msgstr "Todos los puertos"
+
+msgid "All equipment"
+msgstr "Todo el equipo"
+
+msgid "All statuses"
+msgstr "Todos los estados"
+
+msgid "Runs:"
+msgstr "Rutas:"
+
+msgid "No trucks match your filters."
+msgstr "Ningún camión coincide con tus filtros."
+
+msgid "Select a valid border crossing."
+msgstr "Selecciona un cruce fronterizo válido."
+
+msgid "Select a valid equipment type."
+msgstr "Selecciona un tipo de equipo válido."
+
+msgid "Select a valid load type."
+msgstr "Selecciona un tipo de carga válido."
+
+msgid "Select a valid status."
+msgstr "Selecciona un estado válido."
+
+msgid "Check trailer length, weight, and rate values."
+msgstr "Revisa longitud del remolque, peso y tarifa."
+
+msgid "Van"
+msgstr "Caja seca"
+
+msgid "Reefer"
+msgstr "Refrigerado"
+
+msgid "Flatbed"
+msgstr "Plataforma"
+
+msgid "Step deck"
+msgstr "Step deck"
+
+msgid "Power only"
+msgstr "Solo tracto"
+
+msgid "Other"
+msgstr "Otro"
+
+msgid "Full"
+msgstr "Completa"
+
+msgid "Partial"
+msgstr "Parcial"
+
+msgid "Open"
+msgstr "Abierta"
+
+msgid "Booked"
+msgstr "Reservada"
+
+msgid "Expired"
+msgstr "Expirada"

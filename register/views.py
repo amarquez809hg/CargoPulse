@@ -1,14 +1,29 @@
+from decimal import Decimal, InvalidOperation
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_http_methods
 
 from .decorators import get_profile, role_required
-from .models import TruckAvailability, TruckingCompany, UserProfile
+from .models import PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
+
+CARRIER_PROFILE_FIELDS = (
+    "username",
+    "email",
+    "password",
+    "password2",
+    "company_name",
+    "company_address",
+    "hq_city",
+    "hq_state",
+    "primary_port_of_entry",
+    "popular_destinations",
+    "whatsapp_number",
+)
 
 AVAILABILITY_FIELDS = (
     "lane_type",
@@ -17,11 +32,21 @@ AVAILABILITY_FIELDS = (
     "current_state",
     "destination_city",
     "destination_state",
+    "equipment_type",
+    "trailer_length_ft",
+    "load_type",
+    "weight_lbs",
+    "min_rate_per_mile",
+    "reference_id",
+    "post_status",
     "equipment_notes",
 )
 
-VALID_PORTS = {c.value for c in TruckAvailability.PortOfEntry}
+VALID_PORTS = {c.value for c in PortOfEntry}
 VALID_LANE_TYPES = {c.value for c in TruckAvailability.LaneType}
+VALID_EQUIPMENT = {c.value for c in TruckAvailability.EquipmentType}
+VALID_LOAD_TYPES = {c.value for c in TruckAvailability.LoadType}
+VALID_STATUSES = {c.value for c in TruckAvailability.PostStatus}
 
 
 def _clear_messages(request):
@@ -37,6 +62,18 @@ def _build_whatsapp(code, number):
     if number.startswith("00"):
         return "+" + number[2:]
     return f"{code}{number}"
+
+
+def _parse_optional_int(value):
+    if not value:
+        return None
+    return int(value)
+
+
+def _parse_optional_decimal(value):
+    if not value:
+        return None
+    return Decimal(value)
 
 
 def _redirect_for_user(user):
@@ -94,25 +131,28 @@ def carrier_signup(request):
         return _redirect_for_user(request.user)
 
     f = {"whatsapp_code": "+52", "whatsapp_number": ""}
+    ctx = {
+        "f": f,
+        "port_of_entry_choices": PortOfEntry.choices,
+    }
+
     if request.method == "POST":
-        f = {k: (request.POST.get(k) or "").strip() for k in (
-            "username", "email", "password", "password2",
-            "company_name", "hq_city", "hq_state", "whatsapp_number",
-        )}
+        f = {k: (request.POST.get(k) or "").strip() for k in CARRIER_PROFILE_FIELDS}
         f["whatsapp_code"] = (request.POST.get("whatsapp_code") or "+52").strip()
+        ctx["f"] = f
 
         if f["password"] != f["password2"]:
-            return render(request, "register/auth/signup_carrier.html", {
-                "f": f, "error": _("Passwords do not match."),
-            })
+            ctx["error"] = _("Passwords do not match.")
+            return render(request, "register/auth/signup_carrier.html", ctx)
         if User.objects.filter(username=f["username"]).exists():
-            return render(request, "register/auth/signup_carrier.html", {
-                "f": f, "error": _("Username already taken."),
-            })
+            ctx["error"] = _("Username already taken.")
+            return render(request, "register/auth/signup_carrier.html", ctx)
         if User.objects.filter(email=f["email"]).exists():
-            return render(request, "register/auth/signup_carrier.html", {
-                "f": f, "error": _("Email already registered."),
-            })
+            ctx["error"] = _("Email already registered.")
+            return render(request, "register/auth/signup_carrier.html", ctx)
+        if f["primary_port_of_entry"] and f["primary_port_of_entry"] not in VALID_PORTS:
+            ctx["error"] = _("Select a valid border crossing.")
+            return render(request, "register/auth/signup_carrier.html", ctx)
 
         user = User.objects.create_user(
             username=f["username"],
@@ -125,15 +165,18 @@ def carrier_signup(request):
             company_name=f["company_name"],
             email=f["email"],
             whatsapp=_build_whatsapp(f["whatsapp_code"], f["whatsapp_number"]),
+            company_address=f["company_address"],
             hq_city=f["hq_city"],
             hq_state=f["hq_state"],
+            primary_port_of_entry=f["primary_port_of_entry"],
+            popular_destinations=f["popular_destinations"],
         )
         login(request, user)
         _clear_messages(request)
         messages.success(request, _("Carrier account created. You can post equipment now."))
         return redirect("carrier_dashboard")
 
-    return render(request, "register/auth/signup_carrier.html", {"f": f})
+    return render(request, "register/auth/signup_carrier.html", ctx)
 
 
 @require_http_methods(["GET", "POST"])
@@ -194,12 +237,16 @@ def carrier_dashboard(request):
 @require_http_methods(["GET", "POST"])
 def carrier_post_truck(request):
     company = get_object_or_404(TruckingCompany, user=request.user)
-    f = {}
+    default_port = company.primary_port_of_entry or ""
+    f = {"port_of_entry": default_port, "trailer_length_ft": "53", "post_status": "OPEN"}
     ctx = {
         "company": company,
         "f": f,
         "lane_type_choices": TruckAvailability.LaneType.choices,
-        "port_of_entry_choices": TruckAvailability.PortOfEntry.choices,
+        "port_of_entry_choices": PortOfEntry.choices,
+        "equipment_type_choices": TruckAvailability.EquipmentType.choices,
+        "load_type_choices": TruckAvailability.LoadType.choices,
+        "post_status_choices": TruckAvailability.PostStatus.choices,
     }
 
     if request.method == "POST":
@@ -218,6 +265,28 @@ def carrier_post_truck(request):
             ctx["errors"] = _("Select a valid port of entry.")
             return render(request, "register/carrier/post.html", ctx)
 
+        if f["equipment_type"] not in VALID_EQUIPMENT:
+            ctx["errors"] = _("Select a valid equipment type.")
+            return render(request, "register/carrier/post.html", ctx)
+
+        if f["load_type"] not in VALID_LOAD_TYPES:
+            ctx["errors"] = _("Select a valid load type.")
+            return render(request, "register/carrier/post.html", ctx)
+
+        if f["post_status"] not in VALID_STATUSES:
+            ctx["errors"] = _("Select a valid status.")
+            return render(request, "register/carrier/post.html", ctx)
+
+        try:
+            trailer_length = int(f["trailer_length_ft"] or "53")
+            if trailer_length < 1 or trailer_length > 75:
+                raise ValueError
+            weight_lbs = _parse_optional_int(f["weight_lbs"])
+            min_rate = _parse_optional_decimal(f["min_rate_per_mile"])
+        except (ValueError, InvalidOperation):
+            ctx["errors"] = _("Check trailer length, weight, and rate values.")
+            return render(request, "register/carrier/post.html", ctx)
+
         TruckAvailability.objects.create(
             company=company,
             lane_type=f["lane_type"],
@@ -226,6 +295,13 @@ def carrier_post_truck(request):
             current_state=f["current_state"],
             destination_city=f["destination_city"],
             destination_state=f["destination_state"],
+            equipment_type=f["equipment_type"],
+            trailer_length_ft=trailer_length,
+            load_type=f["load_type"],
+            weight_lbs=weight_lbs,
+            min_rate_per_mile=min_rate,
+            reference_id=f["reference_id"],
+            post_status=f["post_status"],
             equipment_notes=f["equipment_notes"],
         )
         messages.success(request, _("Equipment availability posted."))
@@ -241,13 +317,50 @@ def broker_board(request):
         .all()
         .order_by("-created_at")
     )
+
     city_filter = (request.GET.get("city") or "").strip()
+    lane_type_filter = (request.GET.get("lane_type") or "").strip()
+    port_filter = (request.GET.get("port_of_entry") or "").strip()
+    equipment_filter = (request.GET.get("equipment_type") or "").strip()
+    status_filter = (request.GET.get("post_status") or "").strip()
+
     if city_filter:
         trucks = trucks.filter(
             Q(current_city__icontains=city_filter)
             | Q(destination_city__icontains=city_filter)
+            | Q(company__popular_destinations__icontains=city_filter)
+            | Q(company__hq_city__icontains=city_filter)
         )
+    if lane_type_filter and lane_type_filter in VALID_LANE_TYPES:
+        trucks = trucks.filter(lane_type=lane_type_filter)
+    if port_filter and port_filter in VALID_PORTS:
+        trucks = trucks.filter(port_of_entry=port_filter)
+    if equipment_filter and equipment_filter in VALID_EQUIPMENT:
+        trucks = trucks.filter(equipment_type=equipment_filter)
+    if status_filter and status_filter in VALID_STATUSES:
+        trucks = trucks.filter(post_status=status_filter)
+
+    stats = trucks.aggregate(
+        post_count=Count("id"),
+        carrier_count=Count("company", distinct=True),
+        route_count=Count("destination_city", distinct=True),
+    )
+
+    has_filters = any([
+        city_filter, lane_type_filter, port_filter, equipment_filter, status_filter,
+    ])
+
     return render(request, "register/broker/board.html", {
         "trucks": trucks,
         "city_filter": city_filter,
+        "lane_type_filter": lane_type_filter,
+        "port_filter": port_filter,
+        "equipment_filter": equipment_filter,
+        "status_filter": status_filter,
+        "stats": stats,
+        "has_filters": has_filters,
+        "lane_type_choices": TruckAvailability.LaneType.choices,
+        "port_of_entry_choices": PortOfEntry.choices,
+        "equipment_type_choices": TruckAvailability.EquipmentType.choices,
+        "post_status_choices": TruckAvailability.PostStatus.choices,
     })

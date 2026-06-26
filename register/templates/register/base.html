@@ -440,8 +440,10 @@
     }
     .cp-inline-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
     .cp-inline-actions .gold-btn { width: auto; flex: 1; min-width: 160px; margin-top: 0; text-decoration: none; text-align: center; display: inline-block; }
-    .cp-filter { display: flex; gap: 8px; margin-bottom: 12px; }
-    .cp-filter input { flex: 1; }
+    .cp-filter { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+    .cp-filter input { flex: 1; min-width: 140px; }
+    .cp-filter select { min-width: 120px; }
+    .cp-filter--grid { align-items: stretch; }
     .cp-filter button {
       padding: 11px 16px;
       font-weight: 700;
@@ -450,6 +452,60 @@
       background: var(--cp-orange);
       color: #fff;
       cursor: pointer;
+      white-space: nowrap;
+    }
+    .cp-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .cp-stat-card {
+      background: var(--cp-bg-muted);
+      border: 1px solid var(--cp-border);
+      border-radius: 10px;
+      padding: 14px 12px;
+      text-align: center;
+    }
+    .cp-stat-value {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--cp-orange-dark);
+      line-height: 1.1;
+    }
+    .cp-stat-label {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--cp-muted);
+    }
+    .cp-status {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .cp-status--open { background: #e8f5e9; color: #2e7d32; }
+    .cp-status--booked { background: #fff3e0; color: #ef6c00; }
+    .cp-status--expired { background: #eceff1; color: #546e7a; }
+    .cp-cell-sub {
+      font-size: 0.75rem;
+      color: var(--cp-muted);
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+    .cp-company-meta { color: var(--cp-muted); font-size: 0.84rem; }
+    .cp-hint {
+      margin: -4px 0 10px;
+      font-size: 0.78rem;
+      color: var(--cp-muted);
     }
     .cp-lang-bar {
       position: fixed;

@@ -1,6 +1,15 @@
+from decimal import Decimal
+
 from django.conf import settings
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+
+class PortOfEntry(models.TextChoices):
+    LAREDO = "LAREDO", "Laredo"
+    EL_PASO = "EL_PASO", "El Paso"
+    TIJUANA = "TIJUANA", "Tijuana"
 
 
 class UserProfile(models.Model):
@@ -34,8 +43,19 @@ class TruckingCompany(models.Model):
     company_name = models.CharField(max_length=200)
     email = models.EmailField()
     whatsapp = models.CharField(max_length=30)
+    company_address = models.CharField(max_length=255, blank=True)
     hq_city = models.CharField(max_length=120)
     hq_state = models.CharField(max_length=120, blank=True)
+    primary_port_of_entry = models.CharField(
+        max_length=20,
+        choices=PortOfEntry.choices,
+        blank=True,
+        verbose_name=_("Primary border crossing"),
+    )
+    popular_destinations = models.TextField(
+        blank=True,
+        help_text=_("Corridors or cities you run often, e.g. Houston, Dallas, Laredo"),
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -51,10 +71,22 @@ class TruckAvailability(models.Model):
         POTENTIAL_LANE = "POTENTIAL_LANE", _("Potential Lane")
         SPOT_LANE = "SPOT_LANE", _("Spot Lane")
 
-    class PortOfEntry(models.TextChoices):
-        LAREDO = "LAREDO", "Laredo"
-        EL_PASO = "EL_PASO", "El Paso"
-        TIJUANA = "TIJUANA", "Tijuana"
+    class EquipmentType(models.TextChoices):
+        VAN = "VAN", _("Van")
+        REEFER = "REEFER", _("Reefer")
+        FLATBED = "FLATBED", _("Flatbed")
+        STEP_DECK = "STEP_DECK", _("Step deck")
+        POWER_ONLY = "POWER_ONLY", _("Power only")
+        OTHER = "OTHER", _("Other")
+
+    class LoadType(models.TextChoices):
+        FULL = "FULL", _("Full")
+        PARTIAL = "PARTIAL", _("Partial")
+
+    class PostStatus(models.TextChoices):
+        OPEN = "OPEN", _("Open")
+        BOOKED = "BOOKED", _("Booked")
+        EXPIRED = "EXPIRED", _("Expired")
 
     company = models.ForeignKey(
         TruckingCompany, on_delete=models.CASCADE, related_name="posts"
@@ -71,6 +103,31 @@ class TruckAvailability(models.Model):
     current_state = models.CharField(max_length=120, blank=True)
     destination_city = models.CharField(max_length=120, blank=True)
     destination_state = models.CharField(max_length=120, blank=True)
+    equipment_type = models.CharField(
+        max_length=20,
+        choices=EquipmentType.choices,
+        default=EquipmentType.VAN,
+    )
+    trailer_length_ft = models.PositiveSmallIntegerField(default=53)
+    load_type = models.CharField(
+        max_length=20,
+        choices=LoadType.choices,
+        default=LoadType.FULL,
+    )
+    weight_lbs = models.PositiveIntegerField(null=True, blank=True)
+    min_rate_per_mile = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        null=True,
+        blank=True,
+        validators=[MinValueValidator(Decimal("0.01"))],
+    )
+    reference_id = models.CharField(max_length=64, blank=True)
+    post_status = models.CharField(
+        max_length=20,
+        choices=PostStatus.choices,
+        default=PostStatus.OPEN,
+    )
     equipment_notes = models.CharField(max_length=255, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

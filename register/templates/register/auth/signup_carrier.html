@@ -35,21 +35,43 @@
           <label>{% trans "Confirm password" %} <span class="req">*</span></label>
           <input name="password2" type="password" required autocomplete="new-password"/>
 
-          <div class="cp-section">{% trans "Company profile" %}</div>
-          <label>{% trans "Company name" %} <span class="req">*</span></label>
-          <input name="company_name" required value="{{ f.company_name|default:'' }}"/>
-          <label>{% trans "WhatsApp" %} <span class="req">*</span></label>
-          <div class="cp-phone">
-            <select name="whatsapp_code">
-              <option value="+1"{% if f.whatsapp_code == "+1" %} selected{% endif %}>+1 US</option>
-              <option value="+52"{% if f.whatsapp_code == "+52" or not f.whatsapp_code %} selected{% endif %}>+52 MX</option>
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Company profile" %}</div>
+            <label>{% trans "Company name" %} <span class="req">*</span></label>
+            <input name="company_name" required value="{{ f.company_name|default:'' }}"/>
+
+            <label>{% trans "Company address" %}</label>
+            <input name="company_address" value="{{ f.company_address|default:'' }}" placeholder="{% trans 'Street, number, colonia' %}"/>
+
+            <label>{% trans "Headquarters city" %} <span class="req">*</span></label>
+            <input name="hq_city" required value="{{ f.hq_city|default:'' }}" placeholder="{% trans 'e.g. Monterrey' %}"/>
+
+            <label>{% trans "HQ state / region" %}</label>
+            <input name="hq_state" value="{{ f.hq_state|default:'' }}" placeholder="{% trans 'e.g. Nuevo León' %}"/>
+
+            <label>{% trans "Primary border crossing" %}</label>
+            <select name="primary_port_of_entry">
+              <option value="">{% trans "— Not specified —" %}</option>
+              {% for value, label in port_of_entry_choices %}
+              <option value="{{ value }}"{% if f.primary_port_of_entry == value %} selected{% endif %}>{{ label }}</option>
+              {% endfor %}
             </select>
-            <input name="whatsapp_number" type="tel" required value="{{ f.whatsapp_number|default:'' }}"/>
+
+            <label>{% trans "Popular destinations" %}</label>
+            <textarea name="popular_destinations" rows="3" placeholder="{% trans 'Corridors or cities you run often — e.g. Houston, Dallas, Laredo, El Paso' %}">{{ f.popular_destinations|default:'' }}</textarea>
           </div>
-          <label>{% trans "Headquarters city" %} <span class="req">*</span></label>
-          <input name="hq_city" required value="{{ f.hq_city|default:'' }}"/>
-          <label>{% trans "HQ state / region" %}</label>
-          <input name="hq_state" value="{{ f.hq_state|default:'' }}"/>
+
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Contact" %}</div>
+            <label>{% trans "WhatsApp" %} <span class="req">*</span></label>
+            <div class="cp-phone">
+              <select name="whatsapp_code">
+                <option value="+1"{% if f.whatsapp_code == "+1" %} selected{% endif %}>+1 US</option>
+                <option value="+52"{% if f.whatsapp_code == "+52" or not f.whatsapp_code %} selected{% endif %}>+52 MX</option>
+              </select>
+              <input name="whatsapp_number" type="tel" required value="{{ f.whatsapp_number|default:'' }}"/>
+            </div>
+          </div>
 
           <button type="submit" class="gold-btn">{% trans "Create carrier account" %}</button>
         </form>
@@ -77,10 +99,13 @@
     form.password.value = "TestPass123!";
     form.password2.value = "TestPass123!";
     form.company_name.value = "Transportes Test " + id + " SA de CV";
-    form.whatsapp_code.value = "+52";
-    form.whatsapp_number.value = "81" + String(Math.floor(10000000 + Math.random() * 89999999));
+    form.company_address.value = "Av. Industria 1200, Col. Centro";
     form.hq_city.value = loc.city;
     form.hq_state.value = loc.state;
+    form.primary_port_of_entry.value = "LAREDO";
+    form.popular_destinations.value = "Houston, Dallas, Laredo, El Paso";
+    form.whatsapp_code.value = "+52";
+    form.whatsapp_number.value = "81" + String(Math.floor(10000000 + Math.random() * 89999999));
   }
   document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);
   document.getElementById("cp-mock-submit")?.addEventListener("click", function () {

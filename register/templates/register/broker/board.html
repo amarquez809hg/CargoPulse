@@ -24,8 +24,47 @@
           <span class="cp-badge">{% trans "Equipment board" %}</span>
         </div>
 
-        <form class="cp-filter" method="get">
-          <input name="city" value="{{ city_filter }}" placeholder="{% trans 'Filter by origin or destination city…' %}"/>
+        <div class="cp-stat-grid">
+          <div class="cp-stat-card">
+            <span class="cp-stat-value">{{ stats.post_count }}</span>
+            <span class="cp-stat-label">{% trans "Posts" %}</span>
+          </div>
+          <div class="cp-stat-card">
+            <span class="cp-stat-value">{{ stats.carrier_count }}</span>
+            <span class="cp-stat-label">{% trans "Carriers" %}</span>
+          </div>
+          <div class="cp-stat-card">
+            <span class="cp-stat-value">{{ stats.route_count }}</span>
+            <span class="cp-stat-label">{% trans "Destinations" %}</span>
+          </div>
+        </div>
+
+        <form class="cp-filter cp-filter--grid" method="get">
+          <input name="city" value="{{ city_filter }}" placeholder="{% trans 'City, corridor, or HQ…' %}"/>
+          <select name="lane_type">
+            <option value="">{% trans "All types" %}</option>
+            {% for value, label in lane_type_choices %}
+            <option value="{{ value }}"{% if lane_type_filter == value %} selected{% endif %}>{{ value|lane_type_label }}</option>
+            {% endfor %}
+          </select>
+          <select name="port_of_entry">
+            <option value="">{% trans "All ports" %}</option>
+            {% for value, label in port_of_entry_choices %}
+            <option value="{{ value }}"{% if port_filter == value %} selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          <select name="equipment_type">
+            <option value="">{% trans "All equipment" %}</option>
+            {% for value, label in equipment_type_choices %}
+            <option value="{{ value }}"{% if equipment_filter == value %} selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
+          <select name="post_status">
+            <option value="">{% trans "All statuses" %}</option>
+            {% for value, label in post_status_choices %}
+            <option value="{{ value }}"{% if status_filter == value %} selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+          </select>
           <button type="submit">{% trans "Search" %}</button>
         </form>
 
@@ -35,26 +74,41 @@
             <thead>
               <tr>
                 <th>{% trans "Posted" %}</th>
+                <th>{% trans "Status" %}</th>
                 <th>{% trans "Carrier" %}</th>
                 <th>{% trans "Type" %}</th>
-                <th>{% trans "Port of entry" %}</th>
+                <th>{% trans "Port" %}</th>
                 <th>{% trans "Origin" %}</th>
                 <th>{% trans "Destination" %}</th>
-                <th>{% trans "Contact" %}</th>
                 <th>{% trans "Equipment" %}</th>
+                <th>{% trans "Rate/mi" %}</th>
+                <th>{% trans "Contact" %}</th>
               </tr>
             </thead>
             <tbody>
               {% for truck in trucks %}
               <tr>
                 <td>{{ truck.created_at|date:"SHORT_DATE_FORMAT" }}</td>
-                <td>{{ truck.company.company_name }}</td>
+                <td><span class="cp-status cp-status--{{ truck.post_status|lower }}">{{ truck.get_post_status_display }}</span></td>
+                <td>
+                  <strong>{{ truck.company.company_name }}</strong>
+                  {% if truck.company.hq_city %}
+                  <div class="cp-cell-sub">{% trans "HQ:" %} {{ truck.company.hq_city }}{% if truck.company.hq_state %}, {{ truck.company.hq_state }}{% endif %}</div>
+                  {% endif %}
+                  {% if truck.company.popular_destinations %}
+                  <div class="cp-cell-sub">{% trans "Runs:" %} {{ truck.company.popular_destinations|truncatechars:48 }}</div>
+                  {% endif %}
+                </td>
                 <td>{{ truck.lane_type|lane_type_label }}</td>
-                <td>{% if truck.port_of_entry %}{{ truck.get_port_of_entry_display }}{% else %}—{% endif %}</td>
+                <td>{% if truck.port_of_entry %}{{ truck.get_port_of_entry_display }}{% elif truck.company.primary_port_of_entry %}{{ truck.company.get_primary_port_of_entry_display }}{% else %}—{% endif %}</td>
                 <td>{{ truck.current_city }}{% if truck.current_state %}, {{ truck.current_state }}{% endif %}</td>
                 <td>{{ truck.destination_city|default:"—" }}{% if truck.destination_state %}, {{ truck.destination_state }}{% endif %}</td>
-                <td>{{ truck.company.whatsapp }}</td>
-                <td>{{ truck.equipment_notes|default:"—" }}</td>
+                <td>{{ truck.get_equipment_type_display }} · {{ truck.trailer_length_ft }}' · {{ truck.get_load_type_display }}</td>
+                <td>{% if truck.min_rate_per_mile %}${{ truck.min_rate_per_mile }}{% else %}—{% endif %}</td>
+                <td>
+                  <a href="mailto:{{ truck.company.email }}">{{ truck.company.email }}</a><br/>
+                  <span class="cp-cell-sub">{{ truck.company.whatsapp }}</span>
+                </td>
               </tr>
               {% endfor %}
             </tbody>
@@ -62,8 +116,8 @@
         </div>
         {% else %}
         <p style="color:#666;font-size:0.9rem;">
-          {% if city_filter %}
-            {% blocktrans with query=city_filter %}No trucks posted yet matching "{{ query }}".{% endblocktrans %}
+          {% if has_filters %}
+            {% trans "No trucks match your filters." %}
           {% else %}
             {% trans "No trucks posted yet." %}
           {% endif %}
