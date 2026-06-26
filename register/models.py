@@ -99,6 +99,7 @@ class TruckAvailability(models.Model):
     port_of_entry = models.CharField(
         max_length=20, choices=PortOfEntry.choices, blank=True
     )
+    location_address = models.CharField(max_length=255, blank=True)
     current_city = models.CharField(max_length=120)
     current_state = models.CharField(max_length=120, blank=True)
     destination_city = models.CharField(max_length=120, blank=True)

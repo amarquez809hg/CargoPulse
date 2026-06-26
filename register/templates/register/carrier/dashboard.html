@@ -41,6 +41,8 @@
           <a class="gold-btn" href="{% url 'carrier_post' %}" style="text-decoration:none;text-align:center;display:inline-block;">{% trans "Post equipment" %}</a>
         </div>
 
+        <p class="cp-hint">{% blocktrans with days=post_visibility_days %}Active listings expire {{ days }} days after posting.{% endblocktrans %}</p>
+
         <div class="cp-section" style="margin-top:24px;">{% trans "Your postings" %}</div>
 
         {% if posts %}
@@ -49,9 +51,9 @@
             <thead>
               <tr>
                 <th>{% trans "Posted" %}</th>
-                <th>{% trans "Status" %}</th>
                 <th>{% trans "Type" %}</th>
                 <th>{% trans "Port" %}</th>
+                <th>{% trans "Address" %}</th>
                 <th>{% trans "Origin" %}</th>
                 <th>{% trans "Destination" %}</th>
                 <th>{% trans "Equipment" %}</th>
@@ -63,11 +65,11 @@
               {% for post in posts %}
               <tr>
                 <td>{{ post.created_at|date:"SHORT_DATE_FORMAT" }}</td>
-                <td><span class="cp-status cp-status--{{ post.post_status|lower }}">{{ post.get_post_status_display }}</span></td>
                 <td>{{ post.lane_type|lane_type_label }}</td>
                 <td>{% if post.port_of_entry %}{{ post.get_port_of_entry_display }}{% else %}—{% endif %}</td>
-                <td>{{ post.current_city }}{% if post.current_state %}, {{ post.current_state }}{% endif %}</td>
-                <td>{{ post.destination_city|default:"—" }}{% if post.destination_state %}, {{ post.destination_state }}{% endif %}</td>
+                <td>{{ post.location_address|default:"—" }}</td>
+                <td>{{ post.current_city }}</td>
+                <td>{{ post.destination_city|default:"—" }}</td>
                 <td>{{ post.get_equipment_type_display }} · {{ post.trailer_length_ft }}'{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</td>
                 <td>{% if post.min_rate_per_mile %}${{ post.min_rate_per_mile }}{% else %}—{% endif %}</td>
                 <td>{{ post.reference_id|default:"—" }}</td>

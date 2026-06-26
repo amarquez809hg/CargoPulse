@@ -14,6 +14,8 @@
           <span class="cp-badge">{{ company.company_name }}</span>
         </div>
 
+        <p class="cp-hint cp-hint--banner">{% blocktrans with days=post_visibility_days %}Listings stay visible for {{ days }} days from the posted date, then expire automatically.{% endblocktrans %}</p>
+
         {% if errors %}<div class="cp-err">{{ errors }}</div>{% endif %}
 
         <form method="post" id="cp-post-form">
@@ -32,13 +34,6 @@
               <option value="LANE"{% if f.lane_type == "LANE" or not f.lane_type %} selected{% endif %}>{{ "LANE"|lane_type_label }}</option>
               <option value="POTENTIAL_LANE"{% if f.lane_type == "POTENTIAL_LANE" %} selected{% endif %}>{{ "POTENTIAL_LANE"|lane_type_label }}</option>
               <option value="SPOT_LANE"{% if f.lane_type == "SPOT_LANE" %} selected{% endif %}>{{ "SPOT_LANE"|lane_type_label }}</option>
-            </select>
-
-            <label>{% trans "Status" %}</label>
-            <select name="post_status">
-              {% for value, label in post_status_choices %}
-              <option value="{{ value }}"{% if f.post_status == value or not f.post_status and value == "OPEN" %} selected{% endif %}>{{ label }}</option>
-              {% endfor %}
             </select>
 
             <label>{% trans "Reference ID" %}</label>
@@ -60,15 +55,15 @@
           </div>
 
           <div class="cp-form-section">
-            <div class="cp-section">{% trans "Route detail" %}</div>
+            <div class="cp-section">{% trans "Location & route" %}</div>
+            <label>{% trans "Address" %}</label>
+            <input name="location_address" value="{{ f.location_address|default:'' }}" placeholder="{% trans 'Street, yard, or pickup address' %}"/>
+
             <label>{% trans "Origin city" %} <span class="req">*</span></label>
             <input name="current_city" required value="{{ f.current_city|default:'' }}" placeholder="{% trans 'Where the truck is now' %}"/>
-            <label>{% trans "Origin state / region" %}</label>
-            <input name="current_state" value="{{ f.current_state|default:'' }}"/>
+
             <label>{% trans "Destination city" %} <span class="req">*</span></label>
             <input name="destination_city" required value="{{ f.destination_city|default:'' }}" placeholder="{% trans 'Where the truck is headed' %}"/>
-            <label>{% trans "Destination state / region" %}</label>
-            <input name="destination_state" value="{{ f.destination_state|default:'' }}"/>
           </div>
 
           <div class="cp-form-section">
@@ -112,13 +107,11 @@
     var form = document.getElementById("cp-post-form");
     if (!form) return;
     form.lane_type.value = "LANE";
-    form.post_status.value = "OPEN";
     form.reference_id.value = "REF-" + Date.now().toString().slice(-5);
     form.port_of_entry.value = "{{ company.primary_port_of_entry|default:'LAREDO' }}";
+    form.location_address.value = "{{ company.company_address|default:'Av. Industria 1200, Col. Centro'|escapejs }}";
     form.current_city.value = "Guadalajara";
-    form.current_state.value = "Jalisco";
     form.destination_city.value = "Houston";
-    form.destination_state.value = "Texas";
     form.equipment_type.value = "VAN";
     form.trailer_length_ft.value = "53";
     form.load_type.value = "FULL";

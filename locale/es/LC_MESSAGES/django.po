@@ -457,3 +457,24 @@ msgstr "Reservada"
 
 msgid "Expired"
 msgstr "Expirada"
+
+msgid "Location & route"
+msgstr "Ubicación y ruta"
+
+msgid "Address"
+msgstr "Dirección"
+
+msgid "Street, yard, or pickup address"
+msgstr "Calle, patio o dirección de recolección"
+
+msgid "Listings stay visible for %(days)s days from the posted date, then expire automatically."
+msgstr "Las publicaciones permanecen visibles %(days)s días desde la fecha de publicación y luego expiran automáticamente."
+
+msgid "Active listings expire %(days)s days after posting."
+msgstr "Las publicaciones activas expiran %(days)s días después de publicarse."
+
+msgid "Showing equipment posted within the last %(days)s days."
+msgstr "Mostrando equipo publicado en los últimos %(days)s días."
+
+msgid "City, address, or corridor…"
+msgstr "Ciudad, dirección o corredor…"

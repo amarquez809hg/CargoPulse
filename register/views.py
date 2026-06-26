@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_http_methods
 
+from .availability import POST_VISIBILITY_DAYS, visible_posts
 from .decorators import get_profile, role_required
 from .models import PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
 
@@ -27,17 +28,15 @@ CARRIER_PROFILE_FIELDS = (
 AVAILABILITY_FIELDS = (
     "lane_type",
     "port_of_entry",
+    "location_address",
     "current_city",
-    "current_state",
     "destination_city",
-    "destination_state",
     "equipment_type",
     "trailer_length_ft",
     "load_type",
     "weight_lbs",
     "min_rate_per_mile",
     "reference_id",
-    "post_status",
     "equipment_notes",
 )
 
@@ -45,7 +44,6 @@ VALID_PORTS = {c.value for c in PortOfEntry}
 VALID_LANE_TYPES = {c.value for c in TruckAvailability.LaneType}
 VALID_EQUIPMENT = {c.value for c in TruckAvailability.EquipmentType}
 VALID_LOAD_TYPES = {c.value for c in TruckAvailability.LoadType}
-VALID_STATUSES = {c.value for c in TruckAvailability.PostStatus}
 
 
 def _clear_messages(request):
@@ -224,10 +222,11 @@ def broker_signup(request):
 @role_required(UserProfile.ROLE_CARRIER)
 def carrier_dashboard(request):
     company = get_object_or_404(TruckingCompany, user=request.user)
-    posts = company.posts.all()
+    posts = visible_posts(company.posts.all())
     return render(request, "register/carrier/dashboard.html", {
         "company": company,
         "posts": posts,
+        "post_visibility_days": POST_VISIBILITY_DAYS,
     })
 
 
@@ -236,15 +235,19 @@ def carrier_dashboard(request):
 def carrier_post_truck(request):
     company = get_object_or_404(TruckingCompany, user=request.user)
     default_port = company.primary_port_of_entry or ""
-    f = {"port_of_entry": default_port, "trailer_length_ft": "53", "post_status": "OPEN"}
+    f = {
+        "port_of_entry": default_port,
+        "location_address": company.company_address,
+        "trailer_length_ft": "53",
+    }
     ctx = {
         "company": company,
         "f": f,
+        "post_visibility_days": POST_VISIBILITY_DAYS,
         "lane_type_choices": TruckAvailability.LaneType.choices,
         "port_of_entry_choices": PortOfEntry.choices,
         "equipment_type_choices": TruckAvailability.EquipmentType.choices,
         "load_type_choices": TruckAvailability.LoadType.choices,
-        "post_status_choices": TruckAvailability.PostStatus.choices,
     }
 
     if request.method == "POST":
@@ -271,10 +274,6 @@ def carrier_post_truck(request):
             ctx["errors"] = _("Select a valid load type.")
             return render(request, "register/carrier/post.html", ctx)
 
-        if f["post_status"] not in VALID_STATUSES:
-            ctx["errors"] = _("Select a valid status.")
-            return render(request, "register/carrier/post.html", ctx)
-
         try:
             trailer_length = int(f["trailer_length_ft"] or "53")
             if trailer_length < 1 or trailer_length > 75:
@@ -289,17 +288,16 @@ def carrier_post_truck(request):
             company=company,
             lane_type=f["lane_type"],
             port_of_entry=f["port_of_entry"],
+            location_address=f["location_address"],
             current_city=f["current_city"],
-            current_state=f["current_state"],
             destination_city=f["destination_city"],
-            destination_state=f["destination_state"],
             equipment_type=f["equipment_type"],
             trailer_length_ft=trailer_length,
             load_type=f["load_type"],
             weight_lbs=weight_lbs,
             min_rate_per_mile=min_rate,
             reference_id=f["reference_id"],
-            post_status=f["post_status"],
+            post_status=TruckAvailability.PostStatus.OPEN,
             equipment_notes=f["equipment_notes"],
         )
         messages.success(request, _("Equipment availability posted."))
@@ -310,24 +308,23 @@ def carrier_post_truck(request):
 
 @role_required(UserProfile.ROLE_BROKER)
 def broker_board(request):
-    trucks = (
-        TruckAvailability.objects.select_related("company")
-        .all()
-        .order_by("-created_at")
-    )
+    trucks = visible_posts(
+        TruckAvailability.objects.select_related("company").all()
+    ).order_by("-created_at")
 
     city_filter = (request.GET.get("city") or "").strip()
     lane_type_filter = (request.GET.get("lane_type") or "").strip()
     port_filter = (request.GET.get("port_of_entry") or "").strip()
     equipment_filter = (request.GET.get("equipment_type") or "").strip()
-    status_filter = (request.GET.get("post_status") or "").strip()
 
     if city_filter:
         trucks = trucks.filter(
             Q(current_city__icontains=city_filter)
             | Q(destination_city__icontains=city_filter)
+            | Q(location_address__icontains=city_filter)
             | Q(company__popular_destinations__icontains=city_filter)
             | Q(company__hq_city__icontains=city_filter)
+            | Q(company__company_address__icontains=city_filter)
         )
     if lane_type_filter and lane_type_filter in VALID_LANE_TYPES:
         trucks = trucks.filter(lane_type=lane_type_filter)
@@ -335,8 +332,6 @@ def broker_board(request):
         trucks = trucks.filter(port_of_entry=port_filter)
     if equipment_filter and equipment_filter in VALID_EQUIPMENT:
         trucks = trucks.filter(equipment_type=equipment_filter)
-    if status_filter and status_filter in VALID_STATUSES:
-        trucks = trucks.filter(post_status=status_filter)
 
     stats = trucks.aggregate(
         post_count=Count("id"),
@@ -344,9 +339,7 @@ def broker_board(request):
         route_count=Count("destination_city", distinct=True),
     )
 
-    has_filters = any([
-        city_filter, lane_type_filter, port_filter, equipment_filter, status_filter,
-    ])
+    has_filters = any([city_filter, lane_type_filter, port_filter, equipment_filter])
 
     return render(request, "register/broker/board.html", {
         "trucks": trucks,
@@ -354,11 +347,10 @@ def broker_board(request):
         "lane_type_filter": lane_type_filter,
         "port_filter": port_filter,
         "equipment_filter": equipment_filter,
-        "status_filter": status_filter,
         "stats": stats,
         "has_filters": has_filters,
+        "post_visibility_days": POST_VISIBILITY_DAYS,
         "lane_type_choices": TruckAvailability.LaneType.choices,
         "port_of_entry_choices": PortOfEntry.choices,
         "equipment_type_choices": TruckAvailability.EquipmentType.choices,
-        "post_status_choices": TruckAvailability.PostStatus.choices,
     })

@@ -24,6 +24,8 @@
           <span class="cp-badge">{% trans "Equipment board" %}</span>
         </div>
 
+        <p class="cp-hint">{% blocktrans with days=post_visibility_days %}Showing equipment posted within the last {{ days }} days.{% endblocktrans %}</p>
+
         <div class="cp-stat-grid">
           <div class="cp-stat-card">
             <span class="cp-stat-value">{{ stats.post_count }}</span>
@@ -40,7 +42,7 @@
         </div>
 
         <form class="cp-filter cp-filter--grid" method="get">
-          <input name="city" value="{{ city_filter }}" placeholder="{% trans 'City, corridor, or HQ…' %}"/>
+          <input name="city" value="{{ city_filter }}" placeholder="{% trans 'City, address, or corridor…' %}"/>
           <select name="lane_type">
             <option value="">{% trans "All types" %}</option>
             {% for value, label in lane_type_choices %}
@@ -59,12 +61,6 @@
             <option value="{{ value }}"{% if equipment_filter == value %} selected{% endif %}>{{ label }}</option>
             {% endfor %}
           </select>
-          <select name="post_status">
-            <option value="">{% trans "All statuses" %}</option>
-            {% for value, label in post_status_choices %}
-            <option value="{{ value }}"{% if status_filter == value %} selected{% endif %}>{{ label }}</option>
-            {% endfor %}
-          </select>
           <button type="submit">{% trans "Search" %}</button>
         </form>
 
@@ -74,10 +70,10 @@
             <thead>
               <tr>
                 <th>{% trans "Posted" %}</th>
-                <th>{% trans "Status" %}</th>
                 <th>{% trans "Carrier" %}</th>
                 <th>{% trans "Type" %}</th>
                 <th>{% trans "Port" %}</th>
+                <th>{% trans "Address" %}</th>
                 <th>{% trans "Origin" %}</th>
                 <th>{% trans "Destination" %}</th>
                 <th>{% trans "Equipment" %}</th>
@@ -89,7 +85,6 @@
               {% for truck in trucks %}
               <tr>
                 <td>{{ truck.created_at|date:"SHORT_DATE_FORMAT" }}</td>
-                <td><span class="cp-status cp-status--{{ truck.post_status|lower }}">{{ truck.get_post_status_display }}</span></td>
                 <td>
                   <strong>{{ truck.company.company_name }}</strong>
                   {% if truck.company.hq_city %}
@@ -101,8 +96,9 @@
                 </td>
                 <td>{{ truck.lane_type|lane_type_label }}</td>
                 <td>{% if truck.port_of_entry %}{{ truck.get_port_of_entry_display }}{% elif truck.company.primary_port_of_entry %}{{ truck.company.get_primary_port_of_entry_display }}{% else %}—{% endif %}</td>
-                <td>{{ truck.current_city }}{% if truck.current_state %}, {{ truck.current_state }}{% endif %}</td>
-                <td>{{ truck.destination_city|default:"—" }}{% if truck.destination_state %}, {{ truck.destination_state }}{% endif %}</td>
+                <td>{% firstof truck.location_address truck.company.company_address "—" %}</td>
+                <td>{{ truck.current_city }}</td>
+                <td>{{ truck.destination_city|default:"—" }}</td>
                 <td>{{ truck.get_equipment_type_display }} · {{ truck.trailer_length_ft }}' · {{ truck.get_load_type_display }}</td>
                 <td>{% if truck.min_rate_per_mile %}${{ truck.min_rate_per_mile }}{% else %}—{% endif %}</td>
                 <td>

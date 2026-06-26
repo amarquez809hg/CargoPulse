@@ -34,10 +34,9 @@ class TruckingCompanyAdmin(admin.ModelAdmin):
 class TruckAvailabilityAdmin(admin.ModelAdmin):
     list_display = (
         "company",
-        "post_status",
         "lane_type",
-        "equipment_type",
         "port_of_entry",
+        "location_address",
         "current_city",
         "destination_city",
         "min_rate_per_mile",
