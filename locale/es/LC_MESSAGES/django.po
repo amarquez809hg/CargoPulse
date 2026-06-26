@@ -335,17 +335,11 @@ msgstr "Destinos frecuentes"
 msgid "Corridors or cities you run often — e.g. Houston, Dallas, Laredo, El Paso"
 msgstr "Corredores o ciudades que manejas — ej. Houston, Dallas, Laredo, El Paso"
 
-msgid "Contact"
-msgstr "Contacto"
-
 msgid "Port of entry / border crossing"
 msgstr "Puerto de entrada / cruce fronterizo"
 
 msgid "Company default:"
 msgstr "Predeterminado de la empresa:"
-
-msgid "Equipment"
-msgstr "Equipo"
 
 msgid "Equipment type"
 msgstr "Tipo de equipo"
