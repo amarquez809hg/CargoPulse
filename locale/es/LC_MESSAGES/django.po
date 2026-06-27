@@ -509,14 +509,8 @@ msgstr "Publica camiones disponibles para que los brokers los encuentren."
 msgid "Get started"
 msgstr "Comenzar"
 
-msgid "Carrier registration"
-msgstr "Registro de transportista"
-
 msgid "Create a free account and post your fleet."
 msgstr "Crea una cuenta gratis y publica tu flota."
-
-msgid "Broker registration"
-msgstr "Registro de broker"
 
 msgid "Sign up to search equipment and reach carriers."
 msgstr "Regístrate para buscar equipo y contactar transportistas."
