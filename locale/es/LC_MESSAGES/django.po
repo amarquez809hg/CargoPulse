@@ -490,3 +490,84 @@ msgstr "CTPAT"
 
 msgid "B1 drivers"
 msgstr "Conductores B1"
+
+msgid "Cargo Pulse home"
+msgstr "Inicio de Cargo Pulse"
+
+msgid "Main navigation"
+msgstr "Navegación principal"
+
+msgid "Platform"
+msgstr "Plataforma"
+
+msgid "Browse posted trucks and contact carriers directly."
+msgstr "Explora camiones publicados y contacta transportistas directamente."
+
+msgid "List available trucks for brokers to find."
+msgstr "Publica camiones disponibles para que los brokers los encuentren."
+
+msgid "Get started"
+msgstr "Comenzar"
+
+msgid "Carrier registration"
+msgstr "Registro de transportista"
+
+msgid "Create a free account and post your fleet."
+msgstr "Crea una cuenta gratis y publica tu flota."
+
+msgid "Broker registration"
+msgstr "Registro de broker"
+
+msgid "Sign up to search equipment and reach carriers."
+msgstr "Regístrate para buscar equipo y contactar transportistas."
+
+msgid "Coverage"
+msgstr "Cobertura"
+
+msgid "US–Mexico border crossings"
+msgstr "Cruces fronterizos EE.UU.–México"
+
+msgid "Laredo, El Paso, Otay Mesa, Nogales, and major corridors."
+msgstr "Laredo, El Paso, Otay Mesa, Nogales y corredores principales."
+
+msgid "Cross-border & domestic"
+msgstr "Cruzado y doméstico"
+
+msgid "Spot lanes, potential lanes, and dedicated capacity."
+msgstr "Rutas spot, rutas potenciales y capacidad dedicada."
+
+msgid "Equipment and specialization"
+msgstr "Equipo y especialización"
+
+msgid "Open deck"
+msgstr "Plataforma"
+
+msgid "Resources"
+msgstr "Recursos"
+
+msgid "How it works"
+msgstr "Cómo funciona"
+
+msgid "Choose your portal — carriers post, brokers search."
+msgstr "Elige tu portal: transportistas publican, brokers buscan."
+
+msgid "Access your carrier dashboard or broker board."
+msgstr "Accede a tu panel de transportista o tablero de broker."
+
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+msgid "Open menu"
+msgstr "Abrir menú"
+
+msgid "US–Mexico freight marketplace"
+msgstr "Marketplace de carga EE.UU.–México"
+
+msgid "The marketplace for cross-border truck capacity"
+msgstr "El marketplace de capacidad de camiones transfronteriza"
+
+msgid "Where carriers post equipment and brokers find trucks across major border corridors."
+msgstr "Donde los transportistas publican equipo y los brokers encuentran camiones en los principales corredores fronterizos."
+
+msgid "Laredo, El Paso, Otay Mesa, Nogales, and other major US–Mexico crossings — dry van, reefer, and open deck equipment."
+msgstr "Laredo, El Paso, Otay Mesa, Nogales y otros cruces principales EE.UU.–México — caja seca, refrigerado y plataforma."

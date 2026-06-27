@@ -1,21 +1,24 @@
 {% load i18n %}
-<form action="{% url 'set_language' %}" method="post" class="cp-lang-bar">
-  {% csrf_token %}
-  <input name="next" type="hidden" value="{{ request.get_full_path }}"/>
-  <span class="cp-lang-label">{% trans "Language" %}</span>
-  {% get_current_language as CURRENT_LANG %}
-  <button
-    type="submit"
-    name="language"
-    value="en"
-    class="cp-lang-btn{% if CURRENT_LANG == 'en' %} cp-lang-btn--active{% endif %}"
-    aria-pressed="{% if CURRENT_LANG == 'en' %}true{% else %}false{% endif %}"
-  >{% trans "English" %}</button>
-  <button
-    type="submit"
-    name="language"
-    value="es"
-    class="cp-lang-btn{% if CURRENT_LANG == 'es' %} cp-lang-btn--active{% endif %}"
-    aria-pressed="{% if CURRENT_LANG == 'es' %}true{% else %}false{% endif %}"
-  >{% trans "Spanish" %}</button>
-</form>
+<div class="cp-header-lang">
+  <button type="button" class="cp-header-lang-btn" aria-label="{% trans 'Language' %}">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 12h18M12 3c2.5 2.8 4 6 4 9s-1.5 6.2-4 9M12 3c-2.5 2.8-4 6-4 9s1.5 6.2 4 9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+  </button>
+  <form action="{% url 'set_language' %}" method="post" class="cp-header-lang-menu">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ request.get_full_path }}"/>
+    <p class="cp-header-lang-title">{% trans "Language" %}</p>
+    {% get_current_language as CURRENT_LANG %}
+    <button
+      type="submit"
+      name="language"
+      value="en"
+      class="cp-header-lang-option{% if CURRENT_LANG == 'en' %} is-active{% endif %}"
+    >{% trans "English" %}</button>
+    <button
+      type="submit"
+      name="language"
+      value="es"
+      class="cp-header-lang-option{% if CURRENT_LANG == 'es' %} is-active{% endif %}"
+    >{% trans "Spanish" %}</button>
+  </form>
+</div>

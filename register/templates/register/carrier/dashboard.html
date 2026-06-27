@@ -4,12 +4,6 @@
 {% block body %}
 <div class="cp-page">
   <div class="cp-shell cp-shell-wide">
-    <div class="cp-nav">
-      <a class="cp-back" href="{% url 'home' %}">← {% trans "Home" %}</a>
-      <span class="cp-nav-user">{% blocktrans with username=user.username %}Signed in as <strong>{{ username }}</strong> · Carrier{% endblocktrans %}</span>
-      <a class="cp-back" href="{% url 'logout' %}">{% trans "Sign out" %}</a>
-    </div>
-
     {% if messages %}
       {% for message in messages %}
         <div class="cp-msg cp-msg--{% if message.tags == 'error' %}error{% elif message.tags == 'success' %}success{% else %}info{% endif %}">{{ message }}</div>
