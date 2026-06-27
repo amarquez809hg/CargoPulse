@@ -1,0 +1,38 @@
+{% load static i18n %}
+{% if GOOGLE_MAPS_ENABLED %}
+<script src="{% static 'register/js/cp-places.js' %}"></script>
+<script>
+(function (g) {
+  var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__",
+    m = document, b = window;
+  b = b[c] || (b[c] = {});
+  var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams,
+    u = function () {
+      return h || (h = new Promise(function (resolve, reject) {
+        a = m.createElement("script");
+        e.set("libraries", Array.from(r).join(","));
+        for (k in g) {
+          e.set(k.replace(/[A-Z]/g, function (t) { return "_" + t[0].toLowerCase(); }), g[k]);
+        }
+        e.set("callback", c + ".maps." + q);
+        a.src = "https://maps.googleapis.com/maps/api/js?" + e;
+        d[q] = resolve;
+        a.onerror = function () { reject(new Error(p + " could not load.")); };
+        m.head.append(a);
+      }));
+    };
+  if (!d[l]) {
+    d[l] = function (f) {
+      r.add(f);
+      return u().then(function () { return d[l](f); });
+    };
+  }
+})({ key: "{{ GOOGLE_MAPS_API_KEY|escapejs }}", v: "weekly" });
+
+google.maps.importLibrary("places").then(function () {
+  if (window.cpPlacesBootstrap) window.cpPlacesBootstrap();
+}).catch(function (err) {
+  console.warn("Cargo Pulse: Maps Places library failed", err);
+});
+</script>
+{% endif %}

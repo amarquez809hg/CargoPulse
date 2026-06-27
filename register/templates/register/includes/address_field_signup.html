@@ -1,0 +1,13 @@
+{% load i18n %}
+<label>{% trans "Company address" %}</label>
+{% if GOOGLE_MAPS_ENABLED %}
+<div class="cp-places-field"
+     data-cp-places-field
+     data-cp-places-city-target="hq_city"
+     data-cp-places-initial="{{ f.company_address|default:''|escape }}"
+     data-cp-places-placeholder="{% trans 'Start typing an address…' %}">
+  <input type="hidden" name="company_address" value="{{ f.company_address|default:'' }}"/>
+</div>
+{% else %}
+<input name="company_address" value="{{ f.company_address|default:'' }}" placeholder="{% trans 'Start typing an address…' %}"/>
+{% endif %}

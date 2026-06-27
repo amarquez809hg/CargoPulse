@@ -557,10 +557,52 @@
       border-color: var(--cp-orange);
       color: #fff;
     }
+    .pac-container {
+      z-index: 10000 !important;
+      font-family: Inter, system-ui, sans-serif;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(46, 46, 46, 0.12);
+      border: 1px solid var(--cp-border);
+      margin-top: 4px;
+    }
+    .pac-item {
+      padding: 8px 10px;
+      font-size: 0.88rem;
+    }
+    .cp-places-field {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+    .cp-places-field gmp-place-autocomplete,
+    .cp-places-field .cp-places-widget {
+      width: 100%;
+      display: block;
+      color-scheme: light;
+    }
+    gmp-place-autocomplete {
+      width: 100%;
+    }
+    gmp-place-autocomplete input {
+      width: 100%;
+      padding: 11px 12px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      border: 1px solid var(--cp-border);
+      border-radius: 8px;
+      background: var(--cp-input-bg);
+      color: var(--cp-text);
+    }
+    gmp-place-autocomplete input:focus {
+      outline: none;
+      border-color: var(--cp-orange);
+      box-shadow: 0 0 0 3px rgba(230, 138, 46, 0.18);
+    }
   </style>
+  {% block extra_head %}{% endblock %}
 </head>
 <body>
   {% include "register/includes/language_switcher.html" %}
   {% block body %}{% endblock %}
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

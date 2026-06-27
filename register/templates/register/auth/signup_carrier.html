@@ -40,8 +40,7 @@
             <label>{% trans "Company name" %} <span class="req">*</span></label>
             <input name="company_name" required value="{{ f.company_name|default:'' }}"/>
 
-            <label>{% trans "Company address" %}</label>
-            <input name="company_address" value="{{ f.company_address|default:'' }}" placeholder="{% trans 'Street, number, colonia' %}"/>
+            {% include "register/includes/address_field_signup.html" %}
 
             <label>{% trans "Headquarters city" %} <span class="req">*</span></label>
             <input name="hq_city" required value="{{ f.hq_city|default:'' }}" placeholder="{% trans 'e.g. Monterrey, Nuevo León' %}"/>
@@ -110,4 +109,5 @@
   });
 })();
 </script>
+{% include "register/includes/places_autocomplete.html" %}
 {% endblock %}

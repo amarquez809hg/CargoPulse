@@ -56,8 +56,7 @@
 
           <div class="cp-form-section">
             <div class="cp-section">{% trans "Location & route" %}</div>
-            <label>{% trans "Address" %}</label>
-            <input name="location_address" value="{{ f.location_address|default:'' }}" placeholder="{% trans 'Street, yard, or pickup address' %}"/>
+            {% include "register/includes/address_field_post.html" %}
 
             <label>{% trans "Origin city" %} <span class="req">*</span></label>
             <input name="current_city" required value="{{ f.current_city|default:'' }}" placeholder="{% trans 'Where the truck is now' %}"/>
@@ -126,4 +125,5 @@
   });
 })();
 </script>
+{% include "register/includes/places_autocomplete.html" %}
 {% endblock %}
