@@ -17,9 +17,11 @@ class TruckingCompanyAdmin(admin.ModelAdmin):
         "email",
         "hq_city",
         "primary_port_of_entry",
+        "ctpat_certified",
+        "b1_drivers",
         "created_at",
     )
-    list_filter = ("primary_port_of_entry", "hq_city")
+    list_filter = ("primary_port_of_entry", "hq_city", "ctpat_certified", "b1_drivers")
     search_fields = (
         "company_name",
         "email",

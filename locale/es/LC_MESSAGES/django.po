@@ -478,3 +478,15 @@ msgstr "Mostrando equipo publicado en los últimos %(days)s días."
 
 msgid "City, address, or corridor…"
 msgstr "Ciudad, dirección o corredor…"
+
+msgid "Start typing an address…"
+msgstr "Empieza a escribir una dirección…"
+
+msgid "Check box if applies"
+msgstr "Marca la casilla si aplica"
+
+msgid "CTPAT"
+msgstr "CTPAT"
+
+msgid "B1 drivers"
+msgstr "Conductores B1"

@@ -93,6 +93,7 @@
                   {% if truck.company.popular_destinations %}
                   <div class="cp-cell-sub">{% trans "Runs:" %} {{ truck.company.popular_destinations|truncatechars:48 }}</div>
                   {% endif %}
+                  {% include "register/includes/carrier_compliance_badges.html" with company=truck.company %}
                 </td>
                 <td>{{ truck.lane_type|lane_type_label }}</td>
                 <td>{% if truck.port_of_entry %}{{ truck.get_port_of_entry_display }}{% elif truck.company.primary_port_of_entry %}{{ truck.company.get_primary_port_of_entry_display }}{% else %}—{% endif %}</td>

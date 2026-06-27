@@ -56,6 +56,8 @@ class TruckingCompany(models.Model):
         blank=True,
         help_text=_("Corridors or cities you run often, e.g. Houston, Dallas, Laredo"),
     )
+    ctpat_certified = models.BooleanField(default=False)
+    b1_drivers = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

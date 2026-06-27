@@ -127,7 +127,7 @@ def carrier_signup(request):
     if request.user.is_authenticated:
         return _redirect_for_user(request.user)
 
-    f = {"whatsapp_code": "+52", "whatsapp_number": ""}
+    f = {"whatsapp_code": "+52", "whatsapp_number": "", "ctpat_certified": False, "b1_drivers": False}
     ctx = {
         "f": f,
         "port_of_entry_choices": PortOfEntry.choices,
@@ -136,6 +136,8 @@ def carrier_signup(request):
     if request.method == "POST":
         f = {k: (request.POST.get(k) or "").strip() for k in CARRIER_PROFILE_FIELDS}
         f["whatsapp_code"] = (request.POST.get("whatsapp_code") or "+52").strip()
+        f["ctpat_certified"] = request.POST.get("ctpat_certified") == "1"
+        f["b1_drivers"] = request.POST.get("b1_drivers") == "1"
         ctx["f"] = f
 
         if f["password"] != f["password2"]:
@@ -166,6 +168,8 @@ def carrier_signup(request):
             hq_city=f["hq_city"],
             primary_port_of_entry=f["primary_port_of_entry"],
             popular_destinations=f["popular_destinations"],
+            ctpat_certified=f["ctpat_certified"],
+            b1_drivers=f["b1_drivers"],
         )
         login(request, user)
         _clear_messages(request)

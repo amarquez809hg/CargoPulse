@@ -169,6 +169,51 @@
     .cp-phone { display: flex; gap: 10px; }
     .cp-phone select { flex: 0 0 108px; font-weight: 600; }
     .cp-phone input { flex: 1; min-width: 0; }
+    .cp-checkbox-heading {
+      margin: 22px 0 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--cp-charcoal-soft);
+    }
+    .cp-checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 10px 0 0;
+      padding: 12px 14px;
+      border: 1px solid var(--cp-border);
+      border-radius: 8px;
+      background: var(--cp-input-bg);
+      cursor: pointer;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--cp-charcoal);
+    }
+    .cp-checkbox-item input {
+      width: auto;
+      margin: 0;
+      flex: 0 0 auto;
+      accent-color: var(--cp-orange);
+    }
+    .cp-checkbox-item span { flex: 1; }
+    .cp-compliance-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 8px 0 4px;
+    }
+    .cp-badge-tag {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 100px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: var(--cp-orange-dark);
+      background: rgba(230,138,46,.12);
+      border: 1px solid rgba(230,138,46,.35);
+    }
     textarea { resize: vertical; min-height: 88px; }
     .gold-btn, .cp-primary-btn {
       width: 100%;

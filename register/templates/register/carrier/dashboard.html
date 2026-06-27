@@ -34,6 +34,7 @@
           {% if company.popular_destinations %}
           <span class="cp-company-meta">{% trans "Popular destinations:" %} {{ company.popular_destinations }}</span><br/>
           {% endif %}
+          {% include "register/includes/carrier_compliance_badges.html" with company=company %}
           {{ company.whatsapp }} · {{ company.email }}
         </div>
 

@@ -69,6 +69,18 @@
             </div>
           </div>
 
+          <div class="cp-form-section">
+            <p class="cp-checkbox-heading">{% trans "Check box if applies" %}</p>
+            <label class="cp-checkbox-item">
+              <input type="checkbox" name="ctpat_certified" value="1"{% if f.ctpat_certified %} checked{% endif %}/>
+              <span>{% trans "CTPAT" %}</span>
+            </label>
+            <label class="cp-checkbox-item">
+              <input type="checkbox" name="b1_drivers" value="1"{% if f.b1_drivers %} checked{% endif %}/>
+              <span>{% trans "B1 drivers" %}</span>
+            </label>
+          </div>
+
           <button type="submit" class="gold-btn">{% trans "Create carrier account" %}</button>
         </form>
         <p class="cp-footer">{% trans "Already registered?" %} <a href="{% url 'login' %}?role=carrier">{% trans "Sign in" %}</a></p>
