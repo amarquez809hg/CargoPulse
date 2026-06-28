@@ -1429,3 +1429,6 @@ msgstr "Remolque"
 
 msgid "Weight"
 msgstr "Peso"
+
+msgid "Load"
+msgstr "Carga"

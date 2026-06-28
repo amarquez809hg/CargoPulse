@@ -176,8 +176,8 @@
 
 .cp-post-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
   margin-top: 12px;
 }
 
@@ -185,6 +185,128 @@
   font-size: 1rem;
   letter-spacing: 0;
   background: linear-gradient(145deg, #64748b, #334155);
+}
+
+.cp-profile-card--broker-post .cp-profile-card__inner {
+  padding: 12px 12px 11px;
+}
+
+.cp-profile-card--broker-post .cp-profile-card__frame {
+  padding: 10px;
+}
+
+.cp-profile-card--post .cp-profile-card__person--compact {
+  margin-bottom: 8px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.cp-profile-card--post .cp-profile-card__person--compact .cp-profile-card__avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 0.82rem;
+}
+
+.cp-profile-card--post .cp-profile-card__person--compact .cp-profile-card__name {
+  font-size: 0.86rem;
+}
+
+.cp-profile-card--post .cp-profile-card__person--compact .cp-profile-card__role {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.cp-profile-card__company--compact {
+  margin-bottom: 8px;
+  padding: 8px 9px;
+}
+
+.cp-profile-card__company--compact .cp-profile-card__co-logo {
+  width: 34px;
+  height: 34px;
+  font-size: 0.58rem;
+}
+
+.cp-profile-card__company--compact h4 {
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+}
+
+.cp-profile-card__company--compact .cp-profile-card__legal {
+  font-size: 0.66rem;
+}
+
+.cp-profile-card__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 10px;
+  margin-bottom: 8px;
+}
+
+.cp-profile-card__fact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 7px;
+  border-radius: 7px;
+  background: rgba(15, 23, 42, 0.04);
+  min-width: 0;
+}
+
+.cp-profile-card__fact span {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.cp-profile-card__fact strong {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.3;
+}
+
+.cp-profile-card__tags--compact {
+  margin-top: 0;
+  gap: 5px;
+}
+
+.cp-profile-card__tags--compact .cp-compliance-badges {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0;
+}
+
+.cp-profile-card__tags--compact .cp-badge-tag {
+  padding: 3px 8px;
+  font-size: 0.6rem;
+}
+
+.cp-profile-card__contact--compact {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  font-size: 0.68rem;
+  line-height: 1.4;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.cp-profile-card__contact--compact a {
+  color: #c9741f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cp-profile-card__contact-sep {
+  color: #9ca3af;
 }
 
 .cp-profile-card__notes {
