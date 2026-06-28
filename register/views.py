@@ -17,11 +17,10 @@ INFO_PAGES = {
     "info_brokers": {
         "template": "register/info/brokers.html",
         "tag": _("For US freight brokers"),
-        "title": _("Find small Mexican carriers on your lanes"),
+        "title": _("Find Mexican carriers on your lanes"),
         "lead": _(
-            "Cargo Pulse surfaces independent Mexican carriers and modest "
-            "fleets crossing the border — operators who rarely appear on big "
-            "national load boards."
+            "Independent Mexican fleets on US–Mexico crossings — "
+            "beyond the big load boards."
         ),
         "cta": "broker",
     },
@@ -30,9 +29,8 @@ INFO_PAGES = {
         "tag": _("For Mexican carriers"),
         "title": _("Post your trucks. Be seen in the US."),
         "lead": _(
-            "Built for small Mexican entrepreneurs — owner-operators and regional "
-            "fleets who cross the border and need visibility without a big brand "
-            "behind them."
+            "For Mexican owner-operators and regional fleets "
+            "crossing into the United States."
         ),
         "cta": "carrier",
     },
@@ -51,19 +49,17 @@ INFO_PAGES = {
         "tag": _("Platform"),
         "title": _("Post equipment"),
         "lead": _(
-            "Mexican carriers share where the truck is, where it is headed north "
-            "or south, and what equipment is available — in a form sized for "
-            "small operations."
+            "Share truck location, destination, and equipment — "
+            "ready in minutes."
         ),
         "cta": "carrier_post",
     },
     "info_coverage_border_crossings": {
         "template": "register/info/coverage_border_crossings.html",
         "tag": _("Coverage"),
-        "title": _("Mexico–US border crossings"),
+        "title": _("US–Mexico crossings"),
         "lead": _(
-            "The commercial ports where small Mexican carriers enter the United "
-            "States with FTL freight."
+            "Commercial ports where Mexican carriers move northbound FTL freight."
         ),
         "cta": "coverage",
     },
@@ -92,8 +88,7 @@ INFO_PAGES = {
         "tag": _("Resources"),
         "title": _("How Cargo Pulse works"),
         "lead": _(
-            "A simple way for Mexican carriers to post and for US brokers "
-            "to discover them — no complex bidding required to get started."
+            "Mexican carriers post. US brokers discover. No bidding required."
         ),
         "cta": "home",
         "cta_secondary": "login",

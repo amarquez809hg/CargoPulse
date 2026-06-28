@@ -2,30 +2,9 @@
 {% load i18n %}
 {% block title %}{% trans "For Brokers — Cargo Pulse" %}{% endblock %}
 {% block info_content %}
-<div class="cp-info-callout">
-  <p>{% trans "Cargo Pulse gives US brokers access to small Mexican carriers — regional fleets and owner-operators that often never appear on DAT or large marketplace networks." %}</p>
-</div>
-<div class="cp-info-grid">
-  <section class="cp-info-card">
-    <h2>{% trans "Discover Mexican carriers" %}</h2>
-    <p>{% trans "Independent fleets from Monterrey, Guadalajara, Chihuahua, Baja, and other hubs — posting real equipment, not just network brands." %}</p>
-  </section>
-  <section class="cp-info-card">
-    <h2>{% trans "Search the equipment board" %}</h2>
-    <p>{% trans "Filter by origin, destination, border crossing, equipment type, and lane type. Summary cards show how many Mexican carriers are active." %}</p>
-  </section>
-  <section class="cp-info-card">
-    <h2>{% trans "Contact carriers directly" %}</h2>
-    <p>{% trans "Each listing shows email and WhatsApp — reach the dispatcher or owner immediately, the way cross-border freight actually moves." %}</p>
-  </section>
-  <section class="cp-info-card">
-    <h2>{% trans "Border-ready signals" %}</h2>
-    <p>{% trans "See port of entry, Mexico HQ city, popular US destinations, and optional CTPAT or B1 driver flags when carriers declare them." %}</p>
-  </section>
-</div>
 <ul class="cp-info-steps">
-  <li><strong>{% trans "Create a broker account" %}</strong> — {% trans "Free signup with your name and brokerage." %}</li>
-  <li><strong>{% trans "Open the equipment board" %}</strong> — {% trans "Browse trucks posted by Mexican carriers in the last 30 days." %}</li>
-  <li><strong>{% trans "Reach out" %}</strong> — {% trans "Email or WhatsApp the carrier that fits your lane." %}</li>
+  <li><strong>{% trans "Create a broker account" %}</strong> — {% trans "Free signup." %}</li>
+  <li><strong>{% trans "Search the equipment board" %}</strong> — {% trans "Filter by crossing, lane, and equipment." %}</li>
+  <li><strong>{% trans "Contact carriers directly" %}</strong> — {% trans "Email or WhatsApp on every listing." %}</li>
 </ul>
 {% endblock %}

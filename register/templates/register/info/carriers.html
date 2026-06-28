@@ -2,30 +2,9 @@
 {% load i18n %}
 {% block title %}{% trans "For Carriers — Cargo Pulse" %}{% endblock %}
 {% block info_content %}
-<div class="cp-info-callout">
-  <p>{% trans "Cargo Pulse is built for small Mexican carriers — owner-operators and modest fleets who cross into the United States and need a place to be seen, even without a large company name behind them." %}</p>
-</div>
-<div class="cp-info-grid">
-  <section class="cp-info-card">
-    <h2>{% trans "Your company on the board" %}</h2>
-    <p>{% trans "Register with your Mexico address, headquarters city, primary border crossing, and US corridors you run — Houston, Dallas, Laredo, and more." %}</p>
-  </section>
-  <section class="cp-info-card">
-    <h2>{% trans "Post equipment in minutes" %}</h2>
-    <p>{% trans "List where your truck is in Mexico or the US, where it is headed, equipment type, and optional rate per mile — no enterprise dispatch software required." %}</p>
-  </section>
-  <section class="cp-info-card">
-    <h2>{% trans "Cross-border credentials" %}</h2>
-    <p>{% trans "Optional CTPAT and B1 driver checkboxes help US brokers see that your operation is border-ready." %}</p>
-  </section>
-  <section class="cp-info-card">
-    <h2>{% trans "WhatsApp-first contact" %}</h2>
-    <p>{% trans "Brokers reach you the way Mexican carriers already work — email and WhatsApp on every listing." %}</p>
-  </section>
-</div>
 <ul class="cp-info-steps">
-  <li><strong>{% trans "Register your company" %}</strong> — {% trans "Company name, Mexico HQ, WhatsApp, and border crossing." %}</li>
-  <li><strong>{% trans "Post equipment" %}</strong> — {% trans "Share northbound or southbound availability." %}</li>
-  <li><strong>{% trans "US brokers find you" %}</strong> — {% trans "They contact you when your post fits their load." %}</li>
+  <li><strong>{% trans "Register your company" %}</strong> — {% trans "Mexico HQ, WhatsApp, and your primary US–Mexico crossing." %}</li>
+  <li><strong>{% trans "Post equipment" %}</strong> — {% trans "Origin, destination, and equipment details." %}</li>
+  <li><strong>{% trans "US brokers find you" %}</strong> — {% trans "Email or WhatsApp when your post fits their load." %}</li>
 </ul>
 {% endblock %}

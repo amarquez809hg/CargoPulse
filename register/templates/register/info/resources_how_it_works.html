@@ -2,26 +2,18 @@
 {% load i18n %}
 {% block title %}{% trans "How It Works — Cargo Pulse" %}{% endblock %}
 {% block info_content %}
-<p class="cp-info-intro">{% trans "Cargo Pulse connects small Mexican carriers with US brokers through a simple post-and-discover model — built for the long tail of cross-border trucking, not enterprise networks." %}</p>
 <ol class="cp-info-steps cp-info-steps--numbered">
   <li>
-    <strong>{% trans "Choose your portal" %}</strong>
-    <span>{% trans "Mexican carriers register to post equipment. US brokers register to search the board." %}</span>
+    <strong>{% trans "Carriers register" %}</strong>
+    <span>{% trans "Company profile with Mexico HQ and US–Mexico crossing." %}</span>
   </li>
   <li>
-    <strong>{% trans "Carriers build a Mexico profile" %}</strong>
-    <span>{% trans "Company address in Mexico, HQ city, primary border crossing, US destinations, WhatsApp, and optional CTPAT/B1 flags." %}</span>
+    <strong>{% trans "Carriers post equipment" %}</strong>
+    <span>{% trans "Listings stay live for 30 days." %}</span>
   </li>
   <li>
-    <strong>{% trans "Carriers post northbound availability" %}</strong>
-    <span>{% trans "Origin, destination, equipment, and crossing details go live for 30 days." %}</span>
-  </li>
-  <li>
-    <strong>{% trans "US brokers search and contact" %}</strong>
-    <span>{% trans "Filters narrow the board; email and WhatsApp start the deal outside the platform." %}</span>
+    <strong>{% trans "Brokers search and contact" %}</strong>
+    <span>{% trans "Direct email or WhatsApp." %}</span>
   </li>
 </ol>
-<div class="cp-info-callout cp-info-callout--muted">
-  <p>{% trans "Cargo Pulse is in early stages — our goal is to give small Mexican enterprises the US visibility that large marketplaces reserve for established networks." %}</p>
-</div>
 {% endblock %}

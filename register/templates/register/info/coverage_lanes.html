@@ -2,19 +2,18 @@
 {% load i18n %}
 {% block title %}{% trans "Lanes & Capacity — Cargo Pulse" %}{% endblock %}
 {% block info_content %}
-<p class="cp-info-intro">{% trans "Cargo Pulse supports cross-border and domestic moves through three lane types so small carriers can describe how committed their capacity is." %}</p>
 <div class="cp-info-list">
   <div class="cp-info-list-item">
     <h2>{% trans "Lane" %}</h2>
-    <p>{% trans "A defined route the carrier runs regularly — useful when you want brokers to know you cover a corridor consistently." %}</p>
+    <p>{% trans "A route you run regularly." %}</p>
   </div>
   <div class="cp-info-list-item">
     <h2>{% trans "Potential Lane" %}</h2>
-    <p>{% trans "You can run this route but it is not fixed — good for flexible small fleets testing new business." %}</p>
+    <p>{% trans "You can run this route but it is not fixed." %}</p>
   </div>
   <div class="cp-info-list-item">
     <h2>{% trans "Spot Lane" %}</h2>
-    <p>{% trans "One-time or short-notice availability — ideal for owner-operators with a truck open on a specific origin and destination." %}</p>
+    <p>{% trans "One-time availability on a specific origin and destination." %}</p>
   </div>
 </div>
 {% endblock %}

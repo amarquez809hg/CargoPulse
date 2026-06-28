@@ -1051,3 +1051,96 @@ msgstr "Laredo, El Paso, Tijuana — donde flotas mexicanas entran a EE.UU."
 
 msgid "Mexican carriers post — US brokers discover."
 msgstr "Transportistas mexicanos publican — brokers en EE.UU. descubren."
+
+msgid "Visibility for Mexican carriers entering the United States"
+msgstr "Visibilidad para transportistas mexicanos que entran a Estados Unidos"
+
+msgid "Post equipment. US brokers find you at US–Mexico crossings."
+msgstr "Publica equipo. Brokers en EE.UU. te encuentran en cruces EE.UU.–México."
+
+msgid "US–Mexico crossings — dry van, reefer, and open deck."
+msgstr "Cruces EE.UU.–México — caja seca, refrigerado y plataforma."
+
+msgid "Find Mexican carriers on your lanes"
+msgstr "Encuentra transportistas mexicanos en tus rutas"
+
+msgid "Independent Mexican fleets on US–Mexico crossings — beyond the big load boards."
+msgstr "Flotas mexicanas independientes en cruces EE.UU.–México — más allá de los grandes tableros."
+
+msgid "For Mexican owner-operators and regional fleets crossing into the United States."
+msgstr "Para operadores y flotas regionales mexicanas que cruzan a Estados Unidos."
+
+msgid "Share truck location, destination, and equipment — ready in minutes."
+msgstr "Comparte ubicación, destino y equipo — listo en minutos."
+
+msgid "US–Mexico crossings"
+msgstr "Cruces EE.UU.–México"
+
+msgid "Commercial ports where Mexican carriers move northbound FTL freight."
+msgstr "Puertos comerciales donde transportistas mexicanos mueven carga FTL hacia el norte."
+
+msgid "Mexican carriers post. US brokers discover. No bidding required."
+msgstr "Transportistas mexicanos publican. Brokers en EE.UU. descubren. Sin pujas."
+
+msgid "Mexico HQ, WhatsApp, and your primary US–Mexico crossing."
+msgstr "Sede en México, WhatsApp y tu cruce EE.UU.–México principal."
+
+msgid "Origin, destination, and equipment details."
+msgstr "Origen, destino y detalles del equipo."
+
+msgid "Email or WhatsApp when your post fits their load."
+msgstr "Correo o WhatsApp cuando tu publicación encaje con su carga."
+
+msgid "Free signup."
+msgstr "Registro gratis."
+
+msgid "Filter by crossing, lane, and equipment."
+msgstr "Filtra por cruce, ruta y equipo."
+
+msgid "Email or WhatsApp on every listing."
+msgstr "Correo o WhatsApp en cada publicación."
+
+msgid "Cargo Pulse covers US–Mexico commercial crossings for northbound and cross-border FTL."
+msgstr "Cargo Pulse cubre cruces comerciales EE.UU.–México para FTL hacia el norte y transfronterizo."
+
+msgid "Carriers choose a primary crossing at registration. Each post can specify the port for that move."
+msgstr "Los transportistas eligen un cruce principal al registrarse. Cada publicación puede especificar el puerto de ese movimiento."
+
+msgid "Carriers register"
+msgstr "Registro de transportistas"
+
+msgid "Company profile with Mexico HQ and US–Mexico crossing."
+msgstr "Perfil con sede en México y cruce EE.UU.–México."
+
+msgid "Carriers post equipment"
+msgstr "Publicación de equipo"
+
+msgid "Listings stay live for 30 days."
+msgstr "Las publicaciones permanecen activas 30 días."
+
+msgid "Direct email or WhatsApp."
+msgstr "Correo o WhatsApp directo."
+
+msgid "US brokers search trucks posted by Mexican carriers — filter by US–Mexico crossing, lane, and equipment."
+msgstr "Brokers en EE.UU. buscan camiones de transportistas mexicanos — filtra por cruce, ruta y equipo."
+
+msgid "List where your truck is, where it is going, and what equipment you have. Posts expire after 30 days."
+msgstr "Indica dónde está tu camión, hacia dónde va y qué equipo tienes. Las publicaciones expiran a los 30 días."
+
+msgid "A route you run regularly."
+msgstr "Una ruta que manejas regularmente."
+
+msgid "You can run this route but it is not fixed."
+msgstr "Puedes manejar esta ruta pero no es fija."
+
+msgid "One-time availability on a specific origin and destination."
+msgstr "Disponibilidad puntual en un origen y destino específicos."
+
+msgid "Dry van, reefer, open deck, power only, and more — selectable on every post."
+msgstr "Caja seca, refrigerado, plataforma, solo tracto y más — seleccionable en cada publicación."
+
+msgid "US–Mexico crossings where Mexican fleets enter the US."
+msgstr "Cruces EE.UU.–México donde flotas mexicanas entran a EE.UU."
+
+msgid "US corridors you run often — e.g. Houston, Dallas, San Antonio"
+msgstr "Corredores en EE.UU. que manejas — ej. Houston, Dallas, San Antonio"
