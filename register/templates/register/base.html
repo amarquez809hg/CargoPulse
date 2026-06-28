@@ -10,19 +10,20 @@
   <style>
     :root {
       --cp-orange: #e68a2e;
-      --cp-orange-dark: #c9741f;
-      --cp-orange-light: #f4a261;
-      --cp-charcoal: #2e2e2e;
-      --cp-charcoal-soft: #4a4a4a;
-      --cp-header-bg: #1f1f1f;
-      --cp-header-bg-elevated: #2a2a2a;
-      --cp-bg: #f0efec;
-      --cp-bg-card: #ffffff;
-      --cp-bg-muted: #faf9f7;
-      --cp-border: #e2e0db;
-      --cp-text: #2e2e2e;
-      --cp-muted: #6b6b6b;
-      --cp-input-bg: #ffffff;
+      --cp-orange-dark: #f4a261;
+      --cp-orange-light: #ffba6a;
+      --cp-charcoal: #eef1f6;
+      --cp-charcoal-soft: rgba(238, 241, 246, 0.82);
+      --cp-header-bg: rgba(8, 12, 20, 0.72);
+      --cp-header-bg-elevated: rgba(14, 20, 32, 0.88);
+      --cp-bg: #080c14;
+      --cp-bg-card: rgba(255, 255, 255, 0.06);
+      --cp-bg-muted: rgba(255, 255, 255, 0.04);
+      --cp-border: rgba(255, 255, 255, 0.12);
+      --cp-text: #eef1f6;
+      --cp-muted: rgba(238, 241, 246, 0.55);
+      --cp-input-bg: rgba(255, 255, 255, 0.05);
+      --cp-glass-blur: 20px;
     }
     * { box-sizing: border-box; }
     body {
@@ -387,6 +388,9 @@
       font-size: 0.84rem;
       line-height: 1.55;
       color: var(--cp-muted);
+    }
+    .cp-coverage-link {
+      margin: 10px 0 0;
     }
     .cp-back {
       display: inline-flex;
@@ -1129,6 +1133,7 @@
       .cp-info-cta .cp-btn { width: 100%; min-width: 0; }
     }
   </style>
+  <link rel="stylesheet" href="{% static 'register/css/cp-glass.css' %}"/>
   {% block extra_head %}{% endblock %}
 </head>
 <body>
