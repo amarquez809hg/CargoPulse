@@ -1,0 +1,33 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "Broker Workflow — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<p class="cp-info-intro">{% trans "From signup to contacting a Mexican carrier — the full broker path on Cargo Pulse." %}</p>
+<ol class="cp-info-steps cp-info-steps--numbered">
+  <li>
+    <strong>{% trans "Create your account" %}</strong>
+    <span>{% trans "Username, email, and password. Optional name and brokerage." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Open the equipment board" %}</strong>
+    <span>{% trans "Your home screen after sign-in — all active carrier posts in one table." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Search and filter" %}</strong>
+    <span>{% trans "City or corridor, lane type, US–Mexico crossing, and equipment type." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Review carrier details" %}</strong>
+    <span>{% trans "Company name, HQ, destinations, compliance badges, route, and equipment." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Contact the carrier" %}</strong>
+    <span>{% trans "Email or WhatsApp on every listing — reach out when the post fits your load." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Negotiate off-platform" %}</strong>
+    <span>{% trans "No bidding engine — agree on rate and terms directly with the carrier." %}</span>
+  </li>
+</ol>
+<p class="cp-info-footnote">{% trans "Cargo Pulse is a visibility board, not a load-matching marketplace." %}</p>
+{% endblock %}

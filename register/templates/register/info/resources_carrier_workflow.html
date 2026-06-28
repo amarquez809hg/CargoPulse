@@ -1,0 +1,41 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "Carrier Workflow — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<p class="cp-info-intro">{% trans "From registration to your first broker contact — the full carrier path on Cargo Pulse." %}</p>
+<ol class="cp-info-steps cp-info-steps--numbered">
+  <li>
+    <strong>{% trans "Create your account" %}</strong>
+    <span>{% trans "Username, email, and password." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Add your company profile" %}</strong>
+    <span>{% trans "Company name, Mexico address, HQ city, and primary US–Mexico crossing." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Add WhatsApp" %}</strong>
+    <span>{% trans "US brokers reach you by email or WhatsApp — no in-app messaging." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Mark compliance if it applies" %}</strong>
+    <span>{% trans "Optional CTPAT and B1 driver badges on your profile and listings." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Open your dashboard" %}</strong>
+    <span>{% trans "Review your company card and active postings in one place." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Post equipment" %}</strong>
+    <span>{% trans "Lane type, crossing, origin, destination, equipment, and optional rate." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Listing goes live" %}</strong>
+    <span>{% trans "Your post appears on the broker equipment board for 30 days." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Brokers contact you" %}</strong>
+    <span>{% trans "When your truck fits their load, they email or WhatsApp you directly." %}</span>
+  </li>
+</ol>
+<p class="cp-info-footnote">{% trans "No bidding on Cargo Pulse — you negotiate rates off-platform." %}</p>
+{% endblock %}

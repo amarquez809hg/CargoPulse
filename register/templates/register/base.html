@@ -1022,6 +1022,24 @@
       line-height: 1.55;
       color: var(--cp-muted);
     }
+    .cp-info-card--link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .15s, box-shadow .15s, transform .15s;
+    }
+    .cp-info-card--link:hover {
+      border-color: rgba(230,138,46,.45);
+      box-shadow: 0 8px 28px rgba(230,138,46,.12);
+      transform: translateY(-1px);
+    }
+    .cp-info-card-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--cp-orange);
+    }
     .cp-info-callout {
       margin-bottom: 18px;
       padding: 14px 16px;

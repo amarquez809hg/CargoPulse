@@ -2,6 +2,19 @@
 {% load i18n %}
 {% block title %}{% trans "How It Works — Cargo Pulse" %}{% endblock %}
 {% block info_content %}
+<p class="cp-info-intro">{% trans "Mexican carriers post. US brokers discover. No bidding required." %}</p>
+<div class="cp-info-grid">
+  <a class="cp-info-card cp-info-card--link" href="{% url 'info_resources_carrier_workflow' %}">
+    <h2>{% trans "Carrier workflow" %}</h2>
+    <p>{% trans "Register, post equipment, get contacted by US brokers." %}</p>
+    <span class="cp-info-card-link">{% trans "Full carrier guide" %} →</span>
+  </a>
+  <a class="cp-info-card cp-info-card--link" href="{% url 'info_resources_broker_workflow' %}">
+    <h2>{% trans "Broker workflow" %}</h2>
+    <p>{% trans "Search the board, filter by lane, contact carriers directly." %}</p>
+    <span class="cp-info-card-link">{% trans "Full broker guide" %} →</span>
+  </a>
+</div>
 <ol class="cp-info-steps cp-info-steps--numbered">
   <li>
     <strong>{% trans "Carriers register" %}</strong>

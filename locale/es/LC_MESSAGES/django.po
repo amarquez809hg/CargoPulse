@@ -1144,3 +1144,141 @@ msgstr "Cruces EE.UU.–México donde flotas mexicanas entran a EE.UU."
 
 msgid "US corridors you run often — e.g. Houston, Dallas, San Antonio"
 msgstr "Corredores en EE.UU. que manejas — ej. Houston, Dallas, San Antonio"
+
+msgid "Help guides"
+msgstr "Guías de ayuda"
+
+msgid "Overview — carriers post, brokers discover."
+msgstr "Resumen — transportistas publican, brokers descubren."
+
+msgid "Carrier workflow"
+msgstr "Flujo para transportistas"
+
+msgid "Register, post equipment, get contacted."
+msgstr "Regístrate, publica equipo, recibe contacto."
+
+msgid "Broker workflow"
+msgstr "Flujo para brokers"
+
+msgid "Search the board and contact carriers."
+msgstr "Busca en el tablero y contacta transportistas."
+
+msgid "Carrier dashboard or broker equipment board."
+msgstr "Panel de transportista o tablero de equipo para brokers."
+
+msgid "Carrier Workflow — Cargo Pulse"
+msgstr "Flujo transportista — Cargo Pulse"
+
+msgid "From registration to your first broker contact — the full carrier path on Cargo Pulse."
+msgstr "Del registro a tu primer contacto con un broker — el recorrido completo en Cargo Pulse."
+
+msgid "Create your account"
+msgstr "Crea tu cuenta"
+
+msgid "Username, email, and password."
+msgstr "Usuario, correo y contraseña."
+
+msgid "Add your company profile"
+msgstr "Agrega el perfil de tu empresa"
+
+msgid "Company name, Mexico address, HQ city, and primary US–Mexico crossing."
+msgstr "Nombre, dirección en México, sede y cruce EE.UU.–México principal."
+
+msgid "Add WhatsApp"
+msgstr "Agrega WhatsApp"
+
+msgid "US brokers reach you by email or WhatsApp — no in-app messaging."
+msgstr "Los brokers en EE.UU. te contactan por correo o WhatsApp — sin mensajería en la app."
+
+msgid "Mark compliance if it applies"
+msgstr "Marca cumplimiento si aplica"
+
+msgid "Optional CTPAT and B1 driver badges on your profile and listings."
+msgstr "Insignias opcionales CTPAT y conductores B1 en tu perfil y publicaciones."
+
+msgid "Open your dashboard"
+msgstr "Abre tu panel"
+
+msgid "Review your company card and active postings in one place."
+msgstr "Revisa la ficha de tu empresa y publicaciones activas en un solo lugar."
+
+msgid "Lane type, crossing, origin, destination, equipment, and optional rate."
+msgstr "Tipo de ruta, cruce, origen, destino, equipo y tarifa opcional."
+
+msgid "Listing goes live"
+msgstr "La publicación queda activa"
+
+msgid "Your post appears on the broker equipment board for 30 days."
+msgstr "Tu publicación aparece en el tablero de brokers durante 30 días."
+
+msgid "Brokers contact you"
+msgstr "Los brokers te contactan"
+
+msgid "When your truck fits their load, they email or WhatsApp you directly."
+msgstr "Cuando tu camión encaja con su carga, te escriben por correo o WhatsApp."
+
+msgid "No bidding on Cargo Pulse — you negotiate rates off-platform."
+msgstr "Sin pujas en Cargo Pulse — negocias tarifas fuera de la plataforma."
+
+msgid "Broker Workflow — Cargo Pulse"
+msgstr "Flujo broker — Cargo Pulse"
+
+msgid "From signup to contacting a Mexican carrier — the full broker path on Cargo Pulse."
+msgstr "Del registro al contacto con un transportista mexicano — el recorrido completo en Cargo Pulse."
+
+msgid "Username, email, and password. Optional name and brokerage."
+msgstr "Usuario, correo y contraseña. Nombre y brokerage opcionales."
+
+msgid "Your home screen after sign-in — all active carrier posts in one table."
+msgstr "Tu pantalla principal al iniciar sesión — todas las publicaciones activas en una tabla."
+
+msgid "Search and filter"
+msgstr "Busca y filtra"
+
+msgid "City or corridor, lane type, US–Mexico crossing, and equipment type."
+msgstr "Ciudad o corredor, tipo de ruta, cruce EE.UU.–México y tipo de equipo."
+
+msgid "Review carrier details"
+msgstr "Revisa datos del transportista"
+
+msgid "Company name, HQ, destinations, compliance badges, route, and equipment."
+msgstr "Empresa, sede, destinos, insignias, ruta y equipo."
+
+msgid "Contact the carrier"
+msgstr "Contacta al transportista"
+
+msgid "Email or WhatsApp on every listing — reach out when the post fits your load."
+msgstr "Correo o WhatsApp en cada publicación — escribe cuando encaje con tu carga."
+
+msgid "Negotiate off-platform"
+msgstr "Negocia fuera de la plataforma"
+
+msgid "No bidding engine — agree on rate and terms directly with the carrier."
+msgstr "Sin motor de pujas — acuerda tarifa y condiciones directo con el transportista."
+
+msgid "Cargo Pulse is a visibility board, not a load-matching marketplace."
+msgstr "Cargo Pulse es un tablero de visibilidad, no un marketplace de emparejamiento de cargas."
+
+msgid "Register, post equipment, get contacted by US brokers."
+msgstr "Regístrate, publica equipo, recibe contacto de brokers en EE.UU."
+
+msgid "Full carrier guide"
+msgstr "Guía completa para transportistas"
+
+msgid "Search the board, filter by lane, contact carriers directly."
+msgstr "Busca en el tablero, filtra por ruta, contacta transportistas directo."
+
+msgid "Full broker guide"
+msgstr "Guía completa para brokers"
+
+msgid "Resources · Carriers"
+msgstr "Recursos · Transportistas"
+
+msgid "Register your fleet, post equipment, and let US brokers find you at US–Mexico crossings."
+msgstr "Registra tu flota, publica equipo y deja que brokers en EE.UU. te encuentren en cruces EE.UU.–México."
+
+msgid "Resources · Brokers"
+msgstr "Recursos · Brokers"
+
+msgid "Search trucks posted by Mexican carriers and contact them directly by email or WhatsApp."
+msgstr "Busca camiones de transportistas mexicanos y contáctalos directo por correo o WhatsApp."

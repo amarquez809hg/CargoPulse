@@ -93,6 +93,26 @@ INFO_PAGES = {
         "cta": "home",
         "cta_secondary": "login",
     },
+    "info_resources_carrier_workflow": {
+        "template": "register/info/resources_carrier_workflow.html",
+        "tag": _("Resources · Carriers"),
+        "title": _("Carrier workflow"),
+        "lead": _(
+            "Register your fleet, post equipment, and let US brokers find you "
+            "at US–Mexico crossings."
+        ),
+        "cta": "carrier",
+    },
+    "info_resources_broker_workflow": {
+        "template": "register/info/resources_broker_workflow.html",
+        "tag": _("Resources · Brokers"),
+        "title": _("Broker workflow"),
+        "lead": _(
+            "Search trucks posted by Mexican carriers and contact them "
+            "directly by email or WhatsApp."
+        ),
+        "cta": "broker",
+    },
 }
 
 CARRIER_PROFILE_FIELDS = (
@@ -252,6 +272,14 @@ def info_coverage_equipment(request):
 
 def info_resources_how_it_works(request):
     return _render_info_page(request, "info_resources_how_it_works")
+
+
+def info_resources_carrier_workflow(request):
+    return _render_info_page(request, "info_resources_carrier_workflow")
+
+
+def info_resources_broker_workflow(request):
+    return _render_info_page(request, "info_resources_broker_workflow")
 
 
 def home(request):
