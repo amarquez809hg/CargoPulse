@@ -356,8 +356,12 @@ textarea::placeholder {
 
 .cp-card-top {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 24px 22px 12px;
   overflow: hidden;
+  text-align: center;
 }
 
 .cp-card-top::before {
@@ -380,9 +384,13 @@ textarea::placeholder {
 .cp-card-top .cp-logo-wrap {
   position: relative;
   z-index: 1;
+  margin-inline: auto;
 }
 
 .cp-card .cp-logo-img {
+  display: block;
+  width: min(220px, 72vw);
+  margin-inline: auto;
   filter: drop-shadow(0 2px 14px rgba(230, 138, 46, 0.28));
 }
 
