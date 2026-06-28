@@ -11,6 +11,7 @@ from django.views.decorators.http import require_http_methods
 
 from .availability import POST_VISIBILITY_DAYS, visible_posts
 from .decorators import get_profile, role_required
+from .models import PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
 from .profile_cards import carrier_profile_card, demo_broker_profile, demo_carrier_profile
 
 INFO_PAGES = {
