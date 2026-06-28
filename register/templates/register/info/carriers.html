@@ -1,0 +1,31 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "For Carriers — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<div class="cp-info-callout">
+  <p>{% trans "Cargo Pulse is designed for small entrepreneurs — owner-operators and modest fleets who have trucks and services but not a big brand behind them." %}</p>
+</div>
+<div class="cp-info-grid">
+  <section class="cp-info-card">
+    <h2>{% trans "Your shop window" %}</h2>
+    <p>{% trans "Create a company profile with address, headquarters city, primary border crossing, and corridors you run often." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Post equipment in minutes" %}</h2>
+    <p>{% trans "List origin, destination, equipment type, trailer length, load type, optional rate per mile, and notes — no enterprise tools required." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Show what applies" %}</h2>
+    <p>{% trans "Optional CTPAT and B1 driver checkboxes let you signal cross-border readiness without a formal vetting process." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Stay visible for 30 days" %}</h2>
+    <p>{% trans "Listings remain on the broker board for 30 days from the posted date, then expire automatically so the board stays fresh." %}</p>
+  </section>
+</div>
+<ul class="cp-info-steps">
+  <li><strong>{% trans "Register your company" %}</strong> — {% trans "Username, contact, and basic company details." %}</li>
+  <li><strong>{% trans "Post equipment" %}</strong> — {% trans "Share where your truck is and where it is headed." %}</li>
+  <li><strong>{% trans "Brokers find you" %}</strong> — {% trans "They contact you directly when your post matches their need." %}</li>
+</ul>
+{% endblock %}

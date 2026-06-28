@@ -1,0 +1,28 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "For Brokers — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<div class="cp-info-grid">
+  <section class="cp-info-card">
+    <h2>{% trans "Discover small carriers" %}</h2>
+    <p>{% trans "Cargo Pulse highlights independent fleets and regional operators — the carriers who often never appear on big national load boards." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Search the equipment board" %}</h2>
+    <p>{% trans "Filter by origin, destination, border crossing, equipment type, and lane type. Summary cards show how many posts and carriers are active." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Contact carriers directly" %}</h2>
+    <p>{% trans "Each listing shows email and WhatsApp so you can reach the carrier immediately — no bidding layer required to start a conversation." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Built for cross-border FTL" %}</h2>
+    <p>{% trans "See port of entry, HQ city, popular destinations, and optional CTPAT or B1 driver flags when carriers declare them." %}</p>
+  </section>
+</div>
+<ul class="cp-info-steps">
+  <li><strong>{% trans "Create a broker account" %}</strong> — {% trans "Free signup with your name and brokerage." %}</li>
+  <li><strong>{% trans "Open the equipment board" %}</strong> — {% trans "Browse trucks posted in the last 30 days." %}</li>
+  <li><strong>{% trans "Reach out" %}</strong> — {% trans "Email or WhatsApp the carrier that fits your lane." %}</li>
+</ul>
+{% endblock %}

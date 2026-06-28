@@ -1,0 +1,28 @@
+{% extends "register/base.html" %}
+{% load i18n %}
+{% block body %}
+<div class="cp-page cp-page--info">
+  <div class="cp-shell cp-shell-info">
+    <article class="cp-info-page">
+      <header class="cp-info-hero">
+        {% if info_tag %}<span class="cp-info-tag">{{ info_tag }}</span>{% endif %}
+        <h1>{{ info_title }}</h1>
+        {% if info_lead %}<p class="cp-info-lead">{{ info_lead }}</p>{% endif %}
+      </header>
+
+      <div class="cp-info-body">
+        {% block info_content %}{% endblock %}
+      </div>
+
+      {% if info_cta_url %}
+      <footer class="cp-info-cta">
+        {% if info_cta_secondary_url %}
+        <a class="cp-btn cp-btn--outline" href="{{ info_cta_secondary_url }}">{{ info_cta_secondary_label }}</a>
+        {% endif %}
+        <a class="cp-btn cp-btn--primary" href="{{ info_cta_url }}">{{ info_cta_label }}</a>
+      </footer>
+      {% endif %}
+    </article>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "Border Crossings — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<p class="cp-info-intro">{% trans "Cargo Pulse focuses on major US–Mexico crossing points where small carriers and brokers actually move freight." %}</p>
+<div class="cp-info-list">
+  <div class="cp-info-list-item">
+    <h2>Laredo</h2>
+    <p>{% trans "The busiest commercial crossing for Texas–Mexico FTL. Ideal for carriers running Houston, Dallas, San Antonio, and northern Mexico corridors." %}</p>
+  </div>
+  <div class="cp-info-list-item">
+    <h2>El Paso</h2>
+    <p>{% trans "Key gateway for West Texas, New Mexico, and Chihuahua region freight with strong dry van and reefer demand." %}</p>
+  </div>
+  <div class="cp-info-list-item">
+    <h2>Tijuana</h2>
+    <p>{% trans "Primary Pacific corridor crossing for California and Baja freight, including Otay Mesa adjacent traffic." %}</p>
+  </div>
+</div>
+<p class="cp-info-footnote">{% trans "Carriers set a primary border crossing on registration; each post can also specify a port of entry for that move." %}</p>
+{% endblock %}

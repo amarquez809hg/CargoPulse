@@ -1,0 +1,24 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "Post Equipment — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<p class="cp-info-intro">{% trans "Posting equipment tells brokers your truck is available. Cargo Pulse keeps the form practical for small operators who manage their own dispatch." %}</p>
+<div class="cp-info-grid">
+  <section class="cp-info-card">
+    <h2>{% trans "Type & crossing" %}</h2>
+    <p>{% trans "Choose Lane, Potential Lane, or Spot Lane and optionally specify the port of entry for cross-border moves." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Location & route" %}</h2>
+    <p>{% trans "Address (with autocomplete), origin city, and destination city describe where the truck is and where it can go." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Equipment details" %}</h2>
+    <p>{% trans "Equipment type, trailer length, load type, weight, minimum rate per mile, reference ID, and free-text notes." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Automatic expiry" %}</h2>
+    <p>{% trans "Posts stay open for 30 days. You do not manage open/booked status manually — brokers contact you when interested." %}</p>
+  </section>
+</div>
+{% endblock %}

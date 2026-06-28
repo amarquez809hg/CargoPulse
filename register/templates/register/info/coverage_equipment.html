@@ -1,0 +1,32 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "Equipment Types — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<p class="cp-info-intro">{% trans "When posting, carriers choose structured equipment types so brokers can filter the board instead of parsing free-text notes." %}</p>
+<div class="cp-info-grid cp-info-grid--three">
+  <section class="cp-info-card" id="dry-van">
+    <h2>{% trans "Dry van" %}</h2>
+    <p>{% trans "Standard 53 ft enclosed trailers — the most common cross-border FTL equipment on the board." %}</p>
+  </section>
+  <section class="cp-info-card" id="reefer">
+    <h2>{% trans "Reefer" %}</h2>
+    <p>{% trans "Temperature-controlled units for produce, food, and other cold-chain freight." %}</p>
+  </section>
+  <section class="cp-info-card" id="open-deck">
+    <h2>{% trans "Open deck" %}</h2>
+    <p>{% trans "Flatbed and step deck options for oversized or non-enclosed loads." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Power only" %}</h2>
+    <p>{% trans "Tractor without trailer — for carriers offering drop-and-hook or power-only moves." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Load type" %}</h2>
+    <p>{% trans "Full or partial load designation helps brokers know if your trailer space is entirely available." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Trailer length" %}</h2>
+    <p>{% trans "Defaults to 53 ft but can be adjusted — length and weight fields add detail brokers expect from DAT-style postings." %}</p>
+  </section>
+</div>
+{% endblock %}

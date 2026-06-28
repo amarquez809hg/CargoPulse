@@ -565,3 +565,312 @@ msgstr "Donde los transportistas publican equipo y los brokers encuentran camion
 
 msgid "Laredo, El Paso, Otay Mesa, Nogales, and other major US–Mexico crossings — dry van, reefer, and open deck equipment."
 msgstr "Laredo, El Paso, Otay Mesa, Nogales y otros cruces principales EE.UU.–México — caja seca, refrigerado y plataforma."
+
+msgid "Learn about border crossings →"
+msgstr "Conoce los cruces fronterizos →"
+
+msgid "For Brokers — Cargo Pulse"
+msgstr "Para brokers — Cargo Pulse"
+
+msgid "For freight brokers"
+msgstr "Para brokers de carga"
+
+msgid "Find small carriers on your lanes"
+msgstr "Encuentra transportistas pequeños en tus rutas"
+
+msgid "Cargo Pulse helps brokers discover independent trucking companies and modest fleets posting real equipment — not just big network names."
+msgstr "Cargo Pulse ayuda a los brokers a descubrir empresas de transporte independientes y flotas modestas que publican equipo real — no solo nombres de grandes redes."
+
+msgid "Discover small carriers"
+msgstr "Descubre transportistas pequeños"
+
+msgid "Cargo Pulse highlights independent fleets and regional operators — the carriers who often never appear on big national load boards."
+msgstr "Cargo Pulse destaca flotas independientes y operadores regionales — transportistas que a menudo no aparecen en los grandes tableros nacionales."
+
+msgid "Search the equipment board"
+msgstr "Busca en el tablero de equipo"
+
+msgid "Filter by origin, destination, border crossing, equipment type, and lane type. Summary cards show how many posts and carriers are active."
+msgstr "Filtra por origen, destino, cruce fronterizo, tipo de equipo y tipo de ruta. Las tarjetas resumen muestran cuántas publicaciones y transportistas están activos."
+
+msgid "Contact carriers directly"
+msgstr "Contacta transportistas directamente"
+
+msgid "Each listing shows email and WhatsApp so you can reach the carrier immediately — no bidding layer required to start a conversation."
+msgstr "Cada publicación muestra correo y WhatsApp para contactar al transportista de inmediato — sin capa de pujas para iniciar una conversación."
+
+msgid "Built for cross-border FTL"
+msgstr "Hecho para FTL transfronterizo"
+
+msgid "See port of entry, HQ city, popular destinations, and optional CTPAT or B1 driver flags when carriers declare them."
+msgstr "Ve puerto de entrada, ciudad de sede, destinos frecuentes y banderas opcionales de CTPAT o conductores B1 cuando los transportistas las declaran."
+
+msgid "Create a broker account"
+msgstr "Crea una cuenta de broker"
+
+msgid "Free signup with your name and brokerage."
+msgstr "Registro gratis con tu nombre y brokerage."
+
+msgid "Open the equipment board"
+msgstr "Abre el tablero de equipo"
+
+msgid "Browse trucks posted in the last 30 days."
+msgstr "Explora camiones publicados en los últimos 30 días."
+
+msgid "Reach out"
+msgstr "Contacta"
+
+msgid "Email or WhatsApp the carrier that fits your lane."
+msgstr "Envía correo o WhatsApp al transportista que encaje con tu ruta."
+
+msgid "For Carriers — Cargo Pulse"
+msgstr "Para transportistas — Cargo Pulse"
+
+msgid "For small carriers"
+msgstr "Para transportistas pequeños"
+
+msgid "Get visible. Post your trucks."
+msgstr "Hazte visible. Publica tus camiones."
+
+msgid "Built for entrepreneurs who manage their own fleet — owner-operators and small companies that deserve a place on the board."
+msgstr "Hecho para emprendedores que administran su propia flota — operadores y empresas pequeñas que merecen un lugar en el tablero."
+
+msgid "Cargo Pulse is designed for small entrepreneurs — owner-operators and modest fleets who have trucks and services but not a big brand behind them."
+msgstr "Cargo Pulse está diseñado para pequeños emprendedores — operadores y flotas modestas con camiones y servicios pero sin una gran marca detrás."
+
+msgid "Your shop window"
+msgstr "Tu vitrina"
+
+msgid "Create a company profile with address, headquarters city, primary border crossing, and corridors you run often."
+msgstr "Crea un perfil con dirección, ciudad de sede, cruce fronterizo principal y corredores que manejas."
+
+msgid "Post equipment in minutes"
+msgstr "Publica equipo en minutos"
+
+msgid "List origin, destination, equipment type, trailer length, load type, optional rate per mile, and notes — no enterprise tools required."
+msgstr "Indica origen, destino, tipo de equipo, longitud, tipo de carga, tarifa opcional por milla y notas — sin herramientas empresariales."
+
+msgid "Show what applies"
+msgstr "Muestra lo que aplique"
+
+msgid "Optional CTPAT and B1 driver checkboxes let you signal cross-border readiness without a formal vetting process."
+msgstr "Las casillas opcionales de CTPAT y conductores B1 te permiten señalar preparación transfronteriza sin un proceso formal de verificación."
+
+msgid "Stay visible for 30 days"
+msgstr "Permanece visible 30 días"
+
+msgid "Listings remain on the broker board for 30 days from the posted date, then expire automatically so the board stays fresh."
+msgstr "Las publicaciones permanecen en el tablero 30 días desde la fecha de publicación y luego expiran automáticamente."
+
+msgid "Register your company"
+msgstr "Registra tu empresa"
+
+msgid "Username, contact, and basic company details."
+msgstr "Usuario, contacto y datos básicos de la empresa."
+
+msgid "Brokers find you"
+msgstr "Los brokers te encuentran"
+
+msgid "They contact you directly when your post matches their need."
+msgstr "Te contactan directamente cuando tu publicación coincide con su necesidad."
+
+msgid "Equipment Board — Cargo Pulse"
+msgstr "Tablero de equipo — Cargo Pulse"
+
+msgid "The equipment board is the broker view of Cargo Pulse — a searchable table of trucks posted by small carriers across US–Mexico corridors."
+msgstr "El tablero de equipo es la vista del broker en Cargo Pulse — una tabla buscable de camiones publicados por transportistas pequeños en corredores EE.UU.–México."
+
+msgid "What you see"
+msgstr "Lo que verás"
+
+msgid "Posted date, lane type, port of entry, address, origin, destination, equipment details, minimum rate per mile, and carrier contact info."
+msgstr "Fecha, tipo de ruta, puerto, dirección, origen, destino, detalles de equipo, tarifa mínima por milla y contacto del transportista."
+
+msgid "Filters"
+msgstr "Filtros"
+
+msgid "Narrow results by city or corridor, lane type, border crossing, and equipment type."
+msgstr "Reduce resultados por ciudad o corredor, tipo de ruta, cruce fronterizo y tipo de equipo."
+
+msgid "Summary stats"
+msgstr "Estadísticas resumen"
+
+msgid "Quick counts for total posts, unique carriers, and destinations help you gauge market activity at a glance."
+msgstr "Conteos rápidos de publicaciones, transportistas y destinos te ayudan a ver la actividad del mercado."
+
+msgid "Carrier context"
+msgstr "Contexto del transportista"
+
+msgid "Company name, HQ city, popular destinations, and CTPAT/B1 badges appear alongside each listing when provided."
+msgstr "Nombre, sede, destinos frecuentes y badges CTPAT/B1 aparecen junto a cada publicación cuando se proporcionan."
+
+msgid "Posting equipment tells brokers your truck is available. Cargo Pulse keeps the form practical for small operators who manage their own dispatch."
+msgstr "Publicar equipo indica a los brokers que tu camión está disponible. Cargo Pulse mantiene el formulario práctico para operadores pequeños."
+
+msgid "Type & crossing"
+msgstr "Tipo y cruce"
+
+msgid "Choose Lane, Potential Lane, or Spot Lane and optionally specify the port of entry for cross-border moves."
+msgstr "Elige Lane, Potential Lane o Spot Lane y opcionalmente especifica el puerto de entrada."
+
+msgid "Address (with autocomplete), origin city, and destination city describe where the truck is and where it can go."
+msgstr "Dirección (con autocompletado), ciudad de origen y destino describen dónde está el camión y hacia dónde puede ir."
+
+msgid "Equipment details"
+msgstr "Detalles del equipo"
+
+msgid "Equipment type, trailer length, load type, weight, minimum rate per mile, reference ID, and free-text notes."
+msgstr "Tipo de equipo, longitud, tipo de carga, peso, tarifa mínima por milla, ID de referencia y notas."
+
+msgid "Automatic expiry"
+msgstr "Expiración automática"
+
+msgid "Posts stay open for 30 days. You do not manage open/booked status manually — brokers contact you when interested."
+msgstr "Las publicaciones permanecen 30 días. No gestionas estado abierto/reservado manualmente — los brokers te contactan."
+
+msgid "Border Crossings — Cargo Pulse"
+msgstr "Cruces fronterizos — Cargo Pulse"
+
+msgid "Cargo Pulse focuses on major US–Mexico crossing points where small carriers and brokers actually move freight."
+msgstr "Cargo Pulse se enfoca en cruces comerciales EE.UU.–México donde transportistas y brokers mueven carga."
+
+msgid "The busiest commercial crossing for Texas–Mexico FTL. Ideal for carriers running Houston, Dallas, San Antonio, and northern Mexico corridors."
+msgstr "El cruce comercial más activo para FTL Texas–México. Ideal para corredores hacia Houston, Dallas, San Antonio y norte de México."
+
+msgid "Key gateway for West Texas, New Mexico, and Chihuahua region freight with strong dry van and reefer demand."
+msgstr "Puerta clave para West Texas, Nuevo México y Chihuahua con fuerte demanda de caja seca y refrigerado."
+
+msgid "Primary Pacific corridor crossing for California and Baja freight, including Otay Mesa adjacent traffic."
+msgstr "Cruce principal del corredor Pacífico para California y Baja, incluyendo tráfico de Otay Mesa."
+
+msgid "Carriers set a primary border crossing on registration; each post can also specify a port of entry for that move."
+msgstr "Los transportistas indican un cruce principal al registrarse; cada publicación puede especificar el puerto de ese movimiento."
+
+msgid "Lanes & Capacity — Cargo Pulse"
+msgstr "Rutas y capacidad — Cargo Pulse"
+
+msgid "Cross-border & domestic lanes"
+msgstr "Rutas cruzadas y domésticas"
+
+msgid "Cargo Pulse supports cross-border and domestic moves through three lane types so small carriers can describe how committed their capacity is."
+msgstr "Cargo Pulse soporta movimientos cruzados y domésticos con tres tipos de ruta para que transportistas pequeños describan su capacidad."
+
+msgid "A defined route the carrier runs regularly — useful when you want brokers to know you cover a corridor consistently."
+msgstr "Una ruta definida que el transportista maneja regularmente — útil para mostrar cobertura constante de un corredor."
+
+msgid "You can run this route but it is not fixed — good for flexible small fleets testing new business."
+msgstr "Puedes manejar esta ruta pero no es fija — bueno para flotas pequeñas flexibles."
+
+msgid "One-time or short-notice availability — ideal for owner-operators with a truck open on a specific origin and destination."
+msgstr "Disponibilidad puntual o de corto aviso — ideal para operadores con un camión libre en origen y destino específicos."
+
+msgid "Equipment Types — Cargo Pulse"
+msgstr "Tipos de equipo — Cargo Pulse"
+
+msgid "Equipment that matches your freight"
+msgstr "Equipo que coincide con tu carga"
+
+msgid "When posting, carriers choose structured equipment types so brokers can filter the board instead of parsing free-text notes."
+msgstr "Al publicar, los transportistas eligen tipos estructurados para que los brokers filtren el tablero."
+
+msgid "Structured equipment types on every post — dry van, reefer, open deck, and more."
+msgstr "Tipos de equipo estructurados en cada publicación — caja seca, refrigerado, plataforma y más."
+
+msgid "Dry van"
+msgstr "Caja seca"
+
+msgid "Standard 53 ft enclosed trailers — the most common cross-border FTL equipment on the board."
+msgstr "Remolques cerrados de 53 ft — el equipo FTL transfronterizo más común en el tablero."
+
+msgid "Temperature-controlled units for produce, food, and other cold-chain freight."
+msgstr "Unidades refrigeradas para produce, alimentos y cadena de frío."
+
+msgid "Flatbed and step deck options for oversized or non-enclosed loads."
+msgstr "Opciones de plataforma y step deck para cargas sobredimensionadas o abiertas."
+
+msgid "Tractor without trailer — for carriers offering drop-and-hook or power-only moves."
+msgstr "Tracto sin remolque — para movimientos drop-and-hook o solo tracto."
+
+msgid "Full or partial load designation helps brokers know if your trailer space is entirely available."
+msgstr "Designación de carga completa o parcial ayuda a los brokers a saber si el remolque está totalmente disponible."
+
+msgid "Trailer length"
+msgstr "Longitud del remolque"
+
+msgid "Defaults to 53 ft but can be adjusted — length and weight fields add detail brokers expect from DAT-style postings."
+msgstr "Por defecto 53 ft pero ajustable — longitud y peso añaden detalle que los brokers esperan."
+
+msgid "How It Works — Cargo Pulse"
+msgstr "Cómo funciona — Cargo Pulse"
+
+msgid "How Cargo Pulse works"
+msgstr "Cómo funciona Cargo Pulse"
+
+msgid "A simple marketplace for small carriers to post and brokers to discover — no complex bidding required to get started."
+msgstr "Un marketplace simple para que transportistas publiquen y brokers descubran — sin pujas complejas para empezar."
+
+msgid "Cargo Pulse connects small trucking entrepreneurs with brokers through a simple post-and-discover model — no bidding engine, no subscription wall for carriers."
+msgstr "Cargo Pulse conecta pequeños transportistas con brokers mediante publicar y descubrir — sin motor de pujas ni muro de suscripción para transportistas."
+
+msgid "Choose your portal"
+msgstr "Elige tu portal"
+
+msgid "Carriers register to post equipment. Brokers register to search the board."
+msgstr "Los transportistas se registran para publicar. Los brokers para buscar en el tablero."
+
+msgid "Carriers build a profile"
+msgstr "Los transportistas crean un perfil"
+
+msgid "Company address, HQ city, border crossing, destinations, WhatsApp, and optional CTPAT/B1 flags."
+msgstr "Dirección, sede, cruce, destinos, WhatsApp y banderas CTPAT/B1 opcionales."
+
+msgid "Carriers post availability"
+msgstr "Los transportistas publican disponibilidad"
+
+msgid "Origin, destination, equipment, and route details go live for 30 days."
+msgstr "Origen, destino, equipo y ruta quedan visibles 30 días."
+
+msgid "Brokers search and contact"
+msgstr "Los brokers buscan y contactan"
+
+msgid "Filters narrow the board; email and WhatsApp start the deal outside the platform."
+msgstr "Los filtros reducen el tablero; correo y WhatsApp inician el trato fuera de la plataforma."
+
+msgid "Cargo Pulse is in early stages — our goal is to give minor enterprises the visibility that large marketplaces reserve for established networks."
+msgstr "Cargo Pulse está en etapa inicial — nuestro objetivo es dar visibilidad a pequeñas empresas que los grandes marketplaces reservan para redes establecidas."
+
+msgid "Brokers search posted trucks, filter by lane and equipment, and contact carriers directly."
+msgstr "Los brokers buscan camiones publicados, filtran por ruta y equipo, y contactan transportistas directamente."
+
+msgid "Carriers share where the truck is, where it is headed, and what equipment is available — in a form sized for small operations."
+msgstr "Los transportistas comparten ubicación, destino y equipo disponible — en un formulario para operaciones pequeñas."
+
+msgid "Major commercial ports of entry where Cargo Pulse carriers and brokers focus cross-border FTL."
+msgstr "Puertos comerciales principales donde transportistas y brokers de Cargo Pulse concentran FTL transfronterizo."
+
+msgid "Lane, Potential Lane, and Spot Lane types describe how committed a carrier is to a route."
+msgstr "Los tipos Lane, Potential Lane y Spot Lane describen qué tan comprometida está la capacidad del transportista."
+
+msgid "Open equipment board"
+msgstr "Abrir tablero de equipo"
+
+msgid "Go to dashboard"
+msgstr "Ir al panel"
+
+msgid "Post equipment now"
+msgstr "Publicar equipo ahora"
+
+msgid "Register to post equipment"
+msgstr "Regístrate para publicar equipo"
+
+msgid "Explore border crossings"
+msgstr "Explorar cruces fronterizos"
+
+msgid "Standard enclosed trailers for general freight."
+msgstr "Remolques cerrados estándar para carga general."
+
+msgid "Temperature-controlled equipment."
+msgstr "Equipo con control de temperatura."
+
+msgid "Flatbed and step deck options."
+msgstr "Opciones de plataforma y step deck."

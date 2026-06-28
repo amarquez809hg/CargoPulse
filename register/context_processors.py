@@ -13,7 +13,9 @@ def google_maps(request):
 
 def site_header(request):
     profile = get_profile(request.user) if request.user.is_authenticated else None
+    match = getattr(request, "resolver_match", None)
     return {
         "cp_user_profile": profile,
         "cp_user_role": profile.role if profile else "",
+        "cp_url_name": match.url_name if match else "",
     }

@@ -1,0 +1,27 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "How It Works — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<p class="cp-info-intro">{% trans "Cargo Pulse connects small trucking entrepreneurs with brokers through a simple post-and-discover model — no bidding engine, no subscription wall for carriers." %}</p>
+<ol class="cp-info-steps cp-info-steps--numbered">
+  <li>
+    <strong>{% trans "Choose your portal" %}</strong>
+    <span>{% trans "Carriers register to post equipment. Brokers register to search the board." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Carriers build a profile" %}</strong>
+    <span>{% trans "Company address, HQ city, border crossing, destinations, WhatsApp, and optional CTPAT/B1 flags." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Carriers post availability" %}</strong>
+    <span>{% trans "Origin, destination, equipment, and route details go live for 30 days." %}</span>
+  </li>
+  <li>
+    <strong>{% trans "Brokers search and contact" %}</strong>
+    <span>{% trans "Filters narrow the board; email and WhatsApp start the deal outside the platform." %}</span>
+  </li>
+</ol>
+<div class="cp-info-callout cp-info-callout--muted">
+  <p>{% trans "Cargo Pulse is in early stages — our goal is to give minor enterprises the visibility that large marketplaces reserve for established networks." %}</p>
+</div>
+{% endblock %}

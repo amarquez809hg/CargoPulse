@@ -5,12 +5,97 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_http_methods
 
 from .availability import POST_VISIBILITY_DAYS, visible_posts
 from .decorators import get_profile, role_required
 from .models import PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
+
+INFO_PAGES = {
+    "info_brokers": {
+        "template": "register/info/brokers.html",
+        "tag": _("For freight brokers"),
+        "title": _("Find small carriers on your lanes"),
+        "lead": _(
+            "Cargo Pulse helps brokers discover independent trucking companies "
+            "and modest fleets posting real equipment — not just big network names."
+        ),
+        "cta": "broker",
+    },
+    "info_carriers": {
+        "template": "register/info/carriers.html",
+        "tag": _("For small carriers"),
+        "title": _("Get visible. Post your trucks."),
+        "lead": _(
+            "Built for entrepreneurs who manage their own fleet — owner-operators "
+            "and small companies that deserve a place on the board."
+        ),
+        "cta": "carrier",
+    },
+    "info_platform_equipment_board": {
+        "template": "register/info/platform_equipment_board.html",
+        "tag": _("Platform"),
+        "title": _("Equipment board"),
+        "lead": _(
+            "Brokers search posted trucks, filter by lane and equipment, "
+            "and contact carriers directly."
+        ),
+        "cta": "broker",
+    },
+    "info_platform_post_equipment": {
+        "template": "register/info/platform_post_equipment.html",
+        "tag": _("Platform"),
+        "title": _("Post equipment"),
+        "lead": _(
+            "Carriers share where the truck is, where it is headed, and what "
+            "equipment is available — in a form sized for small operations."
+        ),
+        "cta": "carrier_post",
+    },
+    "info_coverage_border_crossings": {
+        "template": "register/info/coverage_border_crossings.html",
+        "tag": _("Coverage"),
+        "title": _("US–Mexico border crossings"),
+        "lead": _(
+            "Major commercial ports of entry where Cargo Pulse carriers and "
+            "brokers focus cross-border FTL."
+        ),
+        "cta": "coverage",
+    },
+    "info_coverage_lanes": {
+        "template": "register/info/coverage_lanes.html",
+        "tag": _("Coverage"),
+        "title": _("Cross-border & domestic lanes"),
+        "lead": _(
+            "Lane, Potential Lane, and Spot Lane types describe how committed "
+            "a carrier is to a route."
+        ),
+        "cta": "carrier_post",
+    },
+    "info_coverage_equipment": {
+        "template": "register/info/coverage_equipment.html",
+        "tag": _("Equipment and specialization"),
+        "title": _("Equipment that matches your freight"),
+        "lead": _(
+            "Structured equipment types on every post — dry van, reefer, "
+            "open deck, and more."
+        ),
+        "cta": "broker",
+    },
+    "info_resources_how_it_works": {
+        "template": "register/info/resources_how_it_works.html",
+        "tag": _("Resources"),
+        "title": _("How Cargo Pulse works"),
+        "lead": _(
+            "A simple marketplace for small carriers to post and brokers to "
+            "discover — no complex bidding required to get started."
+        ),
+        "cta": "home",
+        "cta_secondary": "login",
+    },
+}
 
 CARRIER_PROFILE_FIELDS = (
     "username",
@@ -82,6 +167,93 @@ def _redirect_for_user(user):
     if profile.role == UserProfile.ROLE_CARRIER:
         return redirect("carrier_dashboard")
     return redirect("broker_board")
+
+
+def _info_cta(request, cta_key):
+    profile = get_profile(request.user) if request.user.is_authenticated else None
+    ctas = {
+        "broker": (
+            reverse("broker_board") if profile and profile.role == UserProfile.ROLE_BROKER
+            else reverse("broker_signup"),
+            _("Open equipment board") if profile and profile.role == UserProfile.ROLE_BROKER
+            else _("Create broker account"),
+        ),
+        "carrier": (
+            reverse("carrier_dashboard") if profile and profile.role == UserProfile.ROLE_CARRIER
+            else reverse("carrier_signup"),
+            _("Go to dashboard") if profile and profile.role == UserProfile.ROLE_CARRIER
+            else _("Create carrier account"),
+        ),
+        "carrier_post": (
+            reverse("carrier_post") if profile and profile.role == UserProfile.ROLE_CARRIER
+            else reverse("carrier_signup"),
+            _("Post equipment now") if profile and profile.role == UserProfile.ROLE_CARRIER
+            else _("Register to post equipment"),
+        ),
+        "coverage": (
+            reverse("info_coverage_border_crossings"),
+            _("Explore border crossings"),
+        ),
+        "home": (
+            reverse("home") + "#portals",
+            _("Choose your portal"),
+        ),
+        "login": (
+            reverse("login"),
+            _("Sign in"),
+        ),
+    }
+    return ctas.get(cta_key, ctas["home"])
+
+
+def _render_info_page(request, page_key):
+    page = INFO_PAGES[page_key]
+    cta_url, cta_label = _info_cta(request, page["cta"])
+    ctx = {
+        "info_tag": page["tag"],
+        "info_title": page["title"],
+        "info_lead": page["lead"],
+        "info_cta_url": cta_url,
+        "info_cta_label": cta_label,
+    }
+    secondary = page.get("cta_secondary")
+    if secondary:
+        sec_url, sec_label = _info_cta(request, secondary)
+        ctx["info_cta_secondary_url"] = sec_url
+        ctx["info_cta_secondary_label"] = sec_label
+    return render(request, page["template"], ctx)
+
+
+def info_brokers(request):
+    return _render_info_page(request, "info_brokers")
+
+
+def info_carriers(request):
+    return _render_info_page(request, "info_carriers")
+
+
+def info_platform_equipment_board(request):
+    return _render_info_page(request, "info_platform_equipment_board")
+
+
+def info_platform_post_equipment(request):
+    return _render_info_page(request, "info_platform_post_equipment")
+
+
+def info_coverage_border_crossings(request):
+    return _render_info_page(request, "info_coverage_border_crossings")
+
+
+def info_coverage_lanes(request):
+    return _render_info_page(request, "info_coverage_lanes")
+
+
+def info_coverage_equipment(request):
+    return _render_info_page(request, "info_coverage_equipment")
+
+
+def info_resources_how_it_works(request):
+    return _render_info_page(request, "info_resources_how_it_works")
 
 
 def home(request):

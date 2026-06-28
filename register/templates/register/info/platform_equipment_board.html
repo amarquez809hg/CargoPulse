@@ -1,0 +1,24 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n %}
+{% block title %}{% trans "Equipment Board — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<p class="cp-info-intro">{% trans "The equipment board is the broker view of Cargo Pulse — a searchable table of trucks posted by small carriers across US–Mexico corridors." %}</p>
+<div class="cp-info-grid">
+  <section class="cp-info-card">
+    <h2>{% trans "What you see" %}</h2>
+    <p>{% trans "Posted date, lane type, port of entry, address, origin, destination, equipment details, minimum rate per mile, and carrier contact info." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Filters" %}</h2>
+    <p>{% trans "Narrow results by city or corridor, lane type, border crossing, and equipment type." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Summary stats" %}</h2>
+    <p>{% trans "Quick counts for total posts, unique carriers, and destinations help you gauge market activity at a glance." %}</p>
+  </section>
+  <section class="cp-info-card">
+    <h2>{% trans "Carrier context" %}</h2>
+    <p>{% trans "Company name, HQ city, popular destinations, and CTPAT/B1 badges appear alongside each listing when provided." %}</p>
+  </section>
+</div>
+{% endblock %}
