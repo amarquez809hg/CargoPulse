@@ -24,6 +24,16 @@
     closeAllDropdowns();
   });
 
+  document.querySelectorAll(".cp-header-mega-item").forEach(function (link) {
+    link.addEventListener("click", function () {
+      closeAllDropdowns();
+    });
+  });
+
+  window.addEventListener("scroll", function () {
+    closeAllDropdowns();
+  }, { passive: true });
+
   document.querySelectorAll(".cp-header-dropdown").forEach(function (dropdown) {
     dropdown.addEventListener("click", function (event) {
       event.stopPropagation();
