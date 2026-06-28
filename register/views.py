@@ -16,21 +16,23 @@ from .models import PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
 INFO_PAGES = {
     "info_brokers": {
         "template": "register/info/brokers.html",
-        "tag": _("For freight brokers"),
-        "title": _("Find small carriers on your lanes"),
+        "tag": _("For US freight brokers"),
+        "title": _("Find small Mexican carriers on your lanes"),
         "lead": _(
-            "Cargo Pulse helps brokers discover independent trucking companies "
-            "and modest fleets posting real equipment — not just big network names."
+            "Cargo Pulse surfaces independent transportistas and modest Mexican "
+            "fleets crossing the border — operators who rarely appear on big "
+            "national load boards."
         ),
         "cta": "broker",
     },
     "info_carriers": {
         "template": "register/info/carriers.html",
-        "tag": _("For small carriers"),
-        "title": _("Get visible. Post your trucks."),
+        "tag": _("For Mexican transportistas"),
+        "title": _("Post your trucks. Be seen in the US."),
         "lead": _(
-            "Built for entrepreneurs who manage their own fleet — owner-operators "
-            "and small companies that deserve a place on the board."
+            "Built for small Mexican entrepreneurs — owner-operators and regional "
+            "fleets who cross the border and need visibility without a big brand "
+            "behind them."
         ),
         "cta": "carrier",
     },
@@ -39,8 +41,8 @@ INFO_PAGES = {
         "tag": _("Platform"),
         "title": _("Equipment board"),
         "lead": _(
-            "Brokers search posted trucks, filter by lane and equipment, "
-            "and contact carriers directly."
+            "Brokers search trucks posted by Mexican carriers, filter by crossing "
+            "and equipment, and reach out via email or WhatsApp."
         ),
         "cta": "broker",
     },
@@ -49,18 +51,19 @@ INFO_PAGES = {
         "tag": _("Platform"),
         "title": _("Post equipment"),
         "lead": _(
-            "Carriers share where the truck is, where it is headed, and what "
-            "equipment is available — in a form sized for small operations."
+            "Mexican carriers share where the truck is, where it is headed north "
+            "or south, and what equipment is available — in a form sized for "
+            "small operations."
         ),
         "cta": "carrier_post",
     },
     "info_coverage_border_crossings": {
         "template": "register/info/coverage_border_crossings.html",
         "tag": _("Coverage"),
-        "title": _("US–Mexico border crossings"),
+        "title": _("Mexico–US border crossings"),
         "lead": _(
-            "Major commercial ports of entry where Cargo Pulse carriers and "
-            "brokers focus cross-border FTL."
+            "The commercial ports where small Mexican carriers enter the United "
+            "States with FTL freight."
         ),
         "cta": "coverage",
     },
@@ -89,8 +92,8 @@ INFO_PAGES = {
         "tag": _("Resources"),
         "title": _("How Cargo Pulse works"),
         "lead": _(
-            "A simple marketplace for small carriers to post and brokers to "
-            "discover — no complex bidding required to get started."
+            "A simple way for Mexican transportistas to post and for US brokers "
+            "to discover them — no complex bidding required to get started."
         ),
         "cta": "home",
         "cta_secondary": "login",

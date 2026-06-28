@@ -874,3 +874,186 @@ msgstr "Equipo con control de temperatura."
 
 msgid "Flatbed and step deck options."
 msgstr "Opciones de plataforma y step deck."
+
+msgid "Built for Mexican cross-border carriers"
+msgstr "Hecho para transportistas mexicanos transfronterizos"
+
+msgid "Visibility for small transportistas crossing into the United States"
+msgstr "Visibilidad para transportistas pequeños que cruzan a Estados Unidos"
+
+msgid "Cargo Pulse helps modest Mexican fleets and owner-operators post equipment so US brokers can find them at Laredo, El Paso, and Pacific crossings."
+msgstr "Cargo Pulse ayuda a flotas mexicanas modestas y operadores a publicar equipo para que brokers en EE.UU. los encuentren en Laredo, El Paso y cruces del Pacífico."
+
+msgid "Laredo, El Paso, and Tijuana — the crossings where small Mexican carriers move northbound freight. Dry van, reefer, and open deck."
+msgstr "Laredo, El Paso y Tijuana — cruces donde transportistas mexicanos pequeños mueven carga hacia el norte. Caja seca, refrigerado y plataforma."
+
+msgid "For US freight brokers"
+msgstr "Para brokers de carga en EE.UU."
+
+msgid "Find small Mexican carriers on your lanes"
+msgstr "Encuentra transportistas mexicanos pequeños en tus rutas"
+
+msgid "Cargo Pulse surfaces independent transportistas and modest Mexican fleets crossing the border — operators who rarely appear on big national load boards."
+msgstr "Cargo Pulse muestra transportistas independientes y flotas mexicanas modestas que cruzan la frontera — operadores que rara vez aparecen en grandes tableros."
+
+msgid "For Mexican transportistas"
+msgstr "Para transportistas mexicanos"
+
+msgid "Post your trucks. Be seen in the US."
+msgstr "Publica tus camiones. Hazte visible en EE.UU."
+
+msgid "Built for small Mexican entrepreneurs — owner-operators and regional fleets who cross the border and need visibility without a big brand behind them."
+msgstr "Hecho para pequeños emprendedores mexicanos — operadores y flotas regionales que cruzan la frontera y necesitan visibilidad sin una gran marca."
+
+msgid "Brokers search trucks posted by Mexican carriers, filter by crossing and equipment, and reach out via email or WhatsApp."
+msgstr "Los brokers buscan camiones publicados por transportistas mexicanos, filtran por cruce y equipo, y contactan por correo o WhatsApp."
+
+msgid "Mexican carriers share where the truck is, where it is headed north or south, and what equipment is available — in a form sized for small operations."
+msgstr "Los transportistas mexicanos comparten ubicación, destino al norte o sur, y equipo disponible — en un formulario para operaciones pequeñas."
+
+msgid "Mexico–US border crossings"
+msgstr "Cruces fronterizos México–EE.UU."
+
+msgid "The commercial ports where small Mexican carriers enter the United States with FTL freight."
+msgstr "Los puertos comerciales donde transportistas mexicanos pequeños entran a EE.UU. con carga FTL."
+
+msgid "A simple way for Mexican transportistas to post and for US brokers to discover them — no complex bidding required to get started."
+msgstr "Una forma simple para que transportistas mexicanos publiquen y brokers en EE.UU. los descubran — sin pujas complejas para empezar."
+
+msgid "Cargo Pulse is built for small Mexican transportistas — owner-operators and modest fleets who cross into the United States and need a place to be seen, even without a large company name behind them."
+msgstr "Cargo Pulse está hecho para transportistas mexicanos pequeños — operadores y flotas modestas que cruzan a EE.UU. y necesitan ser vistos, aunque no tengan una gran empresa detrás."
+
+msgid "Your company on the board"
+msgstr "Tu empresa en el tablero"
+
+msgid "Register with your Mexico address, headquarters city, primary border crossing, and US corridors you run — Houston, Dallas, Laredo, and more."
+msgstr "Regístrate con dirección en México, ciudad de sede, cruce fronterizo principal y corredores en EE.UU. — Houston, Dallas, Laredo y más."
+
+msgid "List where your truck is in Mexico or the US, where it is headed, equipment type, and optional rate per mile — no enterprise dispatch software required."
+msgstr "Indica dónde está tu camión en México o EE.UU., destino, tipo de equipo y tarifa opcional por milla — sin software empresarial de despacho."
+
+msgid "Cross-border credentials"
+msgstr "Credenciales transfronterizas"
+
+msgid "Optional CTPAT and B1 driver checkboxes help US brokers see that your operation is border-ready."
+msgstr "Las casillas opcionales de CTPAT y conductores B1 ayudan a brokers en EE.UU. a ver que tu operación está lista para cruzar."
+
+msgid "WhatsApp-first contact"
+msgstr "Contacto por WhatsApp"
+
+msgid "Brokers reach you the way Mexican carriers already work — email and WhatsApp on every listing."
+msgstr "Los brokers te contactan como ya trabajan los transportistas mexicanos — correo y WhatsApp en cada publicación."
+
+msgid "Register your empresa"
+msgstr "Registra tu empresa"
+
+msgid "Company name, Mexico HQ, WhatsApp, and border crossing."
+msgstr "Nombre de empresa, sede en México, WhatsApp y cruce fronterizo."
+
+msgid "Share northbound or southbound availability."
+msgstr "Comparte disponibilidad hacia el norte o el sur."
+
+msgid "US brokers find you"
+msgstr "Brokers en EE.UU. te encuentran"
+
+msgid "They contact you when your post fits their load."
+msgstr "Te contactan cuando tu publicación encaja con su carga."
+
+msgid "Cargo Pulse gives US brokers access to small Mexican carriers — the transportistas and regional fleets that often never appear on DAT or large marketplace networks."
+msgstr "Cargo Pulse da a brokers en EE.UU. acceso a transportistas mexicanos pequeños — flotas regionales que a menudo no aparecen en DAT ni en grandes marketplaces."
+
+msgid "Discover Mexican transportistas"
+msgstr "Descubre transportistas mexicanos"
+
+msgid "Independent fleets from Monterrey, Guadalajara, Chihuahua, Baja, and other hubs — posting real equipment, not just network brands."
+msgstr "Flotas independientes de Monterrey, Guadalajara, Chihuahua, Baja y otros — publicando equipo real, no solo marcas de red."
+
+msgid "Filter by origin, destination, border crossing, equipment type, and lane type. Summary cards show how many Mexican carriers are active."
+msgstr "Filtra por origen, destino, cruce, equipo y tipo de ruta. Las tarjetas muestran cuántos transportistas mexicanos están activos."
+
+msgid "Each listing shows email and WhatsApp — reach the dispatcher or owner immediately, the way cross-border freight actually moves."
+msgstr "Cada publicación muestra correo y WhatsApp — contacta al despachador o dueño de inmediato, como se mueve la carga transfronteriza."
+
+msgid "Border-ready signals"
+msgstr "Señales de preparación fronteriza"
+
+msgid "See port of entry, Mexico HQ city, popular US destinations, and optional CTPAT or B1 driver flags when carriers declare them."
+msgstr "Ve puerto de entrada, sede en México, destinos frecuentes en EE.UU. y banderas CTPAT/B1 cuando los transportistas las declaran."
+
+msgid "Browse trucks posted by Mexican carriers in the last 30 days."
+msgstr "Explora camiones publicados por transportistas mexicanos en los últimos 30 días."
+
+msgid "Email or WhatsApp the transportista that fits your lane."
+msgstr "Envía correo o WhatsApp al transportista que encaje con tu ruta."
+
+msgid "Cargo Pulse connects small Mexican transportistas with US brokers through a simple post-and-discover model — built for the long tail of cross-border carriers, not enterprise networks."
+msgstr "Cargo Pulse conecta transportistas mexicanos pequeños con brokers en EE.UU. mediante publicar y descubrir — hecho para la cola larga de transporte transfronterizo, no redes empresariales."
+
+msgid "Mexican carriers register to post equipment. US brokers register to search the board."
+msgstr "Transportistas mexicanos se registran para publicar. Brokers en EE.UU. para buscar en el tablero."
+
+msgid "Carriers build a Mexico profile"
+msgstr "Los transportistas crean un perfil en México"
+
+msgid "Company address in Mexico, HQ city, primary border crossing, US destinations, WhatsApp, and optional CTPAT/B1 flags."
+msgstr "Dirección en México, sede, cruce principal, destinos en EE.UU., WhatsApp y banderas CTPAT/B1 opcionales."
+
+msgid "Carriers post northbound availability"
+msgstr "Los transportistas publican disponibilidad hacia el norte"
+
+msgid "Origin, destination, equipment, and crossing details go live for 30 days."
+msgstr "Origen, destino, equipo y cruce quedan visibles 30 días."
+
+msgid "US brokers search and contact"
+msgstr "Brokers en EE.UU. buscan y contactan"
+
+msgid "Cargo Pulse is in early stages — our goal is to give small Mexican enterprises the US visibility that large marketplaces reserve for established networks."
+msgstr "Cargo Pulse está en etapa inicial — nuestro objetivo es dar a pequeñas empresas mexicanas la visibilidad en EE.UU. que los grandes marketplaces reservan para redes establecidas."
+
+msgid "Cargo Pulse focuses on the crossings where small Mexican carriers enter the United States — the routes transportistas actually run every day."
+msgstr "Cargo Pulse se enfoca en los cruces donde transportistas mexicanos pequeños entran a EE.UU. — las rutas que manejan cada día."
+
+msgid "The busiest crossing for northern Mexico and Texas FTL. Carriers from Monterrey, Saltillo, and Nuevo León reach Houston, Dallas, and San Antonio through here."
+msgstr "El cruce más activo para FTL del norte de México y Texas. Transportistas de Monterrey, Saltillo y Nuevo León llegan a Houston, Dallas y San Antonio por aquí."
+
+msgid "The gateway for Chihuahua and northern Mexico into West Texas and New Mexico — strong dry van and reefer volume."
+msgstr "La puerta de Chihuahua y norte de México hacia West Texas y Nuevo México — fuerte volumen de caja seca y refrigerado."
+
+msgid "The Pacific corridor for Baja and western Mexico into California — including Otay Mesa traffic."
+msgstr "El corredor del Pacífico de Baja y occidente de México hacia California — incluyendo tráfico de Otay Mesa."
+
+msgid "Mexican carriers set a primary border crossing at registration; each post can specify the port for that specific move."
+msgstr "Los transportistas mexicanos indican un cruce principal al registrarse; cada publicación puede especificar el puerto de ese movimiento."
+
+msgid "The equipment board is where US brokers search trucks posted by Mexican transportistas — a filterable table of northbound and cross-border availability."
+msgstr "El tablero de equipo es donde brokers en EE.UU. buscan camiones publicados por transportistas mexicanos — una tabla filtrable de disponibilidad transfronteriza."
+
+msgid "Mexico HQ city, popular US destinations, and CTPAT/B1 badges appear alongside each listing when provided."
+msgstr "Sede en México, destinos frecuentes en EE.UU. y badges CTPAT/B1 aparecen junto a cada publicación cuando se proporcionan."
+
+msgid "When a Mexican carrier posts equipment, US brokers can see the truck is available. The form is sized for small operators who manage their own dispatch from Mexico."
+msgstr "Cuando un transportista mexicano publica equipo, los brokers en EE.UU. ven que el camión está disponible. El formulario es para operadores pequeños que despachan desde México."
+
+msgid "Mexican fleet · cross-border"
+msgstr "Flota mexicana · transfronterizo"
+
+msgid "US broker · find Mexican carriers"
+msgstr "Broker EE.UU. · encuentra transportistas mexicanos"
+
+msgid "Browse trucks posted by Mexican transportistas."
+msgstr "Explora camiones publicados por transportistas mexicanos."
+
+msgid "List your truck for US brokers to find."
+msgstr "Publica tu camión para que brokers en EE.UU. te encuentren."
+
+msgid "Free signup for Mexican transportistas."
+msgstr "Registro gratis para transportistas mexicanos."
+
+msgid "US brokers — search Mexican carrier posts."
+msgstr "Brokers en EE.UU. — busca publicaciones de transportistas mexicanos."
+
+msgid "Laredo, El Paso, Tijuana — where Mexican fleets enter the US."
+msgstr "Laredo, El Paso, Tijuana — donde flotas mexicanas entran a EE.UU."
+
+msgid "Mexican carriers post — US brokers discover."
+msgstr "Transportistas mexicanos publican — brokers en EE.UU. descubren."
