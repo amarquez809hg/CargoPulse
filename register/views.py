@@ -12,7 +12,7 @@ from django.views.decorators.http import require_http_methods
 from .availability import POST_VISIBILITY_DAYS, visible_posts
 from .decorators import get_profile, role_required
 from .models import PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
-from .profile_cards import carrier_profile_card, demo_broker_profile, demo_carrier_profile
+from .profile_cards import demo_broker_profile, demo_carrier_profile
 
 INFO_PAGES = {
     "info_brokers": {
@@ -574,15 +574,8 @@ def broker_board(request):
 
     has_filters = any([city_filter, lane_type_filter, port_filter, equipment_filter])
 
-    company_ids = list(trucks.values_list("company_id", flat=True).distinct()[:8])
-    carrier_profiles = [
-        carrier_profile_card(company)
-        for company in TruckingCompany.objects.filter(id__in=company_ids)
-    ]
-
     return render(request, "register/broker/board.html", {
         "trucks": trucks,
-        "carrier_profiles": carrier_profiles,
         "city_filter": city_filter,
         "lane_type_filter": lane_type_filter,
         "port_filter": port_filter,

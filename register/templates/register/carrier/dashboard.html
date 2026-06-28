@@ -1,5 +1,5 @@
 {% extends "register/base.html" %}
-{% load i18n cp_i18n %}
+{% load i18n cp_i18n cp_profile %}
 {% block title %}{% trans "Carrier Dashboard — Cargo Pulse" %}{% endblock %}
 {% block body %}
 <div class="cp-page">
@@ -18,18 +18,8 @@
           <span class="cp-badge">{{ company.company_name }}</span>
         </div>
 
-        <div class="cp-company-card">
-          <strong>{{ company.company_name }}</strong><br/>
-          {% if company.company_address %}{{ company.company_address }}<br/>{% endif %}
-          <span class="cp-company-meta">{% trans "HQ:" %} {{ company.hq_city }}</span><br/>
-          {% if company.primary_port_of_entry %}
-          <span class="cp-company-meta">{% trans "Border crossing:" %} {{ company.get_primary_port_of_entry_display }}</span><br/>
-          {% endif %}
-          {% if company.popular_destinations %}
-          <span class="cp-company-meta">{% trans "Popular destinations:" %} {{ company.popular_destinations }}</span><br/>
-          {% endif %}
-          {% include "register/includes/carrier_compliance_badges.html" with company=company %}
-          {{ company.whatsapp }} · {{ company.email }}
+        <div class="cp-dashboard-profile">
+          {% render_carrier_profile_card company=company compact=True %}
         </div>
 
         <div class="cp-inline-actions">
@@ -41,40 +31,13 @@
         <div class="cp-section" style="margin-top:24px;">{% trans "Your postings" %}</div>
 
         {% if posts %}
-        <div class="cp-table-wrap">
-          <table class="cp-table">
-            <thead>
-              <tr>
-                <th>{% trans "Posted" %}</th>
-                <th>{% trans "Type" %}</th>
-                <th>{% trans "Port" %}</th>
-                <th>{% trans "Address" %}</th>
-                <th>{% trans "Origin" %}</th>
-                <th>{% trans "Destination" %}</th>
-                <th>{% trans "Equipment" %}</th>
-                <th>{% trans "Rate/mi" %}</th>
-                <th>{% trans "Ref" %}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for post in posts %}
-              <tr>
-                <td>{{ post.created_at|date:"SHORT_DATE_FORMAT" }}</td>
-                <td>{{ post.lane_type|lane_type_label }}</td>
-                <td>{% if post.port_of_entry %}{{ post.get_port_of_entry_display }}{% else %}—{% endif %}</td>
-                <td>{{ post.location_address|default:"—" }}</td>
-                <td>{{ post.current_city }}</td>
-                <td>{{ post.destination_city|default:"—" }}</td>
-                <td>{{ post.get_equipment_type_display }} · {{ post.trailer_length_ft }}'{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</td>
-                <td>{% if post.min_rate_per_mile %}${{ post.min_rate_per_mile }}{% else %}—{% endif %}</td>
-                <td>{{ post.reference_id|default:"—" }}</td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+        <div class="cp-post-cards">
+          {% for post in posts %}
+            {% render_equipment_post_card post=post %}
+          {% endfor %}
         </div>
         {% else %}
-        <p style="color:#666;font-size:0.9rem;">{% trans "No equipment posted yet. Use" %} <strong>{% trans "Post equipment" %}</strong> {% trans "to list availability." %}</p>
+        <p class="cp-empty-hint">{% trans "No equipment posted yet. Use" %} <strong>{% trans "Post equipment" %}</strong> {% trans "to list availability." %}</p>
         {% endif %}
       </div>
     </div>

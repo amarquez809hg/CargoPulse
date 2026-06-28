@@ -58,61 +58,12 @@
           <button type="submit">{% trans "Search" %}</button>
         </form>
 
-        {% if carrier_profiles %}
-        <div class="cp-section">{% trans "Carrier profiles" %}</div>
-        <div class="cp-board-profiles">
-          {% for card in carrier_profiles %}
-            {% render_carrier_profile_card company=card.company compact=True %}
-          {% endfor %}
-        </div>
-        {% endif %}
-
         {% if trucks %}
-        <div class="cp-table-wrap">
-          <table class="cp-table">
-            <thead>
-              <tr>
-                <th>{% trans "Posted" %}</th>
-                <th>{% trans "Carrier" %}</th>
-                <th>{% trans "Type" %}</th>
-                <th>{% trans "Port" %}</th>
-                <th>{% trans "Address" %}</th>
-                <th>{% trans "Origin" %}</th>
-                <th>{% trans "Destination" %}</th>
-                <th>{% trans "Equipment" %}</th>
-                <th>{% trans "Rate/mi" %}</th>
-                <th>{% trans "Contact" %}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for truck in trucks %}
-              <tr>
-                <td>{{ truck.created_at|date:"SHORT_DATE_FORMAT" }}</td>
-                <td>
-                  <strong>{{ truck.company.company_name }}</strong>
-                  {% if truck.company.hq_city %}
-                  <div class="cp-cell-sub">{% trans "HQ:" %} {{ truck.company.hq_city }}</div>
-                  {% endif %}
-                  {% if truck.company.popular_destinations %}
-                  <div class="cp-cell-sub">{% trans "Runs:" %} {{ truck.company.popular_destinations|truncatechars:48 }}</div>
-                  {% endif %}
-                  {% include "register/includes/carrier_compliance_badges.html" with company=truck.company %}
-                </td>
-                <td>{{ truck.lane_type|lane_type_label }}</td>
-                <td>{% if truck.port_of_entry %}{{ truck.get_port_of_entry_display }}{% elif truck.company.primary_port_of_entry %}{{ truck.company.get_primary_port_of_entry_display }}{% else %}—{% endif %}</td>
-                <td>{% firstof truck.location_address truck.company.company_address "—" %}</td>
-                <td>{{ truck.current_city }}</td>
-                <td>{{ truck.destination_city|default:"—" }}</td>
-                <td>{{ truck.get_equipment_type_display }} · {{ truck.trailer_length_ft }}' · {{ truck.get_load_type_display }}</td>
-                <td>{% if truck.min_rate_per_mile %}${{ truck.min_rate_per_mile }}{% else %}—{% endif %}</td>
-                <td>
-                  <a href="mailto:{{ truck.company.email }}">{{ truck.company.email }}</a><br/>
-                  <span class="cp-cell-sub">{{ truck.company.whatsapp }}</span>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+        <div class="cp-section">{% trans "Equipment listings" %}</div>
+        <div class="cp-post-cards">
+          {% for truck in trucks %}
+            {% render_equipment_post_card post=truck show_contact=True %}
+          {% endfor %}
         </div>
         {% else %}
         <p style="color:#666;font-size:0.9rem;">

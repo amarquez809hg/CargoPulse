@@ -1420,3 +1420,12 @@ msgstr "Caja seca (2), Refrigerado (1)"
 
 msgid "Crossings, dry van, reefer"
 msgstr "Cruces, caja seca, refrigerado"
+
+msgid "Equipment listings"
+msgstr "Publicaciones de equipo"
+
+msgid "Trailer"
+msgstr "Remolque"
+
+msgid "Weight"
+msgstr "Peso"

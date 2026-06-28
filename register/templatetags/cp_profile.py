@@ -22,3 +22,8 @@ def render_broker_profile_card(profile=None, compact=False):
     ctx = broker_profile_card(profile) if profile else demo_broker_profile()
     ctx["compact"] = compact
     return ctx
+
+
+@register.inclusion_tag("register/includes/profile_card_post.html")
+def render_equipment_post_card(post, show_contact=False):
+    return {"post": post, "show_contact": show_contact}

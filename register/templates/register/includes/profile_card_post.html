@@ -1,0 +1,85 @@
+{% load i18n cp_i18n %}
+<article class="cp-profile-card cp-profile-card--post cp-profile-card--fill">
+  <div class="cp-profile-card__frame">
+    <div class="cp-profile-card__inner">
+      <header class="cp-profile-card__person">
+        <div class="cp-profile-card__avatar cp-profile-card__avatar--route" aria-hidden="true">↔</div>
+        <div>
+          <h3 class="cp-profile-card__name">
+            {{ post.current_city }} → {{ post.destination_city|default:"—" }}
+          </h3>
+          <p class="cp-profile-card__role">{{ post.lane_type|lane_type_label }}</p>
+          <p class="cp-profile-card__meta">
+            {% trans "Posted" %} {{ post.created_at|date:"SHORT_DATE_FORMAT" }}
+          </p>
+        </div>
+      </header>
+
+      <div class="cp-profile-card__row">
+        <span>{% trans "Port" %}</span>
+        <strong>{% if post.port_of_entry %}{{ post.get_port_of_entry_display }}{% else %}—{% endif %}</strong>
+      </div>
+
+      {% if post.location_address %}
+      <div class="cp-profile-card__row">
+        <span>{% trans "Address" %}</span>
+        <strong>{{ post.location_address|truncatechars:36 }}</strong>
+      </div>
+      {% endif %}
+
+      <div class="cp-profile-card__stats">
+        <div class="cp-profile-card__stat">
+          <span>{% trans "Equipment" %}</span>
+          <strong>{{ post.get_equipment_type_display }}</strong>
+        </div>
+        <div class="cp-profile-card__stat">
+          <span>{% trans "Trailer" %}</span>
+          <strong>{{ post.trailer_length_ft }}'</strong>
+        </div>
+      </div>
+
+      <div class="cp-profile-card__row">
+        <span>{% trans "Load type" %}</span>
+        <strong>{{ post.get_load_type_display }}</strong>
+      </div>
+
+      {% if post.weight_lbs or post.min_rate_per_mile %}
+      <div class="cp-profile-card__stats">
+        {% if post.weight_lbs %}
+        <div class="cp-profile-card__stat">
+          <span>{% trans "Weight" %}</span>
+          <strong>{{ post.weight_lbs }} lbs</strong>
+        </div>
+        {% endif %}
+        {% if post.min_rate_per_mile %}
+        <div class="cp-profile-card__stat">
+          <span>{% trans "Rate/mi" %}</span>
+          <strong>${{ post.min_rate_per_mile }}</strong>
+        </div>
+        {% endif %}
+      </div>
+      {% endif %}
+
+      <div class="cp-profile-card__tags">
+        <span class="cp-profile-card__tag cp-profile-card__tag--dark">{{ post.get_equipment_type_display }}</span>
+        <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ post.get_load_type_display }}</span>
+        {% if post.reference_id %}
+        <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ post.reference_id }}</span>
+        {% endif %}
+      </div>
+
+      {% if post.equipment_notes %}
+      <p class="cp-profile-card__notes">{{ post.equipment_notes|truncatechars:80 }}</p>
+      {% endif %}
+
+      {% if show_contact %}
+      <div class="cp-profile-card__contact">
+        <strong>{{ post.company.company_name }}</strong><br/>
+        {% if post.company.hq_city %}<span>{% trans "HQ:" %} {{ post.company.hq_city }}</span><br/>{% endif %}
+        <a href="mailto:{{ post.company.email }}">{{ post.company.email }}</a><br/>
+        {{ post.company.whatsapp }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</article>

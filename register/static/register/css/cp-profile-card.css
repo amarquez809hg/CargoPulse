@@ -83,6 +83,42 @@
   max-width: 320px;
 }
 
+.cp-profile-card--fill {
+  max-width: none;
+}
+
+.cp-dashboard-profile {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.cp-post-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.cp-profile-card--post .cp-profile-card__avatar--route {
+  font-size: 1rem;
+  letter-spacing: 0;
+  background: linear-gradient(145deg, #64748b, #334155);
+}
+
+.cp-profile-card__notes {
+  margin: 10px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: #6b7280;
+}
+
+.cp-empty-hint {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--cp-muted);
+}
+
 .cp-profile-card__frame {
   position: relative;
   padding: 14px;
