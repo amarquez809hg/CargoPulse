@@ -87,6 +87,39 @@
       </div>
 
       <div class="cp-header-dropdown">
+        <button type="button" class="cp-header-link cp-header-dropdown-toggle{% if cp_url_name == 'info_network_carrier_profile' or cp_url_name == 'info_network_broker_profile' %} is-active{% endif %}" aria-expanded="false">
+          {% trans "Network" %}
+          <svg class="cp-header-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        </button>
+        <div class="cp-header-mega">
+          <div class="cp-header-mega-grid cp-header-mega-grid--two">
+            <div>
+              <p class="cp-header-mega-label">{% trans "Profiles" %}</p>
+              <a class="cp-header-mega-item" href="{% url 'info_network_carrier_profile' %}">
+                <span class="cp-header-mega-title">{% trans "Carrier profiles" %}</span>
+                <span class="cp-header-mega-desc">{% trans "Company, crossing, equipment, and compliance cards." %}</span>
+              </a>
+              <a class="cp-header-mega-item" href="{% url 'info_network_broker_profile' %}">
+                <span class="cp-header-mega-title">{% trans "Broker profiles" %}</span>
+                <span class="cp-header-mega-desc">{% trans "How US brokers appear when searching carriers." %}</span>
+              </a>
+            </div>
+            <div>
+              <p class="cp-header-mega-label">{% trans "On the board" %}</p>
+              <a class="cp-header-mega-item" href="{% url 'info_platform_equipment_board' %}">
+                <span class="cp-header-mega-title">{% trans "Equipment board" %}</span>
+                <span class="cp-header-mega-desc">{% trans "Carrier cards shown alongside live posts." %}</span>
+              </a>
+              <a class="cp-header-mega-item" href="{% url 'broker_signup' %}">
+                <span class="cp-header-mega-title">{% trans "Join as broker" %}</span>
+                <span class="cp-header-mega-desc">{% trans "Search and contact Mexican carriers." %}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cp-header-dropdown">
         <button type="button" class="cp-header-link cp-header-dropdown-toggle{% if cp_url_name == 'info_resources_how_it_works' or cp_url_name == 'info_resources_carrier_workflow' or cp_url_name == 'info_resources_broker_workflow' %} is-active{% endif %}" aria-expanded="false">
           {% trans "Resources" %}
           <svg class="cp-header-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>

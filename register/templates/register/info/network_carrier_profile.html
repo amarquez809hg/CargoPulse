@@ -1,0 +1,20 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n cp_profile %}
+{% block title %}{% trans "Carrier Profiles — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<div class="cp-profile-showcase">
+  <div class="cp-profile-showcase__visual">
+    {% render_carrier_profile_card %}
+  </div>
+  <div class="cp-profile-showcase__copy">
+    <h2>{% trans "What US brokers see on every carrier" %}</h2>
+    <p>{% trans "Company profile, crossing, equipment, and compliance — before they email or WhatsApp you." %}</p>
+    <ul>
+      <li>{% trans "HQ city and primary US–Mexico crossing" %}</li>
+      <li>{% trans "Active equipment posts and trailer types" %}</li>
+      <li>{% trans "CTPAT and B1 driver badges when they apply" %}</li>
+      <li>{% trans "Direct contact on every listing" %}</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

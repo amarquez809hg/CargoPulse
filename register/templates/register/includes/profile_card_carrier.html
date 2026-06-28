@@ -1,0 +1,93 @@
+{% load i18n cp_i18n %}
+<article class="cp-profile-card{% if compact %} cp-profile-card--compact{% endif %}">
+  <div class="cp-profile-card__frame">
+    <div class="cp-profile-card__inner">
+      <div class="cp-profile-card__verify" title="{% trans 'Verified profile' %}" aria-hidden="true">✓</div>
+
+      <header class="cp-profile-card__person">
+        <div class="cp-profile-card__avatar" aria-hidden="true">{{ contact_name|cp_initials }}</div>
+        <div>
+          <h3 class="cp-profile-card__name">
+            {% if demo %}{{ contact_name }}{% else %}{{ contact_name }}{% endif %}
+            <span class="cp-profile-card__status" title="{% trans 'Active' %}"></span>
+          </h3>
+          <p class="cp-profile-card__role">
+            {% if demo %}{{ role_label }}{% else %}{% trans "Mexican carrier · cross-border" %}{% endif %}
+          </p>
+          <p class="cp-profile-card__meta">
+            {% if demo %}
+              {{ location_line }}
+            {% else %}
+              {{ company.hq_city }}{% if company.primary_port_of_entry %} · {{ company.get_primary_port_of_entry_display }}{% endif %}
+            {% endif %}
+          </p>
+        </div>
+      </header>
+
+      <section class="cp-profile-card__company">
+        <div class="cp-profile-card__co-logo" aria-hidden="true">
+          {% if demo %}{{ company_initial }}{% else %}{{ company.company_name|slice:":2"|upper }}{% endif %}
+        </div>
+        <div>
+          <h4>{% if demo %}{{ company_name }}{% else %}{{ company.company_name }}{% endif %}</h4>
+          <p class="cp-profile-card__legal">
+            {% trans "HQ:" %}
+            {% if demo %}{{ hq_city }}{% else %}{{ company.hq_city }}{% endif %}
+          </p>
+          {% if demo and address %}
+          <p class="cp-profile-card__address">{{ address }}</p>
+          {% elif not demo and company.company_address %}
+          <p class="cp-profile-card__address">{{ company.company_address }}</p>
+          {% endif %}
+        </div>
+      </section>
+
+      <div class="cp-profile-card__row">
+        <span>{% trans "Primary crossing" %}</span>
+        <strong>
+          {% if demo %}{{ crossing }}{% elif company.primary_port_of_entry %}{{ company.get_primary_port_of_entry_display }}{% else %}—{% endif %}
+        </strong>
+      </div>
+
+      {% if demo and destinations or not demo and company.popular_destinations %}
+      <div class="cp-profile-card__row">
+        <span>{% trans "Runs" %}</span>
+        <strong>{% if demo %}{{ destinations }}{% else %}{{ company.popular_destinations|truncatechars:42 }}{% endif %}</strong>
+      </div>
+      {% endif %}
+
+      <div class="cp-profile-card__stats">
+        <div class="cp-profile-card__stat">
+          <span>{% trans "Active posts" %}</span>
+          <strong>{{ active_posts }}</strong>
+        </div>
+        <div class="cp-profile-card__stat">
+          <span>{% trans "Equipment" %}</span>
+          <strong>{{ equipment_summary }}</strong>
+        </div>
+      </div>
+
+      <div class="cp-profile-card__tags">
+        <span class="cp-profile-card__tag cp-profile-card__tag--dark">{% trans "Cross-border FTL" %}</span>
+        {% if demo and ctpat_certified or not demo and company.ctpat_certified %}
+        <span class="cp-profile-card__tag cp-profile-card__tag--cert">{% trans "CTPAT" %}</span>
+        {% endif %}
+        {% if demo and b1_drivers or not demo and company.b1_drivers %}
+        <span class="cp-profile-card__tag cp-profile-card__tag--cert">{% trans "B1 drivers" %}</span>
+        {% endif %}
+      </div>
+
+      {% if not compact %}
+      <div class="cp-profile-card__contact">
+        {% if demo %}
+          <a href="mailto:{{ email }}">{{ email }}</a><br/>
+          {{ whatsapp }}
+        {% else %}
+          <a href="mailto:{{ company.email }}">{{ company.email }}</a><br/>
+          {{ company.whatsapp }}
+        {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</article>

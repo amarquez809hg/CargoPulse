@@ -1,5 +1,5 @@
 {% extends "register/base.html" %}
-{% load i18n cp_i18n %}
+{% load i18n cp_i18n cp_profile %}
 {% block title %}{% trans "Available Trucks — Cargo Pulse" %}{% endblock %}
 {% block body %}
 <div class="cp-page">
@@ -57,6 +57,15 @@
           </select>
           <button type="submit">{% trans "Search" %}</button>
         </form>
+
+        {% if carrier_profiles %}
+        <div class="cp-section">{% trans "Carrier profiles" %}</div>
+        <div class="cp-board-profiles">
+          {% for card in carrier_profiles %}
+            {% render_carrier_profile_card company=card.company compact=True %}
+          {% endfor %}
+        </div>
+        {% endif %}
 
         {% if trucks %}
         <div class="cp-table-wrap">

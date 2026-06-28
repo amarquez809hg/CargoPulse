@@ -1,9 +1,9 @@
 {% extends "register/base.html" %}
-{% load static i18n %}
+{% load static i18n cp_profile %}
 {% block title %}{% trans "Cargo Pulse — Dashboard" %}{% endblock %}
 {% block body %}
 <div class="cp-page cp-page--dashboard">
-  <div class="cp-shell cp-shell-dashboard">
+  <div class="cp-shell cp-shell-dashboard cp-shell-dashboard--wide">
     <div class="cp-dashboard">
       <div class="cp-hero">
         <span class="cp-hero-tag">{% trans "Built for Mexican cross-border carriers" %}</span>
@@ -29,6 +29,22 @@
           <a class="cp-btn cp-btn--outline" href="{% url 'login' %}?role=broker">{% trans "Broker sign in" %}</a>
         </div>
       </div>
+
+      <section class="cp-network-preview">
+        <div class="cp-network-preview__head">
+          <h2>{% trans "Carrier & broker profiles" %}</h2>
+          <p>{% trans "Structured cards like the ones brokers and carriers see on the platform." %}</p>
+        </div>
+        <div class="cp-network-preview__grid">
+          {% render_carrier_profile_card %}
+          {% render_broker_profile_card %}
+        </div>
+        <p class="cp-network-preview__links">
+          <a href="{% url 'info_network_carrier_profile' %}">{% trans "Carrier profile details →" %}</a>
+          ·
+          <a href="{% url 'info_network_broker_profile' %}">{% trans "Broker profile details →" %}</a>
+        </p>
+      </section>
 
       <div id="coverage" class="cp-coverage-note">
         <h2>{% trans "Coverage" %}</h2>

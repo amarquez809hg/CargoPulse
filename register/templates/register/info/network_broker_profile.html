@@ -1,0 +1,20 @@
+{% extends "register/info/page_shell.html" %}
+{% load i18n cp_profile %}
+{% block title %}{% trans "Broker Profiles — Cargo Pulse" %}{% endblock %}
+{% block info_content %}
+<div class="cp-profile-showcase">
+  <div class="cp-profile-showcase__visual">
+    {% render_broker_profile_card %}
+  </div>
+  <div class="cp-profile-showcase__copy">
+    <h2>{% trans "How brokers show up on Cargo Pulse" %}</h2>
+    <p>{% trans "Brokers search the equipment board and reach carriers directly — no in-app bidding." %}</p>
+    <ul>
+      <li>{% trans "Brokerage name and contact email" %}</li>
+      <li>{% trans "Filter by crossing, lane type, and equipment" %}</li>
+      <li>{% trans "Review carrier profiles before outreach" %}</li>
+      <li>{% trans "Negotiate rates off-platform" %}</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

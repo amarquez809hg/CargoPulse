@@ -1,0 +1,66 @@
+{% load i18n cp_i18n %}
+<article class="cp-profile-card{% if compact %} cp-profile-card--compact{% endif %}">
+  <div class="cp-profile-card__frame">
+    <div class="cp-profile-card__inner">
+      <div class="cp-profile-card__verify" title="{% trans 'Verified profile' %}" aria-hidden="true">✓</div>
+
+      <header class="cp-profile-card__person">
+        <div class="cp-profile-card__avatar" aria-hidden="true">{{ display_name|cp_initials }}</div>
+        <div>
+          <h3 class="cp-profile-card__name">
+            {{ display_name }}
+            <span class="cp-profile-card__status" title="{% trans 'Active' %}"></span>
+          </h3>
+          <p class="cp-profile-card__role">
+            {% if demo %}{{ role_label }}{% else %}{% trans "US freight broker" %}{% endif %}
+          </p>
+          {% if demo and location_line %}
+          <p class="cp-profile-card__meta">{{ location_line }}</p>
+          {% endif %}
+        </div>
+      </header>
+
+      <section class="cp-profile-card__company">
+        <div class="cp-profile-card__co-logo" aria-hidden="true">
+          {% if demo %}{{ broker_initial }}{% else %}{{ brokerage_name|slice:":2"|upper }}{% endif %}
+        </div>
+        <div>
+          <h4>{{ brokerage_name }}</h4>
+          <p class="cp-profile-card__legal">{% trans "US broker · find Mexican carriers" %}</p>
+        </div>
+      </section>
+
+      <div class="cp-profile-card__row">
+        <span>{% trans "Board focus" %}</span>
+        <strong>{% if demo %}{{ board_focus }}{% else %}{% trans "US–Mexico crossings" %}{% endif %}</strong>
+      </div>
+
+      <div class="cp-profile-card__row">
+        <span>{% trans "Contact method" %}</span>
+        <strong>{% trans "Email carriers directly" %}</strong>
+      </div>
+
+      <div class="cp-profile-card__stats">
+        <div class="cp-profile-card__stat">
+          <span>{% trans "Searches" %}</span>
+          <strong>{% trans "Equipment board" %}</strong>
+        </div>
+        <div class="cp-profile-card__stat">
+          <span>{% trans "Filters" %}</span>
+          <strong>{% trans "Crossing · lane · equipment" %}</strong>
+        </div>
+      </div>
+
+      <div class="cp-profile-card__tags">
+        <span class="cp-profile-card__tag cp-profile-card__tag--dark">{% trans "US broker" %}</span>
+        <span class="cp-profile-card__tag cp-profile-card__tag--cert">{% trans "Direct outreach" %}</span>
+      </div>
+
+      {% if not compact and email %}
+      <div class="cp-profile-card__contact">
+        <a href="mailto:{{ email }}">{{ email }}</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</article>

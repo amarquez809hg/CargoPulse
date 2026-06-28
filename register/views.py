@@ -11,7 +11,7 @@ from django.views.decorators.http import require_http_methods
 
 from .availability import POST_VISIBILITY_DAYS, visible_posts
 from .decorators import get_profile, role_required
-from .models import PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
+from .profile_cards import carrier_profile_card, demo_broker_profile, demo_carrier_profile
 
 INFO_PAGES = {
     "info_brokers": {
@@ -110,6 +110,26 @@ INFO_PAGES = {
         "lead": _(
             "Search trucks posted by Mexican carriers and contact them "
             "directly by email or WhatsApp."
+        ),
+        "cta": "broker",
+    },
+    "info_network_carrier_profile": {
+        "template": "register/info/network_carrier_profile.html",
+        "tag": _("Network"),
+        "title": _("Carrier profiles"),
+        "lead": _(
+            "Structured company cards US brokers review before contacting "
+            "Mexican fleets."
+        ),
+        "cta": "carrier",
+    },
+    "info_network_broker_profile": {
+        "template": "register/info/network_broker_profile.html",
+        "tag": _("Network"),
+        "title": _("Broker profiles"),
+        "lead": _(
+            "How US brokers appear when searching and contacting carriers "
+            "on Cargo Pulse."
         ),
         "cta": "broker",
     },
@@ -224,7 +244,7 @@ def _info_cta(request, cta_key):
     return ctas.get(cta_key, ctas["home"])
 
 
-def _render_info_page(request, page_key):
+def _render_info_page(request, page_key, extra=None):
     page = INFO_PAGES[page_key]
     cta_url, cta_label = _info_cta(request, page["cta"])
     ctx = {
@@ -239,6 +259,8 @@ def _render_info_page(request, page_key):
         sec_url, sec_label = _info_cta(request, secondary)
         ctx["info_cta_secondary_url"] = sec_url
         ctx["info_cta_secondary_label"] = sec_label
+    if extra:
+        ctx.update(extra)
     return render(request, page["template"], ctx)
 
 
@@ -280,6 +302,14 @@ def info_resources_carrier_workflow(request):
 
 def info_resources_broker_workflow(request):
     return _render_info_page(request, "info_resources_broker_workflow")
+
+
+def info_network_carrier_profile(request):
+    return _render_info_page(request, "info_network_carrier_profile", demo_carrier_profile())
+
+
+def info_network_broker_profile(request):
+    return _render_info_page(request, "info_network_broker_profile", demo_broker_profile())
 
 
 def home(request):
@@ -543,8 +573,15 @@ def broker_board(request):
 
     has_filters = any([city_filter, lane_type_filter, port_filter, equipment_filter])
 
+    company_ids = list(trucks.values_list("company_id", flat=True).distinct()[:8])
+    carrier_profiles = [
+        carrier_profile_card(company)
+        for company in TruckingCompany.objects.filter(id__in=company_ids)
+    ]
+
     return render(request, "register/broker/board.html", {
         "trucks": trucks,
+        "carrier_profiles": carrier_profiles,
         "city_filter": city_filter,
         "lane_type_filter": lane_type_filter,
         "port_filter": port_filter,

@@ -1282,3 +1282,141 @@ msgstr "Recursos · Brokers"
 
 msgid "Search trucks posted by Mexican carriers and contact them directly by email or WhatsApp."
 msgstr "Busca camiones de transportistas mexicanos y contáctalos directo por correo o WhatsApp."
+
+msgid "Network"
+msgstr "Red"
+
+msgid "Profiles"
+msgstr "Perfiles"
+
+msgid "Carrier profiles"
+msgstr "Perfiles de transportistas"
+
+msgid "Company, crossing, equipment, and compliance cards."
+msgstr "Tarjetas con empresa, cruce, equipo y cumplimiento."
+
+msgid "Broker profiles"
+msgstr "Perfiles de brokers"
+
+msgid "How US brokers appear when searching carriers."
+msgstr "Cómo se ven los brokers al buscar transportistas."
+
+msgid "On the board"
+msgstr "En el tablero"
+
+msgid "Carrier cards shown alongside live posts."
+msgstr "Tarjetas de transportistas junto a publicaciones activas."
+
+msgid "Join as broker"
+msgstr "Registrarse como broker"
+
+msgid "Structured company cards US brokers review before contacting Mexican fleets."
+msgstr "Tarjetas estructuradas que los brokers revisan antes de contactar flotas mexicanas."
+
+msgid "How US brokers appear when searching and contacting carriers on Cargo Pulse."
+msgstr "Cómo se ven los brokers al buscar y contactar transportistas en Cargo Pulse."
+
+msgid "Carrier Profiles — Cargo Pulse"
+msgstr "Perfiles transportista — Cargo Pulse"
+
+msgid "What US brokers see on every carrier"
+msgstr "Lo que ven los brokers en cada transportista"
+
+msgid "Company profile, crossing, equipment, and compliance — before they email or WhatsApp you."
+msgstr "Perfil, cruce, equipo y cumplimiento — antes de escribirte por correo o WhatsApp."
+
+msgid "HQ city and primary US–Mexico crossing"
+msgstr "Sede y cruce EE.UU.–México principal"
+
+msgid "Active equipment posts and trailer types"
+msgstr "Publicaciones activas y tipos de remolque"
+
+msgid "CTPAT and B1 driver badges when they apply"
+msgstr "Insignias CTPAT y conductores B1 cuando aplican"
+
+msgid "Direct contact on every listing"
+msgstr "Contacto directo en cada publicación"
+
+msgid "Broker Profiles — Cargo Pulse"
+msgstr "Perfiles broker — Cargo Pulse"
+
+msgid "How brokers show up on Cargo Pulse"
+msgstr "Cómo aparecen los brokers en Cargo Pulse"
+
+msgid "Brokers search the equipment board and reach carriers directly — no in-app bidding."
+msgstr "Los brokers buscan en el tablero y contactan directo — sin pujas en la app."
+
+msgid "Brokerage name and contact email"
+msgstr "Nombre del brokerage y correo de contacto"
+
+msgid "Review carrier profiles before outreach"
+msgstr "Revisa perfiles de transportistas antes de contactar"
+
+msgid "Carrier & broker profiles"
+msgstr "Perfiles de transportistas y brokers"
+
+msgid "Structured cards like the ones brokers and carriers see on the platform."
+msgstr "Tarjetas estructuradas como las que ven brokers y transportistas en la plataforma."
+
+msgid "Carrier profile details →"
+msgstr "Detalle perfil transportista →"
+
+msgid "Broker profile details →"
+msgstr "Detalle perfil broker →"
+
+msgid "Verified profile"
+msgstr "Perfil verificado"
+
+msgid "Active"
+msgstr "Activo"
+
+msgid "Owner · dispatcher"
+msgstr "Dueño · despachador"
+
+msgid "Mexican carrier · cross-border"
+msgstr "Transportista mexicano · transfronterizo"
+
+msgid "Primary crossing"
+msgstr "Cruce principal"
+
+msgid "Runs"
+msgstr "Rutas"
+
+msgid "Active posts"
+msgstr "Publicaciones activas"
+
+msgid "Cross-border FTL"
+msgstr "FTL transfronterizo"
+
+msgid "US freight broker"
+msgstr "Broker de carga EE.UU."
+
+msgid "Board focus"
+msgstr "Enfoque del tablero"
+
+msgid "Contact method"
+msgstr "Método de contacto"
+
+msgid "Email carriers directly"
+msgstr "Correo directo a transportistas"
+
+msgid "Searches"
+msgstr "Búsquedas"
+
+msgid "Crossing · lane · equipment"
+msgstr "Cruce · ruta · equipo"
+
+msgid "US broker"
+msgstr "Broker EE.UU."
+
+msgid "Direct outreach"
+msgstr "Contacto directo"
+
+msgid "Independent broker"
+msgstr "Broker independiente"
+
+msgid "Van (2), Reefer (1)"
+msgstr "Caja seca (2), Refrigerado (1)"
+
+msgid "Crossings, dry van, reefer"
+msgstr "Cruces, caja seca, refrigerado"

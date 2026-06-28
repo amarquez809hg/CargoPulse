@@ -16,3 +16,13 @@ def lane_type_label(value):
         return "—"
     factory = LANE_TYPE_LABELS.get(value)
     return str(factory()) if factory else value
+
+
+@register.filter
+def cp_initials(value):
+    if not value:
+        return "?"
+    parts = str(value).split()
+    if len(parts) >= 2:
+        return (parts[0][0] + parts[1][0]).upper()
+    return str(value)[:2].upper()
