@@ -19,7 +19,7 @@ INFO_PAGES = {
         "tag": _("For US freight brokers"),
         "title": _("Find small Mexican carriers on your lanes"),
         "lead": _(
-            "Cargo Pulse surfaces independent transportistas and modest Mexican "
+            "Cargo Pulse surfaces independent Mexican carriers and modest "
             "fleets crossing the border — operators who rarely appear on big "
             "national load boards."
         ),
@@ -27,7 +27,7 @@ INFO_PAGES = {
     },
     "info_carriers": {
         "template": "register/info/carriers.html",
-        "tag": _("For Mexican transportistas"),
+        "tag": _("For Mexican carriers"),
         "title": _("Post your trucks. Be seen in the US."),
         "lead": _(
             "Built for small Mexican entrepreneurs — owner-operators and regional "
@@ -92,7 +92,7 @@ INFO_PAGES = {
         "tag": _("Resources"),
         "title": _("How Cargo Pulse works"),
         "lead": _(
-            "A simple way for Mexican transportistas to post and for US brokers "
+            "A simple way for Mexican carriers to post and for US brokers "
             "to discover them — no complex bidding required to get started."
         ),
         "cta": "home",
