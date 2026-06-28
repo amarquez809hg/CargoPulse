@@ -26,7 +26,7 @@
           <a class="gold-btn" href="{% url 'carrier_post' %}" style="text-decoration:none;text-align:center;display:inline-block;">{% trans "Post equipment" %}</a>
         </div>
 
-        <p class="cp-hint">{% blocktrans with days=post_visibility_days %}Active listings expire {{ days }} days after posting.{% endblocktrans %}</p>
+        <p class="cp-hint cp-dashboard-hint">{% blocktrans with days=post_visibility_days %}Active listings expire {{ days }} days after posting.{% endblocktrans %}</p>
 
         <div class="cp-section" style="margin-top:24px;">{% trans "Your postings" %}</div>
 

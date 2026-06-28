@@ -88,9 +88,17 @@
 }
 
 .cp-dashboard-profile {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.cp-dashboard-profile .cp-profile-card {
+  max-width: none;
+  width: 100%;
+}
+
+.cp-dashboard-hint {
+  margin: 16px 0 12px;
 }
 
 .cp-post-cards {
