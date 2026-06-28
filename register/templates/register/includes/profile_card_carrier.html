@@ -1,5 +1,5 @@
 {% load i18n cp_i18n %}
-<article class="cp-profile-card{% if compact %} cp-profile-card--compact{% endif %}">
+<article class="cp-profile-card{% if compact %} cp-profile-card--compact{% endif %}{% if mini %} cp-profile-card--mini{% endif %}">
   <div class="cp-profile-card__frame">
     <div class="cp-profile-card__inner">
       <div class="cp-profile-card__verify" title="{% trans 'Verified profile' %}" aria-hidden="true">✓</div>
@@ -30,6 +30,7 @@
         </div>
         <div>
           <h4>{% if demo %}{{ company_name }}{% else %}{{ company.company_name }}{% endif %}</h4>
+          {% if not mini %}
           <p class="cp-profile-card__legal">
             {% trans "HQ:" %}
             {% if demo %}{{ hq_city }}{% else %}{{ company.hq_city }}{% endif %}
@@ -39,9 +40,11 @@
           {% elif not demo and company.company_address %}
           <p class="cp-profile-card__address">{{ company.company_address }}</p>
           {% endif %}
+          {% endif %}
         </div>
       </section>
 
+      {% if not mini %}
       <div class="cp-profile-card__row">
         <span>{% trans "Primary crossing" %}</span>
         <strong>
@@ -66,9 +69,10 @@
           <strong>{{ equipment_summary }}</strong>
         </div>
       </div>
+      {% endif %}
 
       <div class="cp-profile-card__tags">
-        <span class="cp-profile-card__tag cp-profile-card__tag--dark">{% trans "Cross-border FTL" %}</span>
+        {% if not mini %}<span class="cp-profile-card__tag cp-profile-card__tag--dark">{% trans "Cross-border FTL" %}</span>{% endif %}
         {% if demo and ctpat_certified or not demo and company.ctpat_certified %}
         <span class="cp-profile-card__tag cp-profile-card__tag--cert">{% trans "CTPAT" %}</span>
         {% endif %}
@@ -77,7 +81,7 @@
         {% endif %}
       </div>
 
-      {% if not compact %}
+      {% if not compact and not mini %}
       <div class="cp-profile-card__contact">
         {% if demo %}
           <a href="mailto:{{ email }}">{{ email }}</a><br/>

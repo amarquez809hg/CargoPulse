@@ -33,11 +33,10 @@
       <section class="cp-network-preview">
         <div class="cp-network-preview__head">
           <h2>{% trans "Carrier & broker profiles" %}</h2>
-          <p>{% trans "Structured cards like the ones brokers and carriers see on the platform." %}</p>
         </div>
-        <div class="cp-network-preview__grid">
-          {% render_carrier_profile_card %}
-          {% render_broker_profile_card %}
+        <div class="cp-network-preview__grid cp-network-preview__grid--mini">
+          {% render_carrier_profile_card mini=True %}
+          {% render_broker_profile_card mini=True %}
         </div>
         <p class="cp-network-preview__links">
           <a href="{% url 'info_network_carrier_profile' %}">{% trans "Carrier profile details →" %}</a>

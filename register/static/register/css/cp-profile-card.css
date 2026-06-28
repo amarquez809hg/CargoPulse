@@ -48,7 +48,7 @@
 
 .cp-network-preview__head {
   text-align: center;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
 }
 
 .cp-network-preview__head h2 {
@@ -69,6 +69,79 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
   align-items: start;
+}
+
+.cp-network-preview__grid--mini {
+  gap: 14px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.cp-profile-card--mini {
+  max-width: none;
+}
+
+.cp-profile-card--mini .cp-profile-card__frame {
+  padding: 9px;
+}
+
+.cp-profile-card--mini .cp-profile-card__inner {
+  padding: 12px 11px 11px;
+}
+
+.cp-profile-card--mini .cp-profile-card__person {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+
+.cp-profile-card--mini .cp-profile-card__avatar {
+  width: 34px;
+  height: 34px;
+  font-size: 0.68rem;
+}
+
+.cp-profile-card--mini .cp-profile-card__name {
+  font-size: 0.82rem;
+}
+
+.cp-profile-card--mini .cp-profile-card__role {
+  font-size: 0.7rem;
+}
+
+.cp-profile-card--mini .cp-profile-card__meta {
+  font-size: 0.66rem;
+}
+
+.cp-profile-card--mini .cp-profile-card__verify {
+  width: 20px;
+  height: 20px;
+  top: 8px;
+  right: 8px;
+  font-size: 0.65rem;
+}
+
+.cp-profile-card--mini .cp-profile-card__company {
+  margin-bottom: 10px;
+  padding: 8px 9px;
+}
+
+.cp-profile-card--mini .cp-profile-card__co-logo {
+  width: 34px;
+  height: 34px;
+  font-size: 0.58rem;
+}
+
+.cp-profile-card--mini .cp-profile-card__company h4 {
+  font-size: 0.76rem;
+}
+
+.cp-profile-card--mini .cp-profile-card__tags {
+  gap: 5px;
+}
+
+.cp-profile-card--mini .cp-profile-card__tag {
+  padding: 3px 8px;
+  font-size: 0.6rem;
 }
 
 .cp-board-profiles {

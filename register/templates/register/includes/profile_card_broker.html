@@ -1,5 +1,5 @@
 {% load i18n cp_i18n %}
-<article class="cp-profile-card{% if compact %} cp-profile-card--compact{% endif %}">
+<article class="cp-profile-card{% if compact %} cp-profile-card--compact{% endif %}{% if mini %} cp-profile-card--mini{% endif %}">
   <div class="cp-profile-card__frame">
     <div class="cp-profile-card__inner">
       <div class="cp-profile-card__verify" title="{% trans 'Verified profile' %}" aria-hidden="true">✓</div>
@@ -26,10 +26,13 @@
         </div>
         <div>
           <h4>{{ brokerage_name }}</h4>
+          {% if not mini %}
           <p class="cp-profile-card__legal">{% trans "US broker · find Mexican carriers" %}</p>
+          {% endif %}
         </div>
       </section>
 
+      {% if not mini %}
       <div class="cp-profile-card__row">
         <span>{% trans "Board focus" %}</span>
         <strong>{% if demo %}{{ board_focus }}{% else %}{% trans "US–Mexico crossings" %}{% endif %}</strong>
@@ -50,13 +53,14 @@
           <strong>{% trans "Crossing · lane · equipment" %}</strong>
         </div>
       </div>
+      {% endif %}
 
       <div class="cp-profile-card__tags">
         <span class="cp-profile-card__tag cp-profile-card__tag--dark">{% trans "US broker" %}</span>
-        <span class="cp-profile-card__tag cp-profile-card__tag--cert">{% trans "Direct outreach" %}</span>
+        {% if not mini %}<span class="cp-profile-card__tag cp-profile-card__tag--cert">{% trans "Direct outreach" %}</span>{% endif %}
       </div>
 
-      {% if not compact and email %}
+      {% if not compact and not mini and email %}
       <div class="cp-profile-card__contact">
         <a href="mailto:{{ email }}">{{ email }}</a>
       </div>
