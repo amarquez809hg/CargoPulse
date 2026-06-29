@@ -2,6 +2,11 @@
   var STORAGE_KEY = "cp-theme";
   var root = document.documentElement;
 
+  var ICONS = {
+    dark: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+    light: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A7.5 7.5 0 0 1 9.5 4 6 6 0 1 0 20 14.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  };
+
   function getTheme() {
     return root.getAttribute("data-theme") === "light" ? "light" : "dark";
   }
@@ -17,14 +22,11 @@
 
   function updateToggle(theme) {
     var btn = document.getElementById("cp-theme-toggle");
-    if (!btn) return;
+    var icon = document.getElementById("cp-theme-icon");
+    if (!btn || !icon) return;
 
-    var sun = btn.querySelector(".cp-theme-icon--sun");
-    var moon = btn.querySelector(".cp-theme-icon--moon");
     var isLight = theme === "light";
-
-    if (sun) sun.hidden = isLight;
-    if (moon) moon.hidden = !isLight;
+    icon.innerHTML = isLight ? ICONS.light : ICONS.dark;
 
     var label =
       btn.getAttribute("data-" + (isLight ? "label-dark" : "label-light")) ||
