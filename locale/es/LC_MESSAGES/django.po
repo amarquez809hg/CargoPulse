@@ -1462,3 +1462,15 @@ msgstr "Pie de página"
 
 msgid "Brokers"
 msgstr "Brokers"
+
+msgid "Origins"
+msgstr "Orígenes"
+
+msgid "CTPAT — all"
+msgstr "CTPAT — todos"
+
+msgid "CTPAT certified"
+msgstr "Certificado CTPAT"
+
+msgid "B1 drivers — all"
+msgstr "Conductores B1 — todos"

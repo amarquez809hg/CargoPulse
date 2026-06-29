@@ -30,8 +30,8 @@
             <span class="cp-stat-label">{% trans "Carriers" %}</span>
           </div>
           <div class="cp-stat-card">
-            <span class="cp-stat-value">{{ stats.route_count }}</span>
-            <span class="cp-stat-label">{% trans "Destinations" %}</span>
+            <span class="cp-stat-value">{{ stats.origin_count }}</span>
+            <span class="cp-stat-label">{% trans "Origins" %}</span>
           </div>
         </div>
 
@@ -49,11 +49,13 @@
             <option value="{{ value }}"{% if port_filter == value %} selected{% endif %}>{{ label }}</option>
             {% endfor %}
           </select>
-          <select name="equipment_type">
-            <option value="">{% trans "All equipment" %}</option>
-            {% for value, label in equipment_type_choices %}
-            <option value="{{ value }}"{% if equipment_filter == value %} selected{% endif %}>{{ label }}</option>
-            {% endfor %}
+          <select name="ctpat">
+            <option value="">{% trans "CTPAT — all" %}</option>
+            <option value="yes"{% if ctpat_filter == "yes" %} selected{% endif %}>{% trans "CTPAT certified" %}</option>
+          </select>
+          <select name="b1_drivers">
+            <option value="">{% trans "B1 drivers — all" %}</option>
+            <option value="yes"{% if b1_filter == "yes" %} selected{% endif %}>{% trans "B1 drivers" %}</option>
           </select>
           <button type="submit">{% trans "Search" %}</button>
         </form>

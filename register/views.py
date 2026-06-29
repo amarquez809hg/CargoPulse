@@ -542,13 +542,16 @@ def carrier_post_truck(request):
 @role_required(UserProfile.ROLE_BROKER)
 def broker_board(request):
     trucks = visible_posts(
-        TruckAvailability.objects.select_related("company").all()
+        TruckAvailability.objects.select_related("company").filter(
+            equipment_type=TruckAvailability.EquipmentType.VAN,
+        )
     ).order_by("-created_at")
 
     city_filter = (request.GET.get("city") or "").strip()
     lane_type_filter = (request.GET.get("lane_type") or "").strip()
     port_filter = (request.GET.get("port_of_entry") or "").strip()
-    equipment_filter = (request.GET.get("equipment_type") or "").strip()
+    ctpat_filter = (request.GET.get("ctpat") or "").strip()
+    b1_filter = (request.GET.get("b1_drivers") or "").strip()
 
     if city_filter:
         trucks = trucks.filter(
@@ -563,27 +566,29 @@ def broker_board(request):
         trucks = trucks.filter(lane_type=lane_type_filter)
     if port_filter and port_filter in VALID_PORTS:
         trucks = trucks.filter(port_of_entry=port_filter)
-    if equipment_filter and equipment_filter in VALID_EQUIPMENT:
-        trucks = trucks.filter(equipment_type=equipment_filter)
+    if ctpat_filter == "yes":
+        trucks = trucks.filter(company__ctpat_certified=True)
+    if b1_filter == "yes":
+        trucks = trucks.filter(company__b1_drivers=True)
 
     stats = trucks.aggregate(
         post_count=Count("id"),
         carrier_count=Count("company", distinct=True),
-        route_count=Count("destination_city", distinct=True),
+        origin_count=Count("current_city", distinct=True),
     )
 
-    has_filters = any([city_filter, lane_type_filter, port_filter, equipment_filter])
+    has_filters = any([city_filter, lane_type_filter, port_filter, ctpat_filter, b1_filter])
 
     return render(request, "register/broker/board.html", {
         "trucks": trucks,
         "city_filter": city_filter,
         "lane_type_filter": lane_type_filter,
         "port_filter": port_filter,
-        "equipment_filter": equipment_filter,
+        "ctpat_filter": ctpat_filter,
+        "b1_filter": b1_filter,
         "stats": stats,
         "has_filters": has_filters,
         "post_visibility_days": POST_VISIBILITY_DAYS,
         "lane_type_choices": TruckAvailability.LaneType.choices,
         "port_of_entry_choices": PortOfEntry.choices,
-        "equipment_type_choices": TruckAvailability.EquipmentType.choices,
     })

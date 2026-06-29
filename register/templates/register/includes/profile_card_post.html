@@ -14,27 +14,23 @@
       <div class="cp-post-row__route">
         <div class="cp-profile-card__avatar cp-profile-card__avatar--route" aria-hidden="true">↔</div>
         <div class="cp-post-row__route-text">
-          <strong>{{ post.current_city }} → {{ post.destination_city|default:"—" }}</strong>
+          <strong>{{ post.current_city }}</strong>
           <span>{{ post.lane_type|lane_type_label }} · {{ post.created_at|date:"SHORT_DATE_FORMAT" }}</span>
         </div>
       </div>
 
-      <div class="cp-post-row__facts">
+      <div class="cp-post-row__facts cp-post-row__facts--broker">
         <div class="cp-post-row__fact">
           <span>{% trans "Port" %}</span>
           <strong>{% if post.port_of_entry %}{{ post.get_port_of_entry_display }}{% elif post.company.primary_port_of_entry %}{{ post.company.get_primary_port_of_entry_display }}{% else %}—{% endif %}</strong>
         </div>
         <div class="cp-post-row__fact">
           <span>{% trans "Equipment" %}</span>
-          <strong>{{ post.get_equipment_type_display }} · {{ post.trailer_length_ft }}'</strong>
+          <strong>{% trans "Van" %} · 53'</strong>
         </div>
         <div class="cp-post-row__fact">
           <span>{% trans "Load" %}</span>
           <strong>{{ post.get_load_type_display }}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
-        </div>
-        <div class="cp-post-row__fact">
-          <span>{% trans "Rate/mi" %}</span>
-          <strong>{% if post.min_rate_per_mile %}${{ post.min_rate_per_mile }}{% else %}—{% endif %}</strong>
         </div>
       </div>
 
