@@ -205,6 +205,20 @@
   padding: 7px;
 }
 
+.cp-profile-card--carrier-row .cp-profile-card__inner--row {
+  grid-template-columns: minmax(170px, 1.15fr) minmax(300px, 2.4fr) minmax(140px, 1fr);
+}
+
+.cp-profile-card__notes--row {
+  margin: 4px 0 0;
+  font-size: 0.64rem;
+  line-height: 1.35;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .cp-post-row__carrier,
 .cp-post-row__route {
   display: flex;
@@ -765,6 +779,10 @@
   .cp-profile-card--list-row .cp-profile-card__inner--row {
     grid-template-columns: 1fr;
     gap: 10px;
+  }
+
+  .cp-profile-card--carrier-row .cp-profile-card__inner--row {
+    grid-template-columns: 1fr;
   }
 
   .cp-post-row__facts {

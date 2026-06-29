@@ -31,9 +31,9 @@
         <div class="cp-section" style="margin-top:24px;">{% trans "Your postings" %}</div>
 
         {% if posts %}
-        <div class="cp-post-cards">
+        <div class="cp-post-list">
           {% for post in posts %}
-            {% render_equipment_post_card post=post %}
+            {% render_equipment_post_card post=post list_row=True %}
           {% endfor %}
         </div>
         {% else %}

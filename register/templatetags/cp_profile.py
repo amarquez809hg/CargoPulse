@@ -27,5 +27,5 @@ def render_broker_profile_card(profile=None, compact=False, mini=False):
 
 
 @register.inclusion_tag("register/includes/profile_card_post.html")
-def render_equipment_post_card(post, show_contact=False):
-    return {"post": post, "show_contact": show_contact}
+def render_equipment_post_card(post, show_contact=False, list_row=False):
+    return {"post": post, "show_contact": show_contact, "list_row": list_row}
