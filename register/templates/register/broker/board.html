@@ -142,16 +142,6 @@
       }
     });
   });
-
-  var debounceTimer;
-  form.querySelectorAll("#broker-origin-city, #broker-mexico-corridor, #broker-us-corridor").forEach(function (el) {
-    el.addEventListener("input", function () {
-      clearTimeout(debounceTimer);
-      debounceTimer = setTimeout(function () {
-        form.requestSubmit();
-      }, 450);
-    });
-  });
 })();
 </script>
 {% endblock %}
