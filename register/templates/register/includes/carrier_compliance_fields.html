@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="cp-form-section">
+  <p class="cp-checkbox-heading">{% trans "Compliance (visible to brokers on your listings)" %}</p>
+  <label class="cp-checkbox-item">
+    <input type="checkbox" name="ctpat_certified" value="1"{% if ctpat_certified %} checked{% endif %}/>
+    <span>{% trans "CTPAT" %}</span>
+  </label>
+  <label class="cp-checkbox-item">
+    <input type="checkbox" name="b1_drivers" value="1"{% if b1_drivers %} checked{% endif %}/>
+    <span>{% trans "B1 drivers" %}</span>
+  </label>
+</div>

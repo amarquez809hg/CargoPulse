@@ -68,17 +68,7 @@
             </div>
           </div>
 
-          <div class="cp-form-section">
-            <p class="cp-checkbox-heading">{% trans "Check box if applies" %}</p>
-            <label class="cp-checkbox-item">
-              <input type="checkbox" name="ctpat_certified" value="1"{% if f.ctpat_certified %} checked{% endif %}/>
-              <span>{% trans "CTPAT" %}</span>
-            </label>
-            <label class="cp-checkbox-item">
-              <input type="checkbox" name="b1_drivers" value="1"{% if f.b1_drivers %} checked{% endif %}/>
-              <span>{% trans "B1 drivers" %}</span>
-            </label>
-          </div>
+          {% include "register/includes/carrier_compliance_fields.html" with ctpat_certified=f.ctpat_certified b1_drivers=f.b1_drivers %}
 
           <button type="submit" class="gold-btn">{% trans "Create carrier account" %}</button>
         </form>
@@ -112,6 +102,8 @@
     form.popular_destinations.value = "Houston, Dallas, Laredo, El Paso";
     form.whatsapp_code.value = "+52";
     form.whatsapp_number.value = "81" + String(Math.floor(10000000 + Math.random() * 89999999));
+    if (form.ctpat_certified) form.ctpat_certified.checked = true;
+    if (form.b1_drivers) form.b1_drivers.checked = true;
   }
   document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);
   document.getElementById("cp-mock-submit")?.addEventListener("click", function () {

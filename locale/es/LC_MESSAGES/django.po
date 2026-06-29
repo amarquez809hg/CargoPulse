@@ -1474,3 +1474,12 @@ msgstr "Certificado CTPAT"
 
 msgid "B1 drivers — all"
 msgstr "Conductores B1 — todos"
+
+msgid "Compliance (visible to brokers on your listings)"
+msgstr "Cumplimiento (visible para brokers en tus publicaciones)"
+
+msgid "Save compliance"
+msgstr "Guardar cumplimiento"
+
+msgid "Compliance preferences updated."
+msgstr "Preferencias de cumplimiento actualizadas."

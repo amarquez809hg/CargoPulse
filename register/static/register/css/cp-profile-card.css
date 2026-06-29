@@ -174,6 +174,22 @@
   margin: 16px 0 12px;
 }
 
+.cp-compliance-form {
+  margin: 0 0 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--cp-border);
+  border-radius: 12px;
+  background: var(--cp-bg-muted);
+}
+
+.cp-compliance-form .cp-form-section {
+  margin-bottom: 10px;
+}
+
+.cp-compliance-save {
+  margin-top: 4px;
+}
+
 .cp-post-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));

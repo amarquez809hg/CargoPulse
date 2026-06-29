@@ -453,8 +453,17 @@ def broker_signup(request):
 
 
 @role_required(UserProfile.ROLE_CARRIER)
+@require_http_methods(["GET", "POST"])
 def carrier_dashboard(request):
     company = get_object_or_404(TruckingCompany, user=request.user)
+
+    if request.method == "POST" and request.POST.get("form") == "compliance":
+        company.ctpat_certified = request.POST.get("ctpat_certified") == "1"
+        company.b1_drivers = request.POST.get("b1_drivers") == "1"
+        company.save(update_fields=["ctpat_certified", "b1_drivers"])
+        messages.success(request, _("Compliance preferences updated."))
+        return redirect("carrier_dashboard")
+
     posts = visible_posts(company.posts.all())
     return render(request, "register/carrier/dashboard.html", {
         "company": company,
@@ -472,6 +481,8 @@ def carrier_post_truck(request):
         "port_of_entry": default_port,
         "location_address": company.company_address,
         "trailer_length_ft": "53",
+        "ctpat_certified": company.ctpat_certified,
+        "b1_drivers": company.b1_drivers,
     }
     ctx = {
         "company": company,
@@ -485,6 +496,8 @@ def carrier_post_truck(request):
 
     if request.method == "POST":
         f = {k: (request.POST.get(k) or "").strip() for k in AVAILABILITY_FIELDS}
+        f["ctpat_certified"] = request.POST.get("ctpat_certified") == "1"
+        f["b1_drivers"] = request.POST.get("b1_drivers") == "1"
         ctx["f"] = f
 
         if not f["lane_type"] or not f["current_city"] or not f["destination_city"]:
@@ -516,6 +529,10 @@ def carrier_post_truck(request):
         except (ValueError, InvalidOperation):
             ctx["errors"] = _("Check trailer length, weight, and rate values.")
             return render(request, "register/carrier/post.html", ctx)
+
+        company.ctpat_certified = f["ctpat_certified"]
+        company.b1_drivers = f["b1_drivers"]
+        company.save(update_fields=["ctpat_certified", "b1_drivers"])
 
         TruckAvailability.objects.create(
             company=company,
