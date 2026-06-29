@@ -1,18 +1,10 @@
 {% load static i18n %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:'en' }}" data-theme="dark">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" data-theme="light">
 <head>
   <script>
     (function () {
-      try {
-        var stored = localStorage.getItem("cp-theme");
-        document.documentElement.setAttribute(
-          "data-theme",
-          stored === "light" || stored === "dark" ? stored : "dark"
-        );
-      } catch (e) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      }
+      document.documentElement.setAttribute("data-theme", "light");
     })();
   </script>
   <meta charset="utf-8"/>
@@ -1265,7 +1257,6 @@
   {% block body %}{% endblock %}
   {% include "register/includes/site_footer.html" %}
   <script src="{% static 'register/js/cp-header.js' %}"></script>
-  <script src="{% static 'register/js/cp-theme.js' %}"></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>
