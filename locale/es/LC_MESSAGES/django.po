@@ -1522,3 +1522,12 @@ msgstr "Ciudad de origen o dirección…"
 
 msgid "Search corridors — e.g. Monterrey, Houston"
 msgstr "Buscar corredores — ej. Monterrey, Houston"
+
+msgid "Corridor search"
+msgstr "Búsqueda por corredor"
+
+msgid "Monterrey, Saltillo, Nuevo Laredo"
+msgstr "Monterrey, Saltillo, Nuevo Laredo"
+
+msgid "Houston, Dallas, San Antonio"
+msgstr "Houston, Dallas, San Antonio"

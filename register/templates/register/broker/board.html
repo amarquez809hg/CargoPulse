@@ -35,30 +35,58 @@
           </div>
         </div>
 
-        <form class="cp-filter cp-filter--grid" method="get" action="{% url 'broker_board' %}" id="cp-broker-filter-form" autocomplete="off">
-          <input name="city" value="{{ city_filter }}" placeholder="{% trans 'Origin city or address…' %}"/>
-          <input name="corridor" value="{{ corridor_filter }}" placeholder="{% trans 'Search corridors — e.g. Monterrey, Houston' %}"/>
-          <select name="lane_type">
-            <option value="">{% trans "All types" %}</option>
-            {% for value, label in lane_type_choices %}
-            <option value="{{ value }}"{% if lane_type_filter == value %} selected{% endif %}>{{ value|lane_type_label }}</option>
-            {% endfor %}
-          </select>
-          <select name="port_of_entry">
-            <option value="">{% trans "All ports" %}</option>
-            {% for value, label in port_of_entry_choices %}
-            <option value="{{ value }}"{% if port_filter == value %} selected{% endif %}>{{ label }}</option>
-            {% endfor %}
-          </select>
-          <label class="cp-filter-check">
-            <input type="checkbox" name="ctpat_certified" value="1"{% if ctpat_filter %} checked{% endif %}/>
-            <span>{% trans "CTPAT certified" %}</span>
-          </label>
-          <label class="cp-filter-check">
-            <input type="checkbox" name="b1_drivers" value="1"{% if b1_filter %} checked{% endif %}/>
-            <span>{% trans "B1 drivers" %}</span>
-          </label>
-          <button type="submit" class="cp-filter-submit">{% trans "Search" %}</button>
+        <form class="cp-filter cp-filter--board" method="get" action="{% url 'broker_board' %}" id="cp-broker-filter-form" autocomplete="off">
+          <div class="cp-filter-row">
+            <input name="city" value="{{ city_filter }}" placeholder="{% trans 'Origin city or address…' %}"/>
+            <select name="lane_type">
+              <option value="">{% trans "All types" %}</option>
+              {% for value, label in lane_type_choices %}
+              <option value="{{ value }}"{% if lane_type_filter == value %} selected{% endif %}>{{ value|lane_type_label }}</option>
+              {% endfor %}
+            </select>
+            <select name="port_of_entry">
+              <option value="">{% trans "All ports" %}</option>
+              {% for value, label in port_of_entry_choices %}
+              <option value="{{ value }}"{% if port_filter == value %} selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="cp-filter-corridors">
+            <p class="cp-filter-corridors__title">{% trans "Corridor search" %}</p>
+            <div class="cp-filter-corridors__grid">
+              <div class="cp-filter-field">
+                <label for="broker-mexico-corridor">{% trans "Mexico corridor" %}</label>
+                <input
+                  id="broker-mexico-corridor"
+                  name="mexico_corridor"
+                  value="{{ mexico_corridor_filter }}"
+                  placeholder="{% trans 'Monterrey, Saltillo, Nuevo Laredo' %}"
+                />
+              </div>
+              <div class="cp-filter-field">
+                <label for="broker-us-corridor">{% trans "US corridor" %}</label>
+                <input
+                  id="broker-us-corridor"
+                  name="us_corridor"
+                  value="{{ us_corridor_filter }}"
+                  placeholder="{% trans 'Houston, Dallas, San Antonio' %}"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="cp-filter-row cp-filter-row--actions">
+            <label class="cp-filter-check">
+              <input type="checkbox" name="ctpat_certified" value="1"{% if ctpat_filter %} checked{% endif %}/>
+              <span>{% trans "CTPAT certified" %}</span>
+            </label>
+            <label class="cp-filter-check">
+              <input type="checkbox" name="b1_drivers" value="1"{% if b1_filter %} checked{% endif %}/>
+              <span>{% trans "B1 drivers" %}</span>
+            </label>
+            <button type="submit" class="cp-filter-submit">{% trans "Search" %}</button>
+          </div>
         </form>
 
         {% if trucks %}
@@ -85,9 +113,29 @@
 (function () {
   var form = document.getElementById("cp-broker-filter-form");
   if (!form) return;
+
   form.querySelectorAll("select, input[type='checkbox']").forEach(function (el) {
     el.addEventListener("change", function () {
       form.requestSubmit();
+    });
+  });
+
+  form.querySelectorAll("input[type='text'], input:not([type])").forEach(function (el) {
+    el.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        form.requestSubmit();
+      }
+    });
+  });
+
+  var debounceTimer;
+  form.querySelectorAll("#broker-mexico-corridor, #broker-us-corridor").forEach(function (el) {
+    el.addEventListener("input", function () {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function () {
+        form.requestSubmit();
+      }, 450);
     });
   });
 })();

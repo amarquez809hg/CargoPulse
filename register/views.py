@@ -596,7 +596,13 @@ def broker_board(request):
     ).order_by("-created_at")
 
     city_filter = (request.GET.get("city") or "").strip()
-    corridor_filter = (request.GET.get("corridor") or "").strip()
+    mexico_corridor_filter = (request.GET.get("mexico_corridor") or "").strip()
+    us_corridor_filter = (request.GET.get("us_corridor") or "").strip()
+    # Legacy single-field param from earlier builds
+    legacy_corridor = (request.GET.get("corridor") or "").strip()
+    if legacy_corridor and not mexico_corridor_filter and not us_corridor_filter:
+        mexico_corridor_filter = legacy_corridor
+        us_corridor_filter = legacy_corridor
     lane_type_filter = (request.GET.get("lane_type") or "").strip()
     port_filter = (request.GET.get("port_of_entry") or "").strip()
     ctpat_filter = request.GET.get("ctpat_certified") in ("1", "yes", "true", "on")
@@ -610,11 +616,14 @@ def broker_board(request):
             | Q(company__hq_city__icontains=city_filter)
             | Q(company__company_address__icontains=city_filter)
         )
-    if corridor_filter:
+    if mexico_corridor_filter:
         trucks = trucks.filter(
-            Q(company__mexico_corridor__icontains=corridor_filter)
-            | Q(company__us_corridor__icontains=corridor_filter)
-            | Q(company__popular_destinations__icontains=corridor_filter)
+            company__mexico_corridor__icontains=mexico_corridor_filter
+        )
+    if us_corridor_filter:
+        trucks = trucks.filter(
+            Q(company__us_corridor__icontains=us_corridor_filter)
+            | Q(company__popular_destinations__icontains=us_corridor_filter)
         )
     if lane_type_filter and lane_type_filter in VALID_LANE_TYPES:
         trucks = trucks.filter(lane_type=lane_type_filter)
@@ -635,7 +644,8 @@ def broker_board(request):
 
     has_filters = any([
         city_filter,
-        corridor_filter,
+        mexico_corridor_filter,
+        us_corridor_filter,
         lane_type_filter,
         port_filter,
         ctpat_filter,
@@ -645,7 +655,8 @@ def broker_board(request):
     return render(request, "register/broker/board.html", {
         "trucks": trucks,
         "city_filter": city_filter,
-        "corridor_filter": corridor_filter,
+        "mexico_corridor_filter": mexico_corridor_filter,
+        "us_corridor_filter": us_corridor_filter,
         "lane_type_filter": lane_type_filter,
         "port_filter": port_filter,
         "ctpat_filter": ctpat_filter,
