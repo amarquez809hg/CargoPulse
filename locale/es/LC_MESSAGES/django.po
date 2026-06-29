@@ -1444,3 +1444,18 @@ msgstr "Modo claro"
 
 msgid "Dark mode"
 msgstr "Modo oscuro"
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "Sign up"
+msgstr "Registrarse"
+
+msgid "Learn"
+msgstr "Aprende"
+
+msgid "Equipment types"
+msgstr "Tipos de equipo"
+
+msgid "Footer"
+msgstr "Pie de página"

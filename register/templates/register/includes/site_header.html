@@ -18,155 +18,59 @@
       />
     </a>
 
+    {% if not user.is_authenticated %}
     <nav class="cp-header-nav" aria-label="{% trans 'Main navigation' %}">
-      <a class="cp-header-link{% if cp_url_name == 'info_brokers' or cp_url_name == 'broker_board' or cp_url_name == 'broker_signup' %} is-active{% endif %}" href="{% url 'info_brokers' %}">{% trans "Brokers" %}</a>
+      <a class="cp-header-link{% if cp_url_name == 'info_brokers' or cp_url_name == 'broker_signup' %} is-active{% endif %}" href="{% url 'info_brokers' %}">{% trans "Brokers" %}</a>
 
-      <a class="cp-header-link{% if cp_url_name == 'info_carriers' or cp_url_name == 'carrier_dashboard' or cp_url_name == 'carrier_post' or cp_url_name == 'carrier_signup' %} is-active{% endif %}" href="{% url 'info_carriers' %}">{% trans "Carriers" %}</a>
-
-      <div class="cp-header-dropdown">
-        <button type="button" class="cp-header-link cp-header-dropdown-toggle{% if cp_url_name == 'info_platform_equipment_board' or cp_url_name == 'info_platform_post_equipment' %} is-active{% endif %}" aria-expanded="false">
-          {% trans "Platform" %}
-          <svg class="cp-header-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-        </button>
-        <div class="cp-header-mega">
-          <div class="cp-header-mega-grid cp-header-mega-grid--two">
-            <div>
-              <p class="cp-header-mega-label">{% trans "Platform" %}</p>
-              <a class="cp-header-mega-item" href="{% url 'info_platform_equipment_board' %}">
-                <span class="cp-header-mega-title">{% trans "Equipment board" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Browse trucks posted by Mexican carriers." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'info_platform_post_equipment' %}">
-                <span class="cp-header-mega-title">{% trans "Post equipment" %}</span>
-                <span class="cp-header-mega-desc">{% trans "List your truck for US brokers to find." %}</span>
-              </a>
-            </div>
-            <div>
-              <p class="cp-header-mega-label">{% trans "Get started" %}</p>
-              <a class="cp-header-mega-item" href="{% url 'info_carriers' %}">
-                <span class="cp-header-mega-title">{% trans "Carrier registration" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Free signup for Mexican carriers." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'info_brokers' %}">
-                <span class="cp-header-mega-title">{% trans "Broker registration" %}</span>
-                <span class="cp-header-mega-desc">{% trans "US brokers — search Mexican carrier posts." %}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <a class="cp-header-link{% if cp_url_name == 'info_carriers' or cp_url_name == 'carrier_signup' %} is-active{% endif %}" href="{% url 'info_carriers' %}">{% trans "Carriers" %}</a>
 
       <div class="cp-header-dropdown">
-        <button type="button" class="cp-header-link cp-header-dropdown-toggle{% if cp_url_name == 'info_coverage_border_crossings' or cp_url_name == 'info_coverage_lanes' or cp_url_name == 'info_coverage_equipment' %} is-active{% endif %}" aria-expanded="false">
-          {% trans "Coverage" %}
+        <button type="button" class="cp-header-link cp-header-dropdown-toggle{% if cp_url_name == 'info_platform_equipment_board' or cp_url_name == 'info_platform_post_equipment' or cp_url_name == 'info_coverage_border_crossings' or cp_url_name == 'info_coverage_lanes' or cp_url_name == 'info_coverage_equipment' or cp_url_name == 'info_network_carrier_profile' or cp_url_name == 'info_network_broker_profile' or cp_url_name == 'info_resources_how_it_works' or cp_url_name == 'info_resources_carrier_workflow' or cp_url_name == 'info_resources_broker_workflow' %} is-active{% endif %}" aria-expanded="false">
+          {% trans "About" %}
           <svg class="cp-header-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
         </button>
-        <div class="cp-header-mega">
-          <div class="cp-header-mega-grid cp-header-mega-grid--two">
-            <div>
-              <p class="cp-header-mega-label">{% trans "Coverage" %}</p>
-              <a class="cp-header-mega-item" href="{% url 'info_coverage_border_crossings' %}">
-                <span class="cp-header-mega-title">{% trans "US–Mexico crossings" %}</span>
-                <span class="cp-header-mega-desc">{% trans "US–Mexico crossings where Mexican fleets enter the US." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'info_coverage_lanes' %}">
-                <span class="cp-header-mega-title">{% trans "Cross-border & domestic" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Spot lanes, potential lanes, and dedicated capacity." %}</span>
-              </a>
-            </div>
-            <div>
-              <p class="cp-header-mega-label">{% trans "Equipment and specialization" %}</p>
-              <a class="cp-header-mega-item" href="{% url 'info_coverage_equipment' %}">
-                <span class="cp-header-mega-title">{% trans "Dry van" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Standard enclosed trailers for general freight." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'info_coverage_equipment' %}#reefer">
-                <span class="cp-header-mega-title">{% trans "Reefer" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Temperature-controlled equipment." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'info_coverage_equipment' %}#open-deck">
-                <span class="cp-header-mega-title">{% trans "Open deck" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Flatbed and step deck options." %}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+        <div class="cp-header-mega cp-header-mega--compact">
+          <p class="cp-header-mega-label">{% trans "Learn" %}</p>
+          <a class="cp-header-mega-item" href="{% url 'info_resources_how_it_works' %}">
+            <span class="cp-header-mega-title">{% trans "How it works" %}</span>
+          </a>
+          <a class="cp-header-mega-item" href="{% url 'info_resources_carrier_workflow' %}">
+            <span class="cp-header-mega-title">{% trans "Carrier workflow" %}</span>
+          </a>
+          <a class="cp-header-mega-item" href="{% url 'info_resources_broker_workflow' %}">
+            <span class="cp-header-mega-title">{% trans "Broker workflow" %}</span>
+          </a>
 
-      <div class="cp-header-dropdown">
-        <button type="button" class="cp-header-link cp-header-dropdown-toggle{% if cp_url_name == 'info_network_carrier_profile' or cp_url_name == 'info_network_broker_profile' %} is-active{% endif %}" aria-expanded="false">
-          {% trans "Network" %}
-          <svg class="cp-header-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-        </button>
-        <div class="cp-header-mega">
-          <div class="cp-header-mega-grid cp-header-mega-grid--two">
-            <div>
-              <p class="cp-header-mega-label">{% trans "Profiles" %}</p>
-              <a class="cp-header-mega-item" href="{% url 'info_network_carrier_profile' %}">
-                <span class="cp-header-mega-title">{% trans "Carrier profiles" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Company, crossing, equipment, and compliance cards." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'info_network_broker_profile' %}">
-                <span class="cp-header-mega-title">{% trans "Broker profiles" %}</span>
-                <span class="cp-header-mega-desc">{% trans "How US brokers appear when searching carriers." %}</span>
-              </a>
-            </div>
-            <div>
-              <p class="cp-header-mega-label">{% trans "On the board" %}</p>
-              <a class="cp-header-mega-item" href="{% url 'info_platform_equipment_board' %}">
-                <span class="cp-header-mega-title">{% trans "Equipment board" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Carrier cards shown alongside live posts." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'broker_signup' %}">
-                <span class="cp-header-mega-title">{% trans "Join as broker" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Search and contact Mexican carriers." %}</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+          <p class="cp-header-mega-label">{% trans "Platform" %}</p>
+          <a class="cp-header-mega-item" href="{% url 'info_platform_equipment_board' %}">
+            <span class="cp-header-mega-title">{% trans "Equipment board" %}</span>
+          </a>
+          <a class="cp-header-mega-item" href="{% url 'info_platform_post_equipment' %}">
+            <span class="cp-header-mega-title">{% trans "Post equipment" %}</span>
+          </a>
 
-      <div class="cp-header-dropdown">
-        <button type="button" class="cp-header-link cp-header-dropdown-toggle{% if cp_url_name == 'info_resources_how_it_works' or cp_url_name == 'info_resources_carrier_workflow' or cp_url_name == 'info_resources_broker_workflow' %} is-active{% endif %}" aria-expanded="false">
-          {% trans "Resources" %}
-          <svg class="cp-header-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-        </button>
-        <div class="cp-header-mega">
-          <div class="cp-header-mega-grid cp-header-mega-grid--two">
-            <div>
-              <p class="cp-header-mega-label">{% trans "Help guides" %}</p>
-              <a class="cp-header-mega-item" href="{% url 'info_resources_how_it_works' %}">
-                <span class="cp-header-mega-title">{% trans "How it works" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Overview — carriers post, brokers discover." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'info_resources_carrier_workflow' %}">
-                <span class="cp-header-mega-title">{% trans "Carrier workflow" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Register, post equipment, get contacted." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'info_resources_broker_workflow' %}">
-                <span class="cp-header-mega-title">{% trans "Broker workflow" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Search the board and contact carriers." %}</span>
-              </a>
-            </div>
-            <div>
-              <p class="cp-header-mega-label">{% trans "Get started" %}</p>
-              <a class="cp-header-mega-item" href="{% url 'login' %}">
-                <span class="cp-header-mega-title">{% trans "Sign in" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Carrier dashboard or broker equipment board." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'carrier_signup' %}">
-                <span class="cp-header-mega-title">{% trans "Carrier registration" %}</span>
-                <span class="cp-header-mega-desc">{% trans "Mexican fleet · cross-border." %}</span>
-              </a>
-              <a class="cp-header-mega-item" href="{% url 'broker_signup' %}">
-                <span class="cp-header-mega-title">{% trans "Broker registration" %}</span>
-                <span class="cp-header-mega-desc">{% trans "US broker · find Mexican carriers." %}</span>
-              </a>
-            </div>
-          </div>
+          <p class="cp-header-mega-label">{% trans "Coverage" %}</p>
+          <a class="cp-header-mega-item" href="{% url 'info_coverage_border_crossings' %}">
+            <span class="cp-header-mega-title">{% trans "US–Mexico crossings" %}</span>
+          </a>
+          <a class="cp-header-mega-item" href="{% url 'info_coverage_lanes' %}">
+            <span class="cp-header-mega-title">{% trans "Cross-border & domestic" %}</span>
+          </a>
+          <a class="cp-header-mega-item" href="{% url 'info_coverage_equipment' %}">
+            <span class="cp-header-mega-title">{% trans "Equipment types" %}</span>
+          </a>
+
+          <p class="cp-header-mega-label">{% trans "Network" %}</p>
+          <a class="cp-header-mega-item" href="{% url 'info_network_carrier_profile' %}">
+            <span class="cp-header-mega-title">{% trans "Carrier profiles" %}</span>
+          </a>
+          <a class="cp-header-mega-item" href="{% url 'info_network_broker_profile' %}">
+            <span class="cp-header-mega-title">{% trans "Broker profiles" %}</span>
+          </a>
         </div>
       </div>
     </nav>
+    {% endif %}
 
     <div class="cp-header-actions">
       {% if user.is_authenticated %}
@@ -187,7 +91,7 @@
       {% endif %}
       {% else %}
       <a class="cp-header-link" href="{% url 'login' %}">{% trans "Log in" %}</a>
-      <a class="cp-header-cta" href="{% url 'home' %}#portals">{% trans "Get started" %}</a>
+      <a class="cp-header-cta" href="{% url 'home' %}#portals">{% trans "Sign up" %}</a>
       {% endif %}
 
       <div class="cp-header-tools">
@@ -196,8 +100,10 @@
       </div>
     </div>
 
+    {% if not user.is_authenticated %}
     <button type="button" class="cp-header-menu-btn" aria-expanded="false" aria-label="{% trans 'Open menu' %}">
       <span></span><span></span><span></span>
     </button>
+    {% endif %}
   </div>
 </header>

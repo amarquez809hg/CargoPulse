@@ -1,0 +1,11 @@
+{% load i18n %}
+<footer class="cp-site-footer">
+  <div class="cp-site-footer-inner">
+    <p class="cp-site-footer-copy">© {% now "Y" %} Cargo Pulse</p>
+    <nav class="cp-site-footer-nav" aria-label="{% trans 'Footer' %}">
+      <a href="{% url 'info_resources_how_it_works' %}">{% trans "How it works" %}</a>
+      <a href="{% url 'info_coverage_border_crossings' %}">{% trans "Coverage" %}</a>
+      <a href="mailto:info@cargopulse.mx">{% trans "Contact" %}</a>
+    </nav>
+  </div>
+</footer>

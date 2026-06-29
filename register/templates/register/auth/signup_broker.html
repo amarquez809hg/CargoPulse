@@ -18,11 +18,13 @@
         <form method="post" id="cp-broker-signup-form">
           {% csrf_token %}
 
+          {% if debug %}
           <div class="cp-dev-tools">
             <p>{% trans "Dev tools — quick verification" %}</p>
             <button type="button" class="mock-btn mock-btn--fill" id="cp-mock-fill">{% trans "Fill random test data" %}</button>
             <button type="button" class="mock-btn mock-btn--submit" id="cp-mock-submit">{% trans "Fill & create account" %}</button>
           </div>
+          {% endif %}
 
           <label>{% trans "Username" %} <span class="req">*</span></label>
           <input name="username" required value="{{ f.username|default:'' }}"/>
@@ -44,6 +46,7 @@
     </div>
   </div>
 </div>
+{% if debug %}
 <script>
 (function () {
   var names = ["Ana Ruiz", "Carlos Mendez", "Laura Vega", "Miguel Torres"];
@@ -67,4 +70,5 @@
   });
 })();
 </script>
+{% endif %}
 {% endblock %}

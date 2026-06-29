@@ -18,11 +18,13 @@
         <form method="post" id="cp-carrier-signup-form">
           {% csrf_token %}
 
+          {% if debug %}
           <div class="cp-dev-tools">
             <p>{% trans "Dev tools — quick verification" %}</p>
             <button type="button" class="mock-btn mock-btn--fill" id="cp-mock-fill">{% trans "Fill random test data" %}</button>
             <button type="button" class="mock-btn mock-btn--submit" id="cp-mock-submit">{% trans "Fill & create account" %}</button>
           </div>
+          {% endif %}
 
           <div class="cp-section">{% trans "Account" %}</div>
           <label>{% trans "Username" %} <span class="req">*</span></label>
@@ -87,6 +89,7 @@
     </div>
   </div>
 </div>
+{% if debug %}
 <script>
 (function () {
   var cities = [
@@ -120,5 +123,6 @@
   });
 })();
 </script>
+{% endif %}
 {% include "register/includes/places_autocomplete.html" %}
 {% endblock %}

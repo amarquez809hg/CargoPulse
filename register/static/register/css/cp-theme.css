@@ -158,8 +158,13 @@
   color: var(--cp-muted);
 }
 
-[data-theme="light"] .cp-footer {
+[data-theme="light"] .cp-site-footer {
+  background: var(--cp-bg-muted);
   border-top-color: var(--cp-border);
+}
+
+[data-theme="light"] .cp-site-footer-nav a {
+  color: var(--cp-orange-dark);
 }
 
 /* Light header */

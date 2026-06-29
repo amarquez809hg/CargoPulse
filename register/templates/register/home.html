@@ -1,5 +1,5 @@
 {% extends "register/base.html" %}
-{% load static i18n cp_profile %}
+{% load static i18n %}
 {% block title %}{% trans "Cargo Pulse — Dashboard" %}{% endblock %}
 {% block body %}
 <div class="cp-page cp-page--dashboard">
@@ -28,27 +28,6 @@
           <a class="cp-btn cp-btn--outline" href="{% url 'login' %}?role=carrier">{% trans "Carrier sign in" %}</a>
           <a class="cp-btn cp-btn--outline" href="{% url 'login' %}?role=broker">{% trans "Broker sign in" %}</a>
         </div>
-      </div>
-
-      <section class="cp-network-preview">
-        <div class="cp-network-preview__head">
-          <h2>{% trans "Carrier & broker profiles" %}</h2>
-        </div>
-        <div class="cp-network-preview__grid cp-network-preview__grid--mini">
-          {% render_carrier_profile_card mini=True %}
-          {% render_broker_profile_card mini=True %}
-        </div>
-        <p class="cp-network-preview__links">
-          <a href="{% url 'info_network_carrier_profile' %}">{% trans "Carrier profile details →" %}</a>
-          ·
-          <a href="{% url 'info_network_broker_profile' %}">{% trans "Broker profile details →" %}</a>
-        </p>
-      </section>
-
-      <div id="coverage" class="cp-coverage-note">
-        <h2>{% trans "Coverage" %}</h2>
-        <p>{% trans "US–Mexico crossings — dry van, reefer, and open deck." %}</p>
-        <p class="cp-coverage-link"><a href="{% url 'info_coverage_border_crossings' %}">{% trans "Learn about border crossings →" %}</a></p>
       </div>
     </div>
 

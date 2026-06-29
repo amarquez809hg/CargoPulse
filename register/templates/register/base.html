@@ -1198,6 +1198,62 @@
       .cp-info-cta { padding-left: 20px; padding-right: 20px; justify-content: stretch; }
       .cp-info-cta .cp-btn { width: 100%; min-width: 0; }
     }
+    .cp-header-mega--compact {
+      min-width: min(280px, calc(100vw - 40px));
+      padding: 14px 16px 16px;
+    }
+    .cp-header-mega--compact .cp-header-mega-label {
+      margin-top: 10px;
+    }
+    .cp-header-mega--compact .cp-header-mega-label:first-child {
+      margin-top: 0;
+    }
+    .cp-header-mega--compact .cp-header-mega-item {
+      padding: 8px 6px;
+    }
+    .cp-header-mega--compact .cp-header-mega-title {
+      font-size: 0.86rem;
+      margin-bottom: 0;
+    }
+    .cp-site-footer {
+      border-top: 1px solid var(--cp-border);
+      background: var(--cp-bg-muted);
+      padding: 20px 16px 28px;
+    }
+    .cp-site-footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px 20px;
+    }
+    .cp-site-footer-copy {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--cp-muted);
+    }
+    .cp-site-footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+    .cp-site-footer-nav a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--cp-orange-dark);
+      text-decoration: none;
+    }
+    .cp-site-footer-nav a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 560px) {
+      .cp-site-footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
   </style>
   <link rel="stylesheet" href="{% static 'register/css/cp-glass.css' %}"/>
   <link rel="stylesheet" href="{% static 'register/css/cp-profile-card.css' %}"/>
@@ -1207,6 +1263,7 @@
 <body>
   {% include "register/includes/site_header.html" %}
   {% block body %}{% endblock %}
+  {% include "register/includes/site_footer.html" %}
   <script src="{% static 'register/js/cp-header.js' %}"></script>
   <script src="{% static 'register/js/cp-theme.js' %}"></script>
   {% block extra_js %}{% endblock %}
