@@ -550,8 +550,8 @@ def broker_board(request):
     city_filter = (request.GET.get("city") or "").strip()
     lane_type_filter = (request.GET.get("lane_type") or "").strip()
     port_filter = (request.GET.get("port_of_entry") or "").strip()
-    ctpat_filter = (request.GET.get("ctpat") or "").strip()
-    b1_filter = (request.GET.get("b1_drivers") or "").strip()
+    ctpat_filter = request.GET.get("ctpat_certified") in ("1", "yes", "true", "on")
+    b1_filter = request.GET.get("b1_drivers") in ("1", "yes", "true", "on")
 
     if city_filter:
         trucks = trucks.filter(
@@ -566,10 +566,12 @@ def broker_board(request):
         trucks = trucks.filter(lane_type=lane_type_filter)
     if port_filter and port_filter in VALID_PORTS:
         trucks = trucks.filter(port_of_entry=port_filter)
-    if ctpat_filter == "yes":
+    if ctpat_filter:
         trucks = trucks.filter(company__ctpat_certified=True)
-    if b1_filter == "yes":
+    if b1_filter:
         trucks = trucks.filter(company__b1_drivers=True)
+
+    trucks = trucks.distinct()
 
     stats = trucks.aggregate(
         post_count=Count("id"),

@@ -35,7 +35,7 @@
           </div>
         </div>
 
-        <form class="cp-filter cp-filter--grid" method="get">
+        <form class="cp-filter cp-filter--grid" method="get" action="{% url 'broker_board' %}" id="cp-broker-filter-form" autocomplete="off">
           <input name="city" value="{{ city_filter }}" placeholder="{% trans 'City, address, or corridor…' %}"/>
           <select name="lane_type">
             <option value="">{% trans "All types" %}</option>
@@ -49,14 +49,14 @@
             <option value="{{ value }}"{% if port_filter == value %} selected{% endif %}>{{ label }}</option>
             {% endfor %}
           </select>
-          <select name="ctpat">
-            <option value="">{% trans "CTPAT — all" %}</option>
-            <option value="yes"{% if ctpat_filter == "yes" %} selected{% endif %}>{% trans "CTPAT certified" %}</option>
-          </select>
-          <select name="b1_drivers">
-            <option value="">{% trans "B1 drivers — all" %}</option>
-            <option value="yes"{% if b1_filter == "yes" %} selected{% endif %}>{% trans "B1 drivers" %}</option>
-          </select>
+          <label class="cp-filter-check">
+            <input type="checkbox" name="ctpat_certified" value="1"{% if ctpat_filter %} checked{% endif %}/>
+            <span>{% trans "CTPAT certified" %}</span>
+          </label>
+          <label class="cp-filter-check">
+            <input type="checkbox" name="b1_drivers" value="1"{% if b1_filter %} checked{% endif %}/>
+            <span>{% trans "B1 drivers" %}</span>
+          </label>
           <button type="submit">{% trans "Search" %}</button>
         </form>
 
@@ -80,4 +80,15 @@
     </div>
   </div>
 </div>
+<script>
+(function () {
+  var form = document.getElementById("cp-broker-filter-form");
+  if (!form) return;
+  form.querySelectorAll("select, input[type='checkbox']").forEach(function (el) {
+    el.addEventListener("change", function () {
+      form.requestSubmit();
+    });
+  });
+})();
+</script>
 {% endblock %}
