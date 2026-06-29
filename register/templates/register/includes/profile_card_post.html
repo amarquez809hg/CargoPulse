@@ -1,9 +1,9 @@
 {% load i18n cp_i18n %}
-<article class="cp-profile-card cp-profile-card--post cp-profile-card--fill{% if show_contact %} cp-profile-card--broker-post{% endif %}">
+<article class="cp-profile-card cp-profile-card--post cp-profile-card--fill{% if show_contact %} cp-profile-card--broker-post cp-profile-card--list-row{% endif %}">
   <div class="cp-profile-card__frame">
-    <div class="cp-profile-card__inner">
+    <div class="cp-profile-card__inner{% if show_contact %} cp-profile-card__inner--row{% endif %}">
       {% if show_contact %}
-      <section class="cp-profile-card__company cp-profile-card__company--compact">
+      <section class="cp-profile-card__company cp-profile-card__company--compact cp-post-row__carrier">
         <div class="cp-profile-card__co-logo" aria-hidden="true">{{ post.company.company_name|slice:":2"|upper }}</div>
         <div>
           <h4>{{ post.company.company_name }}</h4>
@@ -12,8 +12,53 @@
           {% endif %}
         </div>
       </section>
-      {% endif %}
 
+      <header class="cp-profile-card__person cp-profile-card__person--compact cp-post-row__route">
+        <div class="cp-profile-card__avatar cp-profile-card__avatar--route" aria-hidden="true">↔</div>
+        <div>
+          <h3 class="cp-profile-card__name">
+            {{ post.current_city }} → {{ post.destination_city|default:"—" }}
+          </h3>
+          <p class="cp-profile-card__role">
+            {{ post.lane_type|lane_type_label }} · {% trans "Posted" %} {{ post.created_at|date:"SHORT_DATE_FORMAT" }}
+          </p>
+        </div>
+      </header>
+
+      <div class="cp-profile-card__facts cp-profile-card__facts--row">
+        <div class="cp-profile-card__fact">
+          <span>{% trans "Port" %}</span>
+          <strong>{% if post.port_of_entry %}{{ post.get_port_of_entry_display }}{% elif post.company.primary_port_of_entry %}{{ post.company.get_primary_port_of_entry_display }}{% else %}—{% endif %}</strong>
+        </div>
+        <div class="cp-profile-card__fact">
+          <span>{% trans "Equipment" %}</span>
+          <strong>{{ post.get_equipment_type_display }} · {{ post.trailer_length_ft }}'</strong>
+        </div>
+        <div class="cp-profile-card__fact">
+          <span>{% trans "Load" %}</span>
+          <strong>{{ post.get_load_type_display }}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
+        </div>
+        <div class="cp-profile-card__fact">
+          <span>{% trans "Rate/mi" %}</span>
+          <strong>{% if post.min_rate_per_mile %}${{ post.min_rate_per_mile }}{% else %}—{% endif %}</strong>
+        </div>
+      </div>
+
+      <div class="cp-post-row__meta">
+        <div class="cp-profile-card__tags cp-profile-card__tags--compact">
+          {% include "register/includes/carrier_compliance_badges.html" with company=post.company %}
+          {% if post.reference_id %}
+          <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ post.reference_id }}</span>
+          {% endif %}
+        </div>
+        <div class="cp-profile-card__contact cp-profile-card__contact--compact">
+          <a href="mailto:{{ post.company.email }}">{{ post.company.email }}</a>
+          <span class="cp-profile-card__contact-sep">·</span>
+          <span>{{ post.company.whatsapp }}</span>
+        </div>
+      </div>
+
+      {% else %}
       <header class="cp-profile-card__person cp-profile-card__person--compact">
         <div class="cp-profile-card__avatar cp-profile-card__avatar--route" aria-hidden="true">↔</div>
         <div>
@@ -29,7 +74,7 @@
       <div class="cp-profile-card__facts">
         <div class="cp-profile-card__fact">
           <span>{% trans "Port" %}</span>
-          <strong>{% if post.port_of_entry %}{{ post.get_port_of_entry_display }}{% elif show_contact and post.company.primary_port_of_entry %}{{ post.company.get_primary_port_of_entry_display }}{% else %}—{% endif %}</strong>
+          <strong>{% if post.port_of_entry %}{{ post.get_port_of_entry_display }}{% else %}—{% endif %}</strong>
         </div>
         <div class="cp-profile-card__fact">
           <span>{% trans "Equipment" %}</span>
@@ -48,22 +93,14 @@
       </div>
 
       <div class="cp-profile-card__tags cp-profile-card__tags--compact">
-        {% if show_contact %}
-          {% include "register/includes/carrier_compliance_badges.html" with company=post.company %}
-        {% endif %}
         {% if post.reference_id %}
         <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ post.reference_id }}</span>
         {% endif %}
       </div>
 
-      {% if show_contact %}
-      <div class="cp-profile-card__contact cp-profile-card__contact--compact">
-        <a href="mailto:{{ post.company.email }}">{{ post.company.email }}</a>
-        <span class="cp-profile-card__contact-sep">·</span>
-        <span>{{ post.company.whatsapp }}</span>
-      </div>
-      {% elif post.equipment_notes %}
+      {% if post.equipment_notes %}
       <p class="cp-profile-card__notes">{{ post.equipment_notes|truncatechars:56 }}</p>
+      {% endif %}
       {% endif %}
     </div>
   </div>

@@ -60,7 +60,7 @@
 
         {% if trucks %}
         <div class="cp-section">{% trans "Equipment listings" %}</div>
-        <div class="cp-post-cards">
+        <div class="cp-post-list">
           {% for truck in trucks %}
             {% render_equipment_post_card post=truck show_contact=True %}
           {% endfor %}
