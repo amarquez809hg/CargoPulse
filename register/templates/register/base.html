@@ -896,10 +896,16 @@
     .cp-filter-row--actions {
       align-items: center;
     }
-    .cp-filter-row input,
-    .cp-filter-row select {
-      flex: 1 1 140px;
-      min-width: 120px;
+    .cp-filter-row--top {
+      align-items: flex-end;
+    }
+    .cp-filter-field--grow {
+      flex: 1 1 200px;
+      min-width: 160px;
+    }
+    .cp-filter-row .cp-filter-field select {
+      width: 100%;
+      min-width: 0;
     }
     .cp-filter-corridors {
       padding: 12px 14px;

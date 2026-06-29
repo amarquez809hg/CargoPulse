@@ -36,20 +36,34 @@
         </div>
 
         <form class="cp-filter cp-filter--board" method="get" action="{% url 'broker_board' %}" id="cp-broker-filter-form" autocomplete="off">
-          <div class="cp-filter-row">
-            <input name="city" value="{{ city_filter }}" placeholder="{% trans 'Origin city or address…' %}"/>
-            <select name="lane_type">
-              <option value="">{% trans "All types" %}</option>
-              {% for value, label in lane_type_choices %}
-              <option value="{{ value }}"{% if lane_type_filter == value %} selected{% endif %}>{{ value|lane_type_label }}</option>
-              {% endfor %}
-            </select>
-            <select name="port_of_entry">
-              <option value="">{% trans "All ports" %}</option>
-              {% for value, label in port_of_entry_choices %}
-              <option value="{{ value }}"{% if port_filter == value %} selected{% endif %}>{{ label }}</option>
-              {% endfor %}
-            </select>
+          <div class="cp-filter-row cp-filter-row--top">
+            <div class="cp-filter-field cp-filter-field--grow">
+              <label for="broker-origin-city">{% trans "Origin city" %}</label>
+              <input
+                id="broker-origin-city"
+                name="city"
+                value="{{ city_filter }}"
+                placeholder="{% trans 'City where the truck is posted from' %}"
+              />
+            </div>
+            <div class="cp-filter-field">
+              <label for="broker-lane-type">{% trans "Lane type" %}</label>
+              <select id="broker-lane-type" name="lane_type">
+                <option value="">{% trans "All types" %}</option>
+                {% for value, label in lane_type_choices %}
+                <option value="{{ value }}"{% if lane_type_filter == value %} selected{% endif %}>{{ value|lane_type_label }}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="cp-filter-field">
+              <label for="broker-port">{% trans "Border crossing" %}</label>
+              <select id="broker-port" name="port_of_entry">
+                <option value="">{% trans "All ports" %}</option>
+                {% for value, label in port_of_entry_choices %}
+                <option value="{{ value }}"{% if port_filter == value %} selected{% endif %}>{{ label }}</option>
+                {% endfor %}
+              </select>
+            </div>
           </div>
 
           <div class="cp-filter-corridors">
@@ -130,7 +144,7 @@
   });
 
   var debounceTimer;
-  form.querySelectorAll("#broker-mexico-corridor, #broker-us-corridor").forEach(function (el) {
+  form.querySelectorAll("#broker-origin-city, #broker-mexico-corridor, #broker-us-corridor").forEach(function (el) {
     el.addEventListener("input", function () {
       clearTimeout(debounceTimer);
       debounceTimer = setTimeout(function () {

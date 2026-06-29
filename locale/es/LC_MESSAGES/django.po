@@ -197,6 +197,15 @@ msgstr "Detalle de ruta"
 msgid "Origin city"
 msgstr "Ciudad de origen"
 
+msgid "City where the truck is posted from"
+msgstr "Ciudad desde donde se publicó el equipo"
+
+msgid "Lane type"
+msgstr "Tipo de ruta"
+
+msgid "Border crossing"
+msgstr "Cruce fronterizo"
+
 msgid "Where the truck is now"
 msgstr "Dónde está el camión ahora"
 

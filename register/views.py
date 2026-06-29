@@ -595,9 +595,9 @@ def broker_board(request):
         )
     ).order_by("-created_at")
 
-    city_filter = (request.GET.get("city") or "").strip()
     mexico_corridor_filter = (request.GET.get("mexico_corridor") or "").strip()
     us_corridor_filter = (request.GET.get("us_corridor") or "").strip()
+    city_filter = (request.GET.get("city") or "").strip()
     # Legacy single-field param from earlier builds
     legacy_corridor = (request.GET.get("corridor") or "").strip()
     if legacy_corridor and not mexico_corridor_filter and not us_corridor_filter:
@@ -614,7 +614,6 @@ def broker_board(request):
             | Q(destination_city__icontains=city_filter)
             | Q(location_address__icontains=city_filter)
             | Q(company__hq_city__icontains=city_filter)
-            | Q(company__company_address__icontains=city_filter)
         )
     if mexico_corridor_filter:
         trucks = trucks.filter(
