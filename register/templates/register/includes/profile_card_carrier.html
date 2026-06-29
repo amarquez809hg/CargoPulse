@@ -52,9 +52,21 @@
         </strong>
       </div>
 
-      {% if demo and destinations or not demo and company.popular_destinations %}
+      {% if demo and destinations or not demo and company.mexico_corridor %}
       <div class="cp-profile-card__row">
-        <span>{% trans "Runs" %}</span>
+        <span>{% trans "Mexico corridor" %}</span>
+        <strong>{% if demo %}{{ mexico_corridor|default:destinations }}{% else %}{{ company.mexico_corridor|truncatechars:42 }}{% endif %}</strong>
+      </div>
+      {% endif %}
+
+      {% if demo and destinations or not demo and company.us_corridor %}
+      <div class="cp-profile-card__row">
+        <span>{% trans "US corridor" %}</span>
+        <strong>{% if demo %}{{ us_corridor|default:destinations }}{% else %}{{ company.us_corridor|truncatechars:42 }}{% endif %}</strong>
+      </div>
+      {% elif demo and destinations or not demo and company.popular_destinations %}
+      <div class="cp-profile-card__row">
+        <span>{% trans "US corridor" %}</span>
         <strong>{% if demo %}{{ destinations }}{% else %}{{ company.popular_destinations|truncatechars:42 }}{% endif %}</strong>
       </div>
       {% endif %}

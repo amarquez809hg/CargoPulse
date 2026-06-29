@@ -1483,3 +1483,36 @@ msgstr "Guardar cumplimiento"
 
 msgid "Compliance preferences updated."
 msgstr "Preferencias de cumplimiento actualizadas."
+
+msgid "Typical cross-border routes"
+msgstr "Rutas transfronterizas habituales"
+
+msgid "Mexico corridor (before crossing)"
+msgstr "Corredor en México (antes del cruce)"
+
+msgid "Cities you usually run in Mexico before the border"
+msgstr "Ciudades que sueles manejar en México antes de la frontera"
+
+msgid "Example: Monterrey, Saltillo, Nuevo Laredo"
+msgstr "Ejemplo: Monterrey, Saltillo, Nuevo Laredo"
+
+msgid "US corridor (after crossing)"
+msgstr "Corredor en EE.UU. (después del cruce)"
+
+msgid "US cities you usually run after clearing customs"
+msgstr "Ciudades en EE.UU. que sueles manejar después del cruce"
+
+msgid "Example: Houston, Dallas, San Antonio"
+msgstr "Ejemplo: Houston, Dallas, San Antonio"
+
+msgid "Save profile"
+msgstr "Guardar perfil"
+
+msgid "Profile updated."
+msgstr "Perfil actualizado."
+
+msgid "Mexico corridor"
+msgstr "Corredor México"
+
+msgid "US corridor"
+msgstr "Corredor EE.UU."

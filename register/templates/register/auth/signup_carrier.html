@@ -52,8 +52,7 @@
               {% endfor %}
             </select>
 
-            <label>{% trans "Popular destinations" %}</label>
-            <textarea name="popular_destinations" rows="3" placeholder="{% trans 'US corridors you run often — e.g. Houston, Dallas, San Antonio' %}">{{ f.popular_destinations|default:'' }}</textarea>
+            {% include "register/includes/carrier_corridor_fields.html" with mexico_corridor=f.mexico_corridor us_corridor=f.us_corridor corridor_id_prefix="signup" %}
           </div>
 
           <div class="cp-form-section">
@@ -99,7 +98,8 @@
     form.company_address.value = "Av. Industria 1200, Col. Centro";
     form.hq_city.value = loc.city + ", " + loc.state;
     form.primary_port_of_entry.value = "LAREDO";
-    form.popular_destinations.value = "Houston, Dallas, Laredo, El Paso";
+    form.mexico_corridor.value = "Monterrey, Saltillo, Nuevo Laredo";
+    form.us_corridor.value = "Houston, Dallas, San Antonio";
     form.whatsapp_code.value = "+52";
     form.whatsapp_number.value = "81" + String(Math.floor(10000000 + Math.random() * 89999999));
     if (form.ctpat_certified) form.ctpat_certified.checked = true;

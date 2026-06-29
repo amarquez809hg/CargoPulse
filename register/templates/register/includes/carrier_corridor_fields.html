@@ -1,0 +1,22 @@
+{% load i18n %}
+<div class="cp-form-section cp-corridor-fields">
+  <p class="cp-section-subtitle">{% trans "Typical cross-border routes" %}</p>
+
+  <label for="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}mexico_corridor">{% trans "Mexico corridor (before crossing)" %}</label>
+  <textarea
+    id="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}mexico_corridor"
+    name="mexico_corridor"
+    rows="2"
+    placeholder="{% trans 'Cities you usually run in Mexico before the border' %}"
+  >{{ mexico_corridor|default:'' }}</textarea>
+  <p class="cp-field-example">{% trans "Example: Monterrey, Saltillo, Nuevo Laredo" %}</p>
+
+  <label for="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}us_corridor">{% trans "US corridor (after crossing)" %}</label>
+  <textarea
+    id="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}us_corridor"
+    name="us_corridor"
+    rows="2"
+    placeholder="{% trans 'US cities you usually run after clearing customs' %}"
+  >{{ us_corridor|default:'' }}</textarea>
+  <p class="cp-field-example">{% trans "Example: Houston, Dallas, San Antonio" %}</p>
+</div>

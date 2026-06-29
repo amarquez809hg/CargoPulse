@@ -28,6 +28,8 @@ class TruckingCompanyAdmin(admin.ModelAdmin):
         "whatsapp",
         "hq_city",
         "company_address",
+        "mexico_corridor",
+        "us_corridor",
         "popular_destinations",
     )
 

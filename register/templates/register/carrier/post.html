@@ -96,6 +96,8 @@
             <textarea name="equipment_notes" placeholder="{% trans 'Team drivers, hazmat, etc.' %}">{{ f.equipment_notes|default:'' }}</textarea>
           </div>
 
+          {% include "register/includes/carrier_corridor_fields.html" with mexico_corridor=f.mexico_corridor us_corridor=f.us_corridor corridor_id_prefix="post" %}
+
           {% include "register/includes/carrier_compliance_fields.html" with ctpat_certified=f.ctpat_certified b1_drivers=f.b1_drivers %}
 
           <button type="submit" class="gold-btn">{% trans "Submit availability" %}</button>
@@ -124,6 +126,8 @@
     form.equipment_notes.value = "53' dry van · mock test entry";
     if (form.ctpat_certified) form.ctpat_certified.checked = true;
     if (form.b1_drivers) form.b1_drivers.checked = true;
+    if (form.mexico_corridor) form.mexico_corridor.value = "Monterrey, Saltillo, Nuevo Laredo";
+    if (form.us_corridor) form.us_corridor.value = "Houston, Dallas, San Antonio";
   }
   document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);
   document.getElementById("cp-mock-submit")?.addEventListener("click", function () {

@@ -145,7 +145,8 @@ CARRIER_PROFILE_FIELDS = (
     "company_address",
     "hq_city",
     "primary_port_of_entry",
-    "popular_destinations",
+    "mexico_corridor",
+    "us_corridor",
     "whatsapp_number",
 )
 
@@ -356,7 +357,14 @@ def carrier_signup(request):
     if request.user.is_authenticated:
         return _redirect_for_user(request.user)
 
-    f = {"whatsapp_code": "+52", "whatsapp_number": "", "ctpat_certified": False, "b1_drivers": False}
+    f = {
+        "whatsapp_code": "+52",
+        "whatsapp_number": "",
+        "ctpat_certified": False,
+        "b1_drivers": False,
+        "mexico_corridor": "",
+        "us_corridor": "",
+    }
     ctx = {
         "f": f,
         "port_of_entry_choices": PortOfEntry.choices,
@@ -396,7 +404,8 @@ def carrier_signup(request):
             company_address=f["company_address"],
             hq_city=f["hq_city"],
             primary_port_of_entry=f["primary_port_of_entry"],
-            popular_destinations=f["popular_destinations"],
+            mexico_corridor=f["mexico_corridor"],
+            us_corridor=f["us_corridor"],
             ctpat_certified=f["ctpat_certified"],
             b1_drivers=f["b1_drivers"],
         )
@@ -457,11 +466,20 @@ def broker_signup(request):
 def carrier_dashboard(request):
     company = get_object_or_404(TruckingCompany, user=request.user)
 
-    if request.method == "POST" and request.POST.get("form") == "compliance":
+    if request.method == "POST" and request.POST.get("form") == "profile":
+        company.mexico_corridor = (request.POST.get("mexico_corridor") or "").strip()
+        company.us_corridor = (request.POST.get("us_corridor") or "").strip()
         company.ctpat_certified = request.POST.get("ctpat_certified") == "1"
         company.b1_drivers = request.POST.get("b1_drivers") == "1"
-        company.save(update_fields=["ctpat_certified", "b1_drivers"])
-        messages.success(request, _("Compliance preferences updated."))
+        company.save(
+            update_fields=[
+                "mexico_corridor",
+                "us_corridor",
+                "ctpat_certified",
+                "b1_drivers",
+            ]
+        )
+        messages.success(request, _("Profile updated."))
         return redirect("carrier_dashboard")
 
     posts = visible_posts(company.posts.all())
@@ -483,6 +501,8 @@ def carrier_post_truck(request):
         "trailer_length_ft": "53",
         "ctpat_certified": company.ctpat_certified,
         "b1_drivers": company.b1_drivers,
+        "mexico_corridor": company.mexico_corridor,
+        "us_corridor": company.us_corridor,
     }
     ctx = {
         "company": company,
@@ -498,6 +518,8 @@ def carrier_post_truck(request):
         f = {k: (request.POST.get(k) or "").strip() for k in AVAILABILITY_FIELDS}
         f["ctpat_certified"] = request.POST.get("ctpat_certified") == "1"
         f["b1_drivers"] = request.POST.get("b1_drivers") == "1"
+        f["mexico_corridor"] = (request.POST.get("mexico_corridor") or "").strip()
+        f["us_corridor"] = (request.POST.get("us_corridor") or "").strip()
         ctx["f"] = f
 
         if not f["lane_type"] or not f["current_city"] or not f["destination_city"]:
@@ -532,7 +554,16 @@ def carrier_post_truck(request):
 
         company.ctpat_certified = f["ctpat_certified"]
         company.b1_drivers = f["b1_drivers"]
-        company.save(update_fields=["ctpat_certified", "b1_drivers"])
+        company.mexico_corridor = f["mexico_corridor"]
+        company.us_corridor = f["us_corridor"]
+        company.save(
+            update_fields=[
+                "ctpat_certified",
+                "b1_drivers",
+                "mexico_corridor",
+                "us_corridor",
+            ]
+        )
 
         TruckAvailability.objects.create(
             company=company,
@@ -576,6 +607,8 @@ def broker_board(request):
             | Q(destination_city__icontains=city_filter)
             | Q(location_address__icontains=city_filter)
             | Q(company__popular_destinations__icontains=city_filter)
+            | Q(company__mexico_corridor__icontains=city_filter)
+            | Q(company__us_corridor__icontains=city_filter)
             | Q(company__hq_city__icontains=city_filter)
             | Q(company__company_address__icontains=city_filter)
         )

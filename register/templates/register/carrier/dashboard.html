@@ -24,9 +24,10 @@
 
         <form method="post" class="cp-compliance-form">
           {% csrf_token %}
-          <input type="hidden" name="form" value="compliance"/>
+          <input type="hidden" name="form" value="profile"/>
+          {% include "register/includes/carrier_corridor_fields.html" with mexico_corridor=company.mexico_corridor us_corridor=company.us_corridor corridor_id_prefix="dash" %}
           {% include "register/includes/carrier_compliance_fields.html" with ctpat_certified=company.ctpat_certified b1_drivers=company.b1_drivers %}
-          <button type="submit" class="cp-btn cp-btn--outline cp-compliance-save">{% trans "Save compliance" %}</button>
+          <button type="submit" class="cp-btn cp-btn--outline cp-compliance-save">{% trans "Save profile" %}</button>
         </form>
 
         <div class="cp-inline-actions">

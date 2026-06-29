@@ -54,7 +54,15 @@ class TruckingCompany(models.Model):
     )
     popular_destinations = models.TextField(
         blank=True,
-        help_text=_("Corridors or cities you run often, e.g. Houston, Dallas, Laredo"),
+        help_text=_("Legacy field — use us_corridor instead."),
+    )
+    mexico_corridor = models.TextField(
+        blank=True,
+        help_text=_("Cities or regions in Mexico before the border crossing."),
+    )
+    us_corridor = models.TextField(
+        blank=True,
+        help_text=_("US cities or regions after the border crossing."),
     )
     ctpat_certified = models.BooleanField(default=False)
     b1_drivers = models.BooleanField(default=False)
