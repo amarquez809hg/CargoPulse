@@ -5,7 +5,14 @@
       <img
         src="{% static 'register/img/cargo-pulse-logo-on-dark.svg' %}"
         alt="Cargo Pulse"
-        class="cp-header-logo-img"
+        class="cp-header-logo-img cp-header-logo-img--dark"
+        width="160"
+        height="auto"
+      />
+      <img
+        src="{% static 'register/img/cargo-pulse-logo-on-light.svg' %}"
+        alt="Cargo Pulse"
+        class="cp-header-logo-img cp-header-logo-img--light"
         width="160"
         height="auto"
       />
@@ -183,7 +190,10 @@
       <a class="cp-header-cta" href="{% url 'home' %}#portals">{% trans "Get started" %}</a>
       {% endif %}
 
-      {% include "register/includes/language_switcher.html" %}
+      <div class="cp-header-tools">
+        {% include "register/includes/theme_switcher.html" %}
+        {% include "register/includes/language_switcher.html" %}
+      </div>
     </div>
 
     <button type="button" class="cp-header-menu-btn" aria-expanded="false" aria-label="{% trans 'Open menu' %}">

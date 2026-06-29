@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188 72" role="img" aria-label="Cargo Pulse">
+  <defs>
+    <linearGradient id="cp-pulse-orange-light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f4a261"/>
+      <stop offset="100%" stop-color="#e68a2e"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path
+      d="M6 34 H20 L28 12 L38 56 L48 24 L58 34 H74"
+      stroke="url(#cp-pulse-orange-light)"
+      stroke-width="4.2"
+    />
+    <path
+      d="M6 40 H20 L28 18 L38 62 L48 30 L58 40 H74"
+      stroke="#6b7280"
+      stroke-width="3.2"
+      opacity="0.95"
+    />
+  </g>
+  <text
+    x="88"
+    y="30"
+    fill="#2e2e2e"
+    font-family="Segoe UI, system-ui, -apple-system, sans-serif"
+    font-size="21"
+    font-weight="800"
+    letter-spacing="0.14em"
+  >CARGO</text>
+  <text
+    x="88"
+    y="56"
+    fill="#555555"
+    font-family="Segoe UI, system-ui, -apple-system, sans-serif"
+    font-size="21"
+    font-weight="800"
+    letter-spacing="0.14em"
+  >PULSE</text>
+</svg>

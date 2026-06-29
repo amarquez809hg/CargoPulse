@@ -1,7 +1,20 @@
 {% load static i18n %}
 <!DOCTYPE html>
-<html lang="{{ LANGUAGE_CODE|default:'en' }}">
+<html lang="{{ LANGUAGE_CODE|default:'en' }}" data-theme="dark">
 <head>
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem("cp-theme");
+        document.documentElement.setAttribute(
+          "data-theme",
+          stored === "light" || stored === "dark" ? stored : "dark"
+        );
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>{% block title %}Cargo Pulse{% endblock %}</title>
@@ -42,8 +55,8 @@
       right: 0;
       z-index: 1000;
       background: var(--cp-header-bg);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      box-shadow: 0 4px 24px rgba(0,0,0,.22);
+      border-bottom: 1px solid var(--cp-header-divider);
+      box-shadow: var(--cp-header-shadow);
     }
     .cp-header-inner {
       max-width: 1280px;
@@ -82,7 +95,7 @@
       padding: 8px 7px;
       border: none;
       background: transparent;
-      color: rgba(255,255,255,.88);
+      color: var(--cp-header-fg);
       font-family: inherit;
       font-size: 0.72rem;
       font-weight: 700;
@@ -96,8 +109,8 @@
     }
     .cp-header-link:hover,
     .cp-header-dropdown.is-open > .cp-header-dropdown-toggle {
-      color: #fff;
-      background: rgba(255,255,255,.08);
+      color: var(--cp-header-fg-strong);
+      background: var(--cp-header-hover-bg);
     }
     .cp-header-link.is-active { color: var(--cp-orange-light); }
     .cp-header-chevron {
@@ -116,9 +129,9 @@
       min-width: min(680px, calc(100vw - 40px));
       padding: 18px 20px 20px;
       background: var(--cp-header-bg-elevated);
-      border: 1px solid rgba(255,255,255,.1);
+      border: 1px solid var(--cp-border);
       border-radius: 12px;
-      box-shadow: 0 18px 48px rgba(0,0,0,.35);
+      box-shadow: var(--cp-header-mega-shadow);
     }
     .cp-header-dropdown.is-open .cp-header-mega { display: block; }
     .cp-header-mega-grid {
@@ -144,17 +157,17 @@
       text-decoration: none;
       transition: background .15s;
     }
-    .cp-header-mega-item:hover { background: rgba(255,255,255,.06); }
+    .cp-header-mega-item:hover { background: var(--cp-header-hover-bg); }
     .cp-header-mega-title {
       display: block;
-      color: #fff;
+      color: var(--cp-charcoal);
       font-size: 0.92rem;
       font-weight: 700;
       margin-bottom: 3px;
     }
     .cp-header-mega-desc {
       display: block;
-      color: rgba(255,255,255,.58);
+      color: var(--cp-header-fg-muted);
       font-size: 0.78rem;
       line-height: 1.45;
     }
@@ -172,7 +185,7 @@
     .cp-header-user {
       display: none;
       font-size: 0.74rem;
-      color: rgba(255,255,255,.72);
+      color: var(--cp-header-fg-soft);
       max-width: 120px;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -200,6 +213,14 @@
       box-shadow: 0 6px 20px rgba(230,138,46,.42);
     }
     .cp-header-lang { position: relative; }
+    .cp-header-tools {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .cp-header-theme { position: relative; flex-shrink: 0; }
+    .cp-header-theme-btn,
     .cp-header-lang-btn {
       display: inline-flex;
       align-items: center;
@@ -207,13 +228,19 @@
       width: 36px;
       height: 36px;
       padding: 0;
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid var(--cp-header-icon-border, rgba(255,255,255,.18));
       border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      color: #fff;
+      background: var(--cp-header-subtle-bg, rgba(255,255,255,.06));
+      color: var(--cp-header-fg-strong, #fff);
       cursor: pointer;
+      flex-shrink: 0;
     }
-    .cp-header-lang-btn svg { width: 18px; height: 18px; }
+    .cp-header-theme-btn svg,
+    .cp-header-lang-btn svg { width: 18px; height: 18px; display: block; }
+    .cp-header-theme-btn:hover,
+    .cp-header-lang-btn:hover {
+      background: var(--cp-header-hover-bg, rgba(255,255,255,.08));
+    }
     .cp-header-lang-menu {
       display: none;
       position: absolute;
@@ -223,9 +250,9 @@
       padding: 10px;
       margin: 0;
       background: var(--cp-header-bg-elevated);
-      border: 1px solid rgba(255,255,255,.1);
+      border: 1px solid var(--cp-border);
       border-radius: 10px;
-      box-shadow: 0 12px 32px rgba(0,0,0,.3);
+      box-shadow: var(--cp-header-mega-shadow);
     }
     .cp-header-lang-menu.is-open { display: block; }
     .cp-header-lang-title {
@@ -234,7 +261,7 @@
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(255,255,255,.5);
+      color: var(--cp-header-fg-dim);
     }
     .cp-header-lang-option {
       display: block;
@@ -244,14 +271,14 @@
       border: 1px solid transparent;
       border-radius: 8px;
       background: transparent;
-      color: #fff;
+      color: var(--cp-header-fg-strong);
       font-family: inherit;
       font-size: 0.84rem;
       font-weight: 600;
       text-align: left;
       cursor: pointer;
     }
-    .cp-header-lang-option:hover { background: rgba(255,255,255,.08); }
+    .cp-header-lang-option:hover { background: var(--cp-header-hover-bg); }
     .cp-header-lang-option.is-active {
       background: rgba(230,138,46,.18);
       border-color: rgba(230,138,46,.45);
@@ -267,7 +294,7 @@
       width: 40px;
       height: 40px;
       padding: 0 10px;
-      border: 1px solid rgba(255,255,255,.18);
+      border: 1px solid var(--cp-header-icon-border);
       border-radius: 8px;
       background: transparent;
       cursor: pointer;
@@ -275,7 +302,7 @@
     .cp-header-menu-btn span {
       display: block;
       height: 2px;
-      background: #fff;
+      background: var(--cp-header-menu-bar);
       border-radius: 2px;
     }
     @media (min-width: 960px) {
@@ -311,7 +338,7 @@
         margin-top: 4px;
         box-shadow: none;
         border: none;
-        background: rgba(255,255,255,.04);
+        background: var(--cp-header-subtle-bg);
       }
       .cp-header-dropdown.is-open .cp-header-mega { display: block; }
       .cp-header-mega-grid--two { grid-template-columns: 1fr; }
@@ -1161,12 +1188,14 @@
   </style>
   <link rel="stylesheet" href="{% static 'register/css/cp-glass.css' %}"/>
   <link rel="stylesheet" href="{% static 'register/css/cp-profile-card.css' %}"/>
+  <link rel="stylesheet" href="{% static 'register/css/cp-theme.css' %}"/>
   {% block extra_head %}{% endblock %}
 </head>
 <body>
   {% include "register/includes/site_header.html" %}
   {% block body %}{% endblock %}
   <script src="{% static 'register/js/cp-header.js' %}"></script>
+  <script src="{% static 'register/js/cp-theme.js' %}"></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>

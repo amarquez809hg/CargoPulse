@@ -1432,3 +1432,15 @@ msgstr "Peso"
 
 msgid "Load"
 msgstr "Carga"
+
+msgid "Switch to light mode"
+msgstr "Cambiar a modo claro"
+
+msgid "Switch to dark mode"
+msgstr "Cambiar a modo oscuro"
+
+msgid "Light mode"
+msgstr "Modo claro"
+
+msgid "Dark mode"
+msgstr "Modo oscuro"
