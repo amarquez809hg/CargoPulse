@@ -17,9 +17,9 @@ from .profile_cards import demo_broker_profile, demo_carrier_profile
 INFO_PAGES = {
     "info_brokers": {
         "template": "register/info/brokers.html",
-        "tag": _("For US freight brokers"),
-        "title": _("Find Mexican carriers on your lanes"),
-        "lead": _(
+        "tag": "For US freight brokers",
+        "title": "Find Mexican carriers on your lanes",
+        "lead": (
             "Independent Mexican fleets on US–Mexico crossings — "
             "beyond the big load boards."
         ),
@@ -27,9 +27,9 @@ INFO_PAGES = {
     },
     "info_carriers": {
         "template": "register/info/carriers.html",
-        "tag": _("For Mexican carriers"),
-        "title": _("Post your trucks. Be seen in the US."),
-        "lead": _(
+        "tag": "For Mexican carriers",
+        "title": "Post your trucks. Be seen in the US.",
+        "lead": (
             "For Mexican owner-operators and regional fleets "
             "crossing into the United States."
         ),
@@ -37,9 +37,9 @@ INFO_PAGES = {
     },
     "info_platform_equipment_board": {
         "template": "register/info/platform_equipment_board.html",
-        "tag": _("Platform"),
-        "title": _("Equipment board"),
-        "lead": _(
+        "tag": "Platform",
+        "title": "Equipment board",
+        "lead": (
             "Brokers search trucks posted by Mexican carriers, filter by crossing "
             "and equipment, and reach out via email or WhatsApp."
         ),
@@ -47,9 +47,9 @@ INFO_PAGES = {
     },
     "info_platform_post_equipment": {
         "template": "register/info/platform_post_equipment.html",
-        "tag": _("Platform"),
-        "title": _("Post equipment"),
-        "lead": _(
+        "tag": "Platform",
+        "title": "Post equipment",
+        "lead": (
             "Share truck location, destination, and equipment — "
             "ready in minutes."
         ),
@@ -57,18 +57,18 @@ INFO_PAGES = {
     },
     "info_coverage_border_crossings": {
         "template": "register/info/coverage_border_crossings.html",
-        "tag": _("Coverage"),
-        "title": _("US–Mexico crossings"),
-        "lead": _(
+        "tag": "Coverage",
+        "title": "US–Mexico crossings",
+        "lead": (
             "Commercial ports where Mexican carriers move northbound FTL freight."
         ),
         "cta": "coverage",
     },
     "info_coverage_lanes": {
         "template": "register/info/coverage_lanes.html",
-        "tag": _("Coverage"),
-        "title": _("Cross-border & domestic lanes"),
-        "lead": _(
+        "tag": "Coverage",
+        "title": "Cross-border & domestic lanes",
+        "lead": (
             "Lane, Potential Lane, and Spot Lane types describe how committed "
             "a carrier is to a route."
         ),
@@ -76,9 +76,9 @@ INFO_PAGES = {
     },
     "info_coverage_equipment": {
         "template": "register/info/coverage_equipment.html",
-        "tag": _("Equipment and specialization"),
-        "title": _("Equipment that matches your freight"),
-        "lead": _(
+        "tag": "Equipment and specialization",
+        "title": "Equipment that matches your freight",
+        "lead": (
             "Structured equipment types on every post — dry van, reefer, "
             "open deck, and more."
         ),
@@ -86,9 +86,9 @@ INFO_PAGES = {
     },
     "info_resources_how_it_works": {
         "template": "register/info/resources_how_it_works.html",
-        "tag": _("Resources"),
-        "title": _("How Cargo Pulse works"),
-        "lead": _(
+        "tag": "Resources",
+        "title": "How Cargo Pulse works",
+        "lead": (
             "Mexican carriers post. US brokers discover. No bidding required."
         ),
         "cta": "home",
@@ -96,9 +96,9 @@ INFO_PAGES = {
     },
     "info_resources_carrier_workflow": {
         "template": "register/info/resources_carrier_workflow.html",
-        "tag": _("Resources · Carriers"),
-        "title": _("Carrier workflow"),
-        "lead": _(
+        "tag": "Resources · Carriers",
+        "title": "Carrier workflow",
+        "lead": (
             "Register your fleet, post equipment, and let US brokers find you "
             "at US–Mexico crossings."
         ),
@@ -106,9 +106,9 @@ INFO_PAGES = {
     },
     "info_resources_broker_workflow": {
         "template": "register/info/resources_broker_workflow.html",
-        "tag": _("Resources · Brokers"),
-        "title": _("Broker workflow"),
-        "lead": _(
+        "tag": "Resources · Brokers",
+        "title": "Broker workflow",
+        "lead": (
             "Search trucks posted by Mexican carriers and contact them "
             "directly by email or WhatsApp."
         ),
@@ -116,9 +116,9 @@ INFO_PAGES = {
     },
     "info_network_carrier_profile": {
         "template": "register/info/network_carrier_profile.html",
-        "tag": _("Network"),
-        "title": _("Carrier profiles"),
-        "lead": _(
+        "tag": "Network",
+        "title": "Carrier profiles",
+        "lead": (
             "Structured company cards US brokers review before contacting "
             "Mexican fleets."
         ),
@@ -126,9 +126,9 @@ INFO_PAGES = {
     },
     "info_network_broker_profile": {
         "template": "register/info/network_broker_profile.html",
-        "tag": _("Network"),
-        "title": _("Broker profiles"),
-        "lead": _(
+        "tag": "Network",
+        "title": "Broker profiles",
+        "lead": (
             "How US brokers appear when searching and contacting carriers "
             "on Cargo Pulse."
         ),
@@ -249,9 +249,9 @@ def _render_info_page(request, page_key, extra=None):
     page = INFO_PAGES[page_key]
     cta_url, cta_label = _info_cta(request, page["cta"])
     ctx = {
-        "info_tag": page["tag"],
-        "info_title": page["title"],
-        "info_lead": page["lead"],
+        "info_tag": _(page["tag"]) if page.get("tag") else "",
+        "info_title": _(page["title"]),
+        "info_lead": _(page["lead"]) if page.get("lead") else "",
         "info_cta_url": cta_url,
         "info_cta_label": cta_label,
     }

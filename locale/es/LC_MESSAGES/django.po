@@ -1459,3 +1459,6 @@ msgstr "Tipos de equipo"
 
 msgid "Footer"
 msgstr "Pie de página"
+
+msgid "Brokers"
+msgstr "Brokers"
