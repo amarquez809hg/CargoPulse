@@ -19,6 +19,17 @@
         </div>
       </div>
 
+      <div class="cp-post-row__corridors">
+        <div class="cp-post-row__corridor">
+          <span>{% trans "Mexico corridor" %}</span>
+          <strong>{% if post.company.mexico_corridor %}{{ post.company.mexico_corridor|truncatechars:52 }}{% else %}—{% endif %}</strong>
+        </div>
+        <div class="cp-post-row__corridor">
+          <span>{% trans "US corridor" %}</span>
+          <strong>{% if post.company.us_corridor %}{{ post.company.us_corridor|truncatechars:52 }}{% elif post.company.popular_destinations %}{{ post.company.popular_destinations|truncatechars:52 }}{% else %}—{% endif %}</strong>
+        </div>
+      </div>
+
       <div class="cp-post-row__facts cp-post-row__facts--broker">
         <div class="cp-post-row__fact">
           <span>{% trans "Port" %}</span>

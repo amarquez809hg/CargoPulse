@@ -596,6 +596,7 @@ def broker_board(request):
     ).order_by("-created_at")
 
     city_filter = (request.GET.get("city") or "").strip()
+    corridor_filter = (request.GET.get("corridor") or "").strip()
     lane_type_filter = (request.GET.get("lane_type") or "").strip()
     port_filter = (request.GET.get("port_of_entry") or "").strip()
     ctpat_filter = request.GET.get("ctpat_certified") in ("1", "yes", "true", "on")
@@ -606,11 +607,14 @@ def broker_board(request):
             Q(current_city__icontains=city_filter)
             | Q(destination_city__icontains=city_filter)
             | Q(location_address__icontains=city_filter)
-            | Q(company__popular_destinations__icontains=city_filter)
-            | Q(company__mexico_corridor__icontains=city_filter)
-            | Q(company__us_corridor__icontains=city_filter)
             | Q(company__hq_city__icontains=city_filter)
             | Q(company__company_address__icontains=city_filter)
+        )
+    if corridor_filter:
+        trucks = trucks.filter(
+            Q(company__mexico_corridor__icontains=corridor_filter)
+            | Q(company__us_corridor__icontains=corridor_filter)
+            | Q(company__popular_destinations__icontains=corridor_filter)
         )
     if lane_type_filter and lane_type_filter in VALID_LANE_TYPES:
         trucks = trucks.filter(lane_type=lane_type_filter)
@@ -629,11 +633,19 @@ def broker_board(request):
         origin_count=Count("current_city", distinct=True),
     )
 
-    has_filters = any([city_filter, lane_type_filter, port_filter, ctpat_filter, b1_filter])
+    has_filters = any([
+        city_filter,
+        corridor_filter,
+        lane_type_filter,
+        port_filter,
+        ctpat_filter,
+        b1_filter,
+    ])
 
     return render(request, "register/broker/board.html", {
         "trucks": trucks,
         "city_filter": city_filter,
+        "corridor_filter": corridor_filter,
         "lane_type_filter": lane_type_filter,
         "port_filter": port_filter,
         "ctpat_filter": ctpat_filter,

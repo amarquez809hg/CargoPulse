@@ -36,7 +36,8 @@
         </div>
 
         <form class="cp-filter cp-filter--grid" method="get" action="{% url 'broker_board' %}" id="cp-broker-filter-form" autocomplete="off">
-          <input name="city" value="{{ city_filter }}" placeholder="{% trans 'City, address, or corridor…' %}"/>
+          <input name="city" value="{{ city_filter }}" placeholder="{% trans 'Origin city or address…' %}"/>
+          <input name="corridor" value="{{ corridor_filter }}" placeholder="{% trans 'Search corridors — e.g. Monterrey, Houston' %}"/>
           <select name="lane_type">
             <option value="">{% trans "All types" %}</option>
             {% for value, label in lane_type_choices %}
@@ -57,7 +58,7 @@
             <input type="checkbox" name="b1_drivers" value="1"{% if b1_filter %} checked{% endif %}/>
             <span>{% trans "B1 drivers" %}</span>
           </label>
-          <button type="submit">{% trans "Search" %}</button>
+          <button type="submit" class="cp-filter-submit">{% trans "Search" %}</button>
         </form>
 
         {% if trucks %}

@@ -884,11 +884,13 @@
     .cp-filter { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
     .cp-filter input { flex: 1; min-width: 140px; }
     .cp-filter select { min-width: 120px; }
-    .cp-filter--grid { align-items: stretch; }
+    .cp-filter--grid { align-items: center; }
     .cp-filter-check {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      box-sizing: border-box;
+      height: 42px;
       min-height: 42px;
       padding: 0 12px;
       border: 1px solid var(--cp-border);
@@ -900,6 +902,7 @@
       cursor: pointer;
       user-select: none;
       white-space: nowrap;
+      flex-shrink: 0;
     }
     .cp-filter-check input {
       width: 15px;
@@ -908,15 +911,24 @@
       accent-color: var(--cp-orange);
       cursor: pointer;
     }
-    .cp-filter button {
-      padding: 11px 16px;
+    .cp-filter button,
+    .cp-filter-submit {
+      box-sizing: border-box;
+      height: 42px;
+      min-height: 42px;
+      padding: 0 16px;
       font-weight: 700;
+      font-size: 0.82rem;
       border-radius: 8px;
       border: none;
       background: var(--cp-orange);
       color: #fff;
       cursor: pointer;
       white-space: nowrap;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
     .cp-stat-grid {
       display: grid;

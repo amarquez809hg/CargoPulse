@@ -1516,3 +1516,9 @@ msgstr "Corredor México"
 
 msgid "US corridor"
 msgstr "Corredor EE.UU."
+
+msgid "Origin city or address…"
+msgstr "Ciudad de origen o dirección…"
+
+msgid "Search corridors — e.g. Monterrey, Houston"
+msgstr "Buscar corredores — ej. Monterrey, Houston"
