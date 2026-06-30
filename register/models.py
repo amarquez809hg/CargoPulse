@@ -204,6 +204,7 @@ class BrokerLoad(models.Model):
         default=LoadType.FULL,
     )
     weight_lbs = models.PositiveIntegerField(null=True, blank=True)
+    commodity = models.CharField(max_length=120)
     reference_id = models.CharField(max_length=64, blank=True)
     mexico_corridor = models.TextField(blank=True)
     us_corridor = models.TextField(blank=True)

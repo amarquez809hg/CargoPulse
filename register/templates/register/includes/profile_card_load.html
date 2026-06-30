@@ -15,7 +15,7 @@
         <div class="cp-profile-card__avatar cp-profile-card__avatar--route" aria-hidden="true">↦</div>
         <div class="cp-post-row__route-text">
           <strong>{{ load.current_city }}</strong>
-          <span>{{ load.lane_type|lane_type_label }} · {{ load.created_at|date:"SHORT_DATE_FORMAT" }}</span>
+          <span>{{ load.commodity|truncatechars:48 }} · {{ load.created_at|date:"SHORT_DATE_FORMAT" }}</span>
         </div>
       </div>
 
@@ -62,7 +62,7 @@
         <div class="cp-profile-card__avatar cp-profile-card__avatar--route" aria-hidden="true">↦</div>
         <div class="cp-post-row__route-text">
           <strong>{{ load.current_city }}</strong>
-          <span>{{ load.lane_type|lane_type_label }} · {% trans "Posted" %} {{ load.created_at|date:"SHORT_DATE_FORMAT" }}</span>
+          <span>{{ load.commodity|truncatechars:48 }} · {% trans "Posted" %} {{ load.created_at|date:"SHORT_DATE_FORMAT" }}</span>
         </div>
       </div>
 

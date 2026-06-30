@@ -1681,3 +1681,15 @@ msgstr "Revisa peso y tarifa."
 
 msgid "Check weight value."
 msgstr "Revisa el peso."
+
+msgid "Load description"
+msgstr "Descripción de la carga"
+
+msgid "e.g. Auto parts, produce, general merchandise"
+msgstr "ej. Autopartes, produce, mercancía general"
+
+msgid "Type, pickup city, and load description are required."
+msgstr "Tipo, ciudad de recolección y descripción de la carga son obligatorios."
+
+msgid "Appointment times, special handling, etc."
+msgstr "Horarios de cita, manejo especial, etc."

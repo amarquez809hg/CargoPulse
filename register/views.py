@@ -173,6 +173,7 @@ LOAD_FIELDS = (
     "trailer_length_ft",
     "load_type",
     "weight_lbs",
+    "commodity",
     "reference_id",
     "load_notes",
 )
@@ -623,8 +624,8 @@ def broker_post_load(request):
         f["us_corridor"] = (request.POST.get("us_corridor") or "").strip()
         ctx["f"] = f
 
-        if not f["lane_type"] or not f["current_city"]:
-            ctx["errors"] = _("Type and pickup city are required.")
+        if not f["lane_type"] or not f["current_city"] or not f["commodity"]:
+            ctx["errors"] = _("Type, pickup city, and load description are required.")
             return render(request, "register/broker/post_load.html", ctx)
 
         if f["lane_type"] not in VALID_LOAD_LANE_TYPES:
@@ -651,6 +652,7 @@ def broker_post_load(request):
             trailer_length_ft=FIXED_TRAILER_LENGTH_FT,
             load_type=FIXED_LOAD_TYPE,
             weight_lbs=weight_lbs,
+            commodity=f["commodity"],
             reference_id=f["reference_id"],
             mexico_corridor=f["mexico_corridor"],
             us_corridor=f["us_corridor"],

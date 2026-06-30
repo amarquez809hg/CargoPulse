@@ -66,6 +66,9 @@
             <input type="hidden" name="trailer_length_ft" value="53"/>
             <input type="hidden" name="load_type" value="FULL"/>
 
+            <label>{% trans "Load description" %} <span class="req">*</span></label>
+            <input name="commodity" required value="{{ f.commodity|default:'' }}" placeholder="{% trans 'e.g. Auto parts, produce, general merchandise' %}"/>
+
             <label>{% trans "Equipment required" %}</label>
             <p class="cp-hint" style="margin:0 0 12px;">{% trans "Full load · Van · 53'" %}</p>
 
@@ -73,7 +76,7 @@
             <input name="weight_lbs" type="number" min="0" value="{{ f.weight_lbs|default:'' }}" placeholder="25000"/>
 
             <label>{% trans "Load notes" %}</label>
-            <textarea name="load_notes" placeholder="{% trans 'Appointment, team drivers, hazmat, etc.' %}">{{ f.load_notes|default:'' }}</textarea>
+            <textarea name="load_notes" placeholder="{% trans 'Appointment times, special handling, etc.' %}">{{ f.load_notes|default:'' }}</textarea>
           </div>
 
           {% include "register/includes/load_corridor_fields.html" with mexico_corridor=f.mexico_corridor us_corridor=f.us_corridor corridor_id_prefix="load" %}
@@ -96,8 +99,9 @@
     form.port_of_entry.value = "LAREDO";
     form.location_address.value = "Industrial Park 1200";
     form.current_city.value = "Laredo";
+    form.commodity.value = "General merchandise";
     form.weight_lbs.value = "25000";
-    form.load_notes.value = "53' dry van load · mock test entry";
+    form.load_notes.value = "Appointment required · mock test entry";
     if (form.ctpat_required) form.ctpat_required.checked = true;
     if (form.b1_drivers_required) form.b1_drivers_required.checked = true;
     if (form.mexico_corridor) form.mexico_corridor.value = "Tijuana, Juarez, Nuevo Laredo";
