@@ -49,7 +49,7 @@ def demo_carrier_profile():
         "address": "Av. Industria 2400, Monterrey",
         "crossing": "Laredo",
         "destinations": "Houston, Dallas, San Antonio",
-        "mexico_corridor": "Monterrey, Saltillo, Nuevo Laredo",
+        "mexico_corridor": "Tijuana, Juarez, Nuevo Laredo",
         "us_corridor": "Houston, Dallas, San Antonio",
         "whatsapp": "+52 81 555 0142",
         "email": "contacto@delnorte.mx",

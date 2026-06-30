@@ -55,14 +55,11 @@
           </div>
 
           <div class="cp-form-section">
-            <div class="cp-section">{% trans "Location & route" %}</div>
+            <div class="cp-section">{% trans "Location" %}</div>
             {% include "register/includes/address_field_post.html" %}
 
             <label>{% trans "Origin city" %} <span class="req">*</span></label>
             <input name="current_city" required value="{{ f.current_city|default:'' }}" placeholder="{% trans 'Where the truck is now' %}"/>
-
-            <label>{% trans "Destination city" %} <span class="req">*</span></label>
-            <input name="destination_city" required value="{{ f.destination_city|default:'' }}" placeholder="{% trans 'Where the truck is headed' %}"/>
           </div>
 
           <div class="cp-form-section">
@@ -114,7 +111,6 @@
     form.port_of_entry.value = "{{ company.primary_port_of_entry|default:'LAREDO' }}";
     form.location_address.value = "{{ company.company_address|default:'Av. Industria 1200, Col. Centro'|escapejs }}";
     form.current_city.value = "Guadalajara";
-    form.destination_city.value = "Houston";
     form.equipment_type.value = "VAN";
     form.trailer_length_ft.value = "53";
     form.load_type.value = "FULL";
@@ -123,7 +119,7 @@
     form.equipment_notes.value = "53' dry van · mock test entry";
     if (form.ctpat_certified) form.ctpat_certified.checked = true;
     if (form.b1_drivers) form.b1_drivers.checked = true;
-    if (form.mexico_corridor) form.mexico_corridor.value = "Monterrey, Saltillo, Nuevo Laredo";
+    if (form.mexico_corridor) form.mexico_corridor.value = "Tijuana, Juarez, Nuevo Laredo";
     if (form.us_corridor) form.us_corridor.value = "Houston, Dallas, San Antonio";
   }
   document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);

@@ -9,7 +9,7 @@
     rows="2"
     placeholder="{% trans 'Cities you usually run in Mexico before the border' %}"
   >{{ mexico_corridor|default:'' }}</textarea>
-  <p class="cp-field-example">{% trans "Example: Monterrey, Saltillo, Nuevo Laredo" %}</p>
+  <p class="cp-field-example">{% trans "Example: Tijuana, Juarez, Nuevo Laredo" %}</p>
 
   <label for="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}us_corridor">{% trans "US corridor (after crossing)" %}</label>
   <textarea

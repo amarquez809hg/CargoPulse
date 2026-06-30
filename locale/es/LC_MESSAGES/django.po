@@ -230,6 +230,9 @@ msgstr "53 ft dry van, operadores en equipo, etc."
 msgid "Submit availability"
 msgstr "Enviar disponibilidad"
 
+msgid "Type and origin city are required."
+msgstr "Tipo y ciudad de origen son obligatorios."
+
 msgid "Type, origin city, and destination city are required."
 msgstr "Tipo, ciudad de origen y ciudad de destino son obligatorios."
 
@@ -469,6 +472,9 @@ msgstr "Expirada"
 
 msgid "Location & route"
 msgstr "Ubicación y ruta"
+
+msgid "Location"
+msgstr "Ubicación"
 
 msgid "Address"
 msgstr "Dirección"
@@ -1502,6 +1508,9 @@ msgstr "Corredor en México (antes del cruce)"
 msgid "Cities you usually run in Mexico before the border"
 msgstr "Ciudades que sueles manejar en México antes de la frontera"
 
+msgid "Example: Tijuana, Juarez, Nuevo Laredo"
+msgstr "Ejemplo: Tijuana, Juárez, Nuevo Laredo"
+
 msgid "Example: Monterrey, Saltillo, Nuevo Laredo"
 msgstr "Ejemplo: Monterrey, Saltillo, Nuevo Laredo"
 
@@ -1534,6 +1543,9 @@ msgstr "Buscar corredores — ej. Monterrey, Houston"
 
 msgid "Corridor search"
 msgstr "Búsqueda por corredor"
+
+msgid "Tijuana, Juarez, Nuevo Laredo"
+msgstr "Tijuana, Juárez, Nuevo Laredo"
 
 msgid "Monterrey, Saltillo, Nuevo Laredo"
 msgstr "Monterrey, Saltillo, Nuevo Laredo"

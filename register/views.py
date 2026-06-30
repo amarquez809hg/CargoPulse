@@ -155,7 +155,6 @@ AVAILABILITY_FIELDS = (
     "port_of_entry",
     "location_address",
     "current_city",
-    "destination_city",
     "equipment_type",
     "trailer_length_ft",
     "load_type",
@@ -505,8 +504,8 @@ def carrier_post_truck(request):
         f["us_corridor"] = (request.POST.get("us_corridor") or "").strip()
         ctx["f"] = f
 
-        if not f["lane_type"] or not f["current_city"] or not f["destination_city"]:
-            ctx["errors"] = _("Type, origin city, and destination city are required.")
+        if not f["lane_type"] or not f["current_city"]:
+            ctx["errors"] = _("Type and origin city are required.")
             return render(request, "register/carrier/post.html", ctx)
 
         if f["lane_type"] not in VALID_LANE_TYPES:
@@ -554,7 +553,6 @@ def carrier_post_truck(request):
             port_of_entry=f["port_of_entry"],
             location_address=f["location_address"],
             current_city=f["current_city"],
-            destination_city=f["destination_city"],
             equipment_type=f["equipment_type"],
             trailer_length_ft=trailer_length,
             load_type=f["load_type"],
@@ -596,7 +594,6 @@ def broker_board(request):
     if city_filter:
         trucks = trucks.filter(
             Q(current_city__icontains=city_filter)
-            | Q(destination_city__icontains=city_filter)
             | Q(location_address__icontains=city_filter)
             | Q(company__hq_city__icontains=city_filter)
         )

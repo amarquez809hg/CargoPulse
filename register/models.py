@@ -149,5 +149,5 @@ class TruckAvailability(models.Model):
         verbose_name_plural = "truck availabilities"
 
     def __str__(self):
-        route = f"{self.current_city} → {self.destination_city or 'open'}"
+        route = self.current_city
         return f"{self.company.company_name} — {self.get_lane_type_display()}: {route}"
