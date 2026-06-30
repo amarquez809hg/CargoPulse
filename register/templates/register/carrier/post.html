@@ -21,13 +21,11 @@
         <form method="post" id="cp-post-form">
           {% csrf_token %}
 
-          {% if debug %}
           <div class="cp-dev-tools">
             <p>{% trans "Dev tools — quick verification" %}</p>
             <button type="button" class="mock-btn mock-btn--fill" id="cp-mock-fill">{% trans "Fill test data" %}</button>
             <button type="button" class="mock-btn mock-btn--submit" id="cp-mock-submit">{% trans "Fill & submit test" %}</button>
           </div>
-          {% endif %}
 
           <div class="cp-form-section">
             <div class="cp-section">{% trans "Type" %}</div>
@@ -106,7 +104,6 @@
     </div>
   </div>
 </div>
-{% if debug %}
 <script>
 (function () {
   function fillMock() {
@@ -136,6 +133,5 @@
   });
 })();
 </script>
-{% endif %}
 {% include "register/includes/places_autocomplete.html" %}
 {% endblock %}
