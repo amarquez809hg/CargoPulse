@@ -80,10 +80,6 @@
           <span>{% trans "Load" %}</span>
           <strong>{{ post.get_load_type_display }}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
         </div>
-        <div class="cp-post-row__fact">
-          <span>{% trans "Rate/mi" %}</span>
-          <strong>{% if post.min_rate_per_mile %}${{ post.min_rate_per_mile }}{% else %}—{% endif %}</strong>
-        </div>
       </div>
 
       <div class="cp-post-row__meta">
