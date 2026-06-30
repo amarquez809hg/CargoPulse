@@ -8,6 +8,10 @@
         <div class="cp-post-row__carrier-text">
           <strong>{{ load.profile.brokerage_name|default:load.profile.display_name|default:load.profile.user.username }}</strong>
           <span>{{ load.profile.display_name|default:load.profile.user.username }}</span>
+          <div class="cp-post-row__contact cp-post-row__contact--under-name">
+            <a href="mailto:{{ load.profile.user.email }}" title="{{ load.profile.user.email }}">{{ load.profile.user.email|truncatechars:28 }}</a>
+            {% if load.profile.whatsapp %}<span>{{ load.profile.whatsapp }}</span>{% endif %}
+          </div>
         </div>
       </div>
 
@@ -51,10 +55,6 @@
           {% if load.reference_id %}
           <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ load.reference_id }}</span>
           {% endif %}
-        </div>
-        <div class="cp-post-row__contact">
-          <a href="mailto:{{ load.profile.user.email }}" title="{{ load.profile.user.email }}">{{ load.profile.user.email|truncatechars:28 }}</a>
-          {% if load.profile.whatsapp %}<span>{{ load.profile.whatsapp }}</span>{% endif %}
         </div>
       </div>
 

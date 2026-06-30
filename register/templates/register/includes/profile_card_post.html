@@ -8,6 +8,10 @@
         <div class="cp-post-row__carrier-text">
           <strong>{{ post.company.company_name }}</strong>
           {% if post.company.hq_city %}<span>{% trans "HQ:" %} {{ post.company.hq_city }}</span>{% endif %}
+          <div class="cp-post-row__contact cp-post-row__contact--under-name">
+            <a href="mailto:{{ post.company.email }}" title="{{ post.company.email }}">{{ post.company.email|truncatechars:28 }}</a>
+            <span>{{ post.company.whatsapp }}</span>
+          </div>
         </div>
       </div>
 
@@ -51,10 +55,6 @@
           {% if post.reference_id %}
           <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ post.reference_id }}</span>
           {% endif %}
-        </div>
-        <div class="cp-post-row__contact">
-          <a href="mailto:{{ post.company.email }}" title="{{ post.company.email }}">{{ post.company.email|truncatechars:28 }}</a>
-          <span>{{ post.company.whatsapp }}</span>
         </div>
       </div>
 

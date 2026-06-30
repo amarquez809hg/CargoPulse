@@ -256,6 +256,11 @@
   min-width: 0;
 }
 
+.cp-profile-card--broker-post .cp-post-row__carrier,
+.cp-profile-card--broker-load .cp-post-row__carrier {
+  align-items: flex-start;
+}
+
 .cp-post-row__carrier-text,
 .cp-post-row__route-text {
   min-width: 0;
@@ -425,6 +430,10 @@
   color: #c9741f;
   font-weight: 700;
   text-decoration: none;
+}
+
+.cp-post-row__contact--under-name {
+  margin-top: 4px;
 }
 
 .cp-profile-card--post .cp-profile-card__avatar--route {
