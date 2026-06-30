@@ -1556,9 +1556,6 @@ msgstr "Houston, Dallas, San Antonio"
 msgid "Broker dashboard"
 msgstr "Panel del broker"
 
-msgid "Find trucks"
-msgstr "Buscar camiones"
-
 msgid "Post load"
 msgstr "Publicar carga"
 
