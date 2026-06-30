@@ -43,6 +43,8 @@ class TruckAvailabilityAdmin(admin.ModelAdmin):
         "location_address",
         "current_city",
         "destination_city",
+        "ctpat_certified",
+        "b1_drivers",
         "min_rate_per_mile",
         "created_at",
     )
@@ -52,6 +54,8 @@ class TruckAvailabilityAdmin(admin.ModelAdmin):
         "equipment_type",
         "port_of_entry",
         "load_type",
+        "ctpat_certified",
+        "b1_drivers",
     )
     search_fields = (
         "company__company_name",

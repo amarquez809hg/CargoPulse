@@ -563,6 +563,8 @@ def carrier_post_truck(request):
             reference_id=f["reference_id"],
             post_status=TruckAvailability.PostStatus.OPEN,
             equipment_notes=f["equipment_notes"],
+            ctpat_certified=f["ctpat_certified"],
+            b1_drivers=f["b1_drivers"],
         )
         messages.success(request, _("Equipment availability posted."))
         return redirect("carrier_dashboard")
@@ -612,9 +614,9 @@ def broker_board(request):
     if port_filter and port_filter in VALID_PORTS:
         trucks = trucks.filter(port_of_entry=port_filter)
     if ctpat_filter:
-        trucks = trucks.filter(company__ctpat_certified=True)
+        trucks = trucks.filter(ctpat_certified=True)
     if b1_filter:
-        trucks = trucks.filter(company__b1_drivers=True)
+        trucks = trucks.filter(b1_drivers=True)
 
     trucks = trucks.distinct()
 

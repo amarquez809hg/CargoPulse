@@ -1,7 +1,7 @@
 {% load i18n %}
-{% if company.ctpat_certified or company.b1_drivers %}
+{% if ctpat_certified or b1_drivers %}
 <div class="cp-compliance-badges">
-  {% if company.ctpat_certified %}<span class="cp-badge-tag">{% trans "CTPAT" %}</span>{% endif %}
-  {% if company.b1_drivers %}<span class="cp-badge-tag">{% trans "B1 drivers" %}</span>{% endif %}
+  {% if ctpat_certified %}<span class="cp-badge-tag">{% trans "CTPAT" %}</span>{% endif %}
+  {% if b1_drivers %}<span class="cp-badge-tag">{% trans "B1 drivers" %}</span>{% endif %}
 </div>
 {% endif %}

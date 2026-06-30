@@ -140,6 +140,8 @@ class TruckAvailability(models.Model):
         default=PostStatus.OPEN,
     )
     equipment_notes = models.CharField(max_length=255, blank=True)
+    ctpat_certified = models.BooleanField(default=False)
+    b1_drivers = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

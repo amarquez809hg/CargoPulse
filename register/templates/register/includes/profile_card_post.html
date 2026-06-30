@@ -47,7 +47,7 @@
 
       <div class="cp-post-row__meta">
         <div class="cp-post-row__tags">
-          {% include "register/includes/carrier_compliance_badges.html" with company=post.company %}
+          {% include "register/includes/carrier_compliance_badges.html" with ctpat_certified=post.ctpat_certified b1_drivers=post.b1_drivers %}
           {% if post.reference_id %}
           <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ post.reference_id }}</span>
           {% endif %}
@@ -88,6 +88,7 @@
 
       <div class="cp-post-row__meta">
         <div class="cp-post-row__tags">
+          {% include "register/includes/carrier_compliance_badges.html" with ctpat_certified=post.ctpat_certified b1_drivers=post.b1_drivers %}
           {% if post.reference_id %}
           <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ post.reference_id }}</span>
           {% endif %}
@@ -132,6 +133,7 @@
       </div>
 
       <div class="cp-profile-card__tags cp-profile-card__tags--compact">
+        {% include "register/includes/carrier_compliance_badges.html" with ctpat_certified=post.ctpat_certified b1_drivers=post.b1_drivers %}
         {% if post.reference_id %}
         <span class="cp-profile-card__tag cp-profile-card__tag--cert">{{ post.reference_id }}</span>
         {% endif %}
