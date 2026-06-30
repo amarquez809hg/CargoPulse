@@ -1,0 +1,120 @@
+{% extends "register/base.html" %}
+{% load i18n cp_i18n %}
+{% block title %}{% trans "Post Load — Cargo Pulse" %}{% endblock %}
+{% block body %}
+<div class="cp-page">
+  <div class="cp-shell">
+    <a class="cp-back" href="{% url 'broker_dashboard' %}">← {% trans "Back to dashboard" %}</a>
+    <div class="cp-card">
+      <div class="brand-accent-top"></div>
+      <div class="cp-card-top">{% include "register/includes/logo.html" %}</div>
+      <div class="cp-card-body">
+        <div class="cp-header">
+          <h1>{% trans "Post load" %}</h1>
+          <span class="cp-badge">{{ profile.brokerage_name|default:profile.display_name|default:profile.user.username }}</span>
+        </div>
+
+        <p class="cp-hint cp-hint--banner">{% blocktrans with days=post_visibility_days %}Listings stay visible for {{ days }} days from the posted date, then expire automatically.{% endblocktrans %}</p>
+
+        {% if errors %}<div class="cp-err">{{ errors }}</div>{% endif %}
+
+        <form method="post" id="cp-load-form">
+          {% csrf_token %}
+
+          <div class="cp-dev-tools">
+            <p>{% trans "Dev tools — quick verification" %}</p>
+            <button type="button" class="mock-btn mock-btn--fill" id="cp-mock-fill">{% trans "Fill test data" %}</button>
+            <button type="button" class="mock-btn mock-btn--submit" id="cp-mock-submit">{% trans "Fill & submit test" %}</button>
+          </div>
+
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Type" %}</div>
+            <label>{% trans "Type" %} <span class="req">*</span></label>
+            <select name="lane_type" required>
+              <option value="LANE"{% if f.lane_type == "LANE" or not f.lane_type %} selected{% endif %}>{{ "LANE"|lane_type_label }}</option>
+              <option value="POTENTIAL_LANE"{% if f.lane_type == "POTENTIAL_LANE" %} selected{% endif %}>{{ "POTENTIAL_LANE"|lane_type_label }}</option>
+              <option value="SPOT_LANE"{% if f.lane_type == "SPOT_LANE" %} selected{% endif %}>{{ "SPOT_LANE"|lane_type_label }}</option>
+            </select>
+
+            <label>{% trans "Reference ID" %}</label>
+            <input name="reference_id" value="{{ f.reference_id|default:'' }}" placeholder="{% trans 'Your internal load ID' %}"/>
+          </div>
+
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Cross-border" %}</div>
+            <label>{% trans "Port of entry / border crossing" %}</label>
+            <select name="port_of_entry">
+              <option value="">{% trans "— Not specified —" %}</option>
+              {% for value, label in port_of_entry_choices %}
+              <option value="{{ value }}"{% if f.port_of_entry == value %} selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Pickup" %}</div>
+            <label>{% trans "Pickup address" %}</label>
+            <input name="location_address" value="{{ f.location_address|default:'' }}" placeholder="{% trans 'Street address or facility' %}"/>
+
+            <label>{% trans "Pickup city" %} <span class="req">*</span></label>
+            <input name="current_city" required value="{{ f.current_city|default:'' }}" placeholder="{% trans 'Where freight picks up' %}"/>
+          </div>
+
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Freight" %}</div>
+            <input type="hidden" name="equipment_type" value="VAN"/>
+            <input type="hidden" name="trailer_length_ft" value="53"/>
+
+            <label>{% trans "Equipment required" %}</label>
+            <p class="cp-hint" style="margin:0 0 12px;">{% trans "Van · 53'" %}</p>
+
+            <label>{% trans "Load type" %} <span class="req">*</span></label>
+            <select name="load_type" required>
+              {% for value, label in load_type_choices %}
+              <option value="{{ value }}"{% if f.load_type == value or not f.load_type and value == "FULL" %} selected{% endif %}>{{ label }}</option>
+              {% endfor %}
+            </select>
+
+            <label>{% trans "Weight (lbs.)" %}</label>
+            <input name="weight_lbs" type="number" min="0" value="{{ f.weight_lbs|default:'' }}" placeholder="25000"/>
+
+            <label>{% trans "Load notes" %}</label>
+            <textarea name="load_notes" placeholder="{% trans 'Appointment, team drivers, hazmat, etc.' %}">{{ f.load_notes|default:'' }}</textarea>
+          </div>
+
+          {% include "register/includes/load_corridor_fields.html" with mexico_corridor=f.mexico_corridor us_corridor=f.us_corridor corridor_id_prefix="load" %}
+
+          {% include "register/includes/load_compliance_fields.html" with ctpat_required=f.ctpat_required b1_drivers_required=f.b1_drivers_required %}
+
+          <button type="submit" class="gold-btn">{% trans "Post load" %}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  function fillMock() {
+    var form = document.getElementById("cp-load-form");
+    if (!form) return;
+    form.lane_type.value = "LANE";
+    form.reference_id.value = "LD-" + Date.now().toString().slice(-5);
+    form.port_of_entry.value = "LAREDO";
+    form.location_address.value = "Industrial Park 1200";
+    form.current_city.value = "Laredo";
+    form.load_type.value = "FULL";
+    form.weight_lbs.value = "25000";
+    form.load_notes.value = "53' dry van load · mock test entry";
+    if (form.ctpat_required) form.ctpat_required.checked = true;
+    if (form.b1_drivers_required) form.b1_drivers_required.checked = true;
+    if (form.mexico_corridor) form.mexico_corridor.value = "Tijuana, Juarez, Nuevo Laredo";
+    if (form.us_corridor) form.us_corridor.value = "Houston, Dallas, San Antonio";
+  }
+  document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);
+  document.getElementById("cp-mock-submit")?.addEventListener("click", function () {
+    fillMock();
+    document.getElementById("cp-load-form")?.requestSubmit();
+  });
+})();
+</script>
+{% endblock %}

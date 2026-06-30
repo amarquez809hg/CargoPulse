@@ -485,6 +485,44 @@
     }
     .cp-card-body { padding: 20px 22px 26px; }
     .cp-header { text-align: center; margin-bottom: 20px; }
+    .cp-header--dashboard {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px 16px;
+      text-align: left;
+      flex-wrap: wrap;
+    }
+    .cp-header--dashboard .cp-header__main {
+      flex: 1 1 220px;
+      min-width: 0;
+    }
+    .cp-header--dashboard h1 {
+      text-align: left;
+    }
+    .cp-dashboard-board-link {
+      flex-shrink: 0;
+      align-self: center;
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--cp-charcoal);
+      background: var(--cp-bg-muted);
+      border: 1px solid var(--cp-border);
+      white-space: nowrap;
+    }
+    .cp-dashboard-board-link:hover {
+      border-color: rgba(230, 138, 46, 0.45);
+      color: var(--cp-orange-dark);
+    }
+    .cp-back--inline {
+      display: inline-block;
+      margin-bottom: 14px;
+    }
     .cp-header h1 {
       margin: 0 0 10px;
       font-size: 1.45rem;

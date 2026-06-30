@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import TruckAvailability, TruckingCompany, UserProfile
+from .models import BrokerLoad, TruckAvailability, TruckingCompany, UserProfile
 
 
 @admin.register(UserProfile)
@@ -62,4 +62,34 @@ class TruckAvailabilityAdmin(admin.ModelAdmin):
         "current_city",
         "destination_city",
         "reference_id",
+    )
+
+
+@admin.register(BrokerLoad)
+class BrokerLoadAdmin(admin.ModelAdmin):
+    list_display = (
+        "profile",
+        "lane_type",
+        "port_of_entry",
+        "current_city",
+        "ctpat_required",
+        "b1_drivers_required",
+        "created_at",
+    )
+    list_filter = (
+        "post_status",
+        "lane_type",
+        "equipment_type",
+        "port_of_entry",
+        "load_type",
+        "ctpat_required",
+        "b1_drivers_required",
+    )
+    search_fields = (
+        "profile__user__username",
+        "profile__brokerage_name",
+        "current_city",
+        "reference_id",
+        "mexico_corridor",
+        "us_corridor",
     )

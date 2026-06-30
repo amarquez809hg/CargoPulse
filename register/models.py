@@ -151,3 +151,76 @@ class TruckAvailability(models.Model):
     def __str__(self):
         route = self.current_city
         return f"{self.company.company_name} — {self.get_lane_type_display()}: {route}"
+
+
+class BrokerLoad(models.Model):
+    class LaneType(models.TextChoices):
+        LANE = "LANE", _("Lane")
+        POTENTIAL_LANE = "POTENTIAL_LANE", _("Potential Lane")
+        SPOT_LANE = "SPOT_LANE", _("Spot Lane")
+
+    class EquipmentType(models.TextChoices):
+        VAN = "VAN", _("Van")
+        REEFER = "REEFER", _("Reefer")
+        FLATBED = "FLATBED", _("Flatbed")
+        STEP_DECK = "STEP_DECK", _("Step deck")
+        POWER_ONLY = "POWER_ONLY", _("Power only")
+        OTHER = "OTHER", _("Other")
+
+    class LoadType(models.TextChoices):
+        FULL = "FULL", _("Full")
+        PARTIAL = "PARTIAL", _("Partial")
+
+    class PostStatus(models.TextChoices):
+        OPEN = "OPEN", _("Open")
+        BOOKED = "BOOKED", _("Booked")
+        EXPIRED = "EXPIRED", _("Expired")
+
+    profile = models.ForeignKey(
+        UserProfile,
+        on_delete=models.CASCADE,
+        related_name="loads",
+        limit_choices_to={"role": UserProfile.ROLE_BROKER},
+    )
+    lane_type = models.CharField(
+        max_length=20,
+        choices=LaneType.choices,
+        default=LaneType.LANE,
+    )
+    port_of_entry = models.CharField(
+        max_length=20, choices=PortOfEntry.choices, blank=True
+    )
+    location_address = models.CharField(max_length=255, blank=True)
+    current_city = models.CharField(max_length=120)
+    equipment_type = models.CharField(
+        max_length=20,
+        choices=EquipmentType.choices,
+        default=EquipmentType.VAN,
+    )
+    trailer_length_ft = models.PositiveSmallIntegerField(default=53)
+    load_type = models.CharField(
+        max_length=20,
+        choices=LoadType.choices,
+        default=LoadType.FULL,
+    )
+    weight_lbs = models.PositiveIntegerField(null=True, blank=True)
+    reference_id = models.CharField(max_length=64, blank=True)
+    mexico_corridor = models.TextField(blank=True)
+    us_corridor = models.TextField(blank=True)
+    ctpat_required = models.BooleanField(default=False)
+    b1_drivers_required = models.BooleanField(default=False)
+    load_notes = models.CharField(max_length=255, blank=True)
+    post_status = models.CharField(
+        max_length=20,
+        choices=PostStatus.choices,
+        default=PostStatus.OPEN,
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name_plural = "broker loads"
+
+    def __str__(self):
+        broker = self.profile.brokerage_name or self.profile.user.username
+        return f"{broker} — {self.get_lane_type_display()}: {self.current_city}"

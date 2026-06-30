@@ -225,6 +225,19 @@
   grid-template-columns: minmax(170px, 1.15fr) minmax(300px, 2.4fr) minmax(140px, 1fr);
 }
 
+.cp-profile-card--broker-load-row .cp-profile-card__inner--row {
+  grid-template-columns: minmax(170px, 1.15fr) minmax(300px, 2.4fr) minmax(140px, 1fr);
+}
+
+.cp-profile-card--broker-load .cp-profile-card__inner--row {
+  grid-template-columns:
+    minmax(132px, 0.95fr)
+    minmax(108px, 0.75fr)
+    minmax(168px, 1.25fr)
+    minmax(188px, 1.35fr)
+    minmax(132px, 0.9fr);
+}
+
 .cp-profile-card__notes--row {
   margin: 4px 0 0;
   font-size: 0.64rem;
@@ -843,6 +856,10 @@
   }
 
   .cp-profile-card--carrier-row .cp-profile-card__inner--row {
+    grid-template-columns: 1fr;
+  }
+
+  .cp-profile-card--broker-load-row .cp-profile-card__inner--row {
     grid-template-columns: 1fr;
   }
 

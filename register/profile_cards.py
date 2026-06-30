@@ -1,6 +1,6 @@
 from django.utils.translation import gettext as _
 
-from .availability import visible_posts
+from .availability import visible_loads, visible_posts
 
 
 def carrier_profile_card(company):
@@ -28,11 +28,13 @@ def carrier_profile_card(company):
 def broker_profile_card(profile):
     """Build template context for a broker profile card from a UserProfile."""
     user = profile.user
+    active_loads = visible_loads(profile.loads.all()).count()
     return {
         "profile": profile,
         "display_name": profile.display_name or user.username,
         "brokerage_name": profile.brokerage_name or _("Independent broker"),
         "email": user.email,
+        "active_loads": active_loads,
         "demo": False,
     }
 
@@ -71,5 +73,6 @@ def demo_broker_profile():
         "location_line": "Laredo, TX · US–Mexico lanes",
         "email": "ana@horizonfreight.com",
         "board_focus": _("Crossings, dry van, reefer"),
+        "active_loads": 2,
         "demo": True,
     }

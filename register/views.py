@@ -9,9 +9,9 @@ from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.views.decorators.http import require_http_methods
 
-from .availability import POST_VISIBILITY_DAYS, visible_posts
+from .availability import POST_VISIBILITY_DAYS, visible_loads, visible_posts
 from .decorators import get_profile, role_required
-from .models import PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
+from .models import BrokerLoad, PortOfEntry, TruckAvailability, TruckingCompany, UserProfile
 from .profile_cards import demo_broker_profile, demo_carrier_profile
 
 INFO_PAGES = {
@@ -164,10 +164,26 @@ AVAILABILITY_FIELDS = (
     "equipment_notes",
 )
 
+LOAD_FIELDS = (
+    "lane_type",
+    "port_of_entry",
+    "location_address",
+    "current_city",
+    "equipment_type",
+    "trailer_length_ft",
+    "load_type",
+    "weight_lbs",
+    "reference_id",
+    "load_notes",
+)
+
 VALID_PORTS = {c.value for c in PortOfEntry}
 VALID_LANE_TYPES = {c.value for c in TruckAvailability.LaneType}
+VALID_LOAD_LANE_TYPES = {c.value for c in BrokerLoad.LaneType}
 VALID_EQUIPMENT = {c.value for c in TruckAvailability.EquipmentType}
+VALID_LOAD_EQUIPMENT = {c.value for c in BrokerLoad.EquipmentType}
 VALID_LOAD_TYPES = {c.value for c in TruckAvailability.LoadType}
+VALID_BROKER_LOAD_TYPES = {c.value for c in BrokerLoad.LoadType}
 
 
 def _clear_messages(request):
@@ -205,16 +221,16 @@ def _redirect_for_user(user):
         return redirect("home")
     if profile.role == UserProfile.ROLE_CARRIER:
         return redirect("carrier_dashboard")
-    return redirect("broker_board")
+    return redirect("broker_dashboard")
 
 
 def _info_cta(request, cta_key):
     profile = get_profile(request.user) if request.user.is_authenticated else None
     ctas = {
         "broker": (
-            reverse("broker_board") if profile and profile.role == UserProfile.ROLE_BROKER
+            reverse("broker_dashboard") if profile and profile.role == UserProfile.ROLE_BROKER
             else reverse("broker_signup"),
-            _("Open equipment board") if profile and profile.role == UserProfile.ROLE_BROKER
+            _("Go to dashboard") if profile and profile.role == UserProfile.ROLE_BROKER
             else _("Create broker account"),
         ),
         "carrier": (
@@ -454,8 +470,8 @@ def broker_signup(request):
         )
         login(request, user)
         _clear_messages(request)
-        messages.success(request, _("Broker account created. Browse available trucks."))
-        return redirect("broker_board")
+        messages.success(request, _("Broker account created. You can post loads now."))
+        return redirect("broker_dashboard")
 
     return render(request, "register/auth/signup_broker.html", {"f": f})
 
@@ -568,6 +584,167 @@ def carrier_post_truck(request):
         return redirect("carrier_dashboard")
 
     return render(request, "register/carrier/post.html", ctx)
+
+
+@role_required(UserProfile.ROLE_BROKER)
+@require_http_methods(["GET"])
+def broker_dashboard(request):
+    profile = get_object_or_404(UserProfile, user=request.user, role=UserProfile.ROLE_BROKER)
+    loads = visible_loads(profile.loads.all())
+    return render(request, "register/broker/dashboard.html", {
+        "profile": profile,
+        "loads": loads,
+        "post_visibility_days": POST_VISIBILITY_DAYS,
+    })
+
+
+@role_required(UserProfile.ROLE_BROKER)
+@require_http_methods(["GET", "POST"])
+def broker_post_load(request):
+    profile = get_object_or_404(UserProfile, user=request.user, role=UserProfile.ROLE_BROKER)
+    f = {
+        "trailer_length_ft": "53",
+        "equipment_type": BrokerLoad.EquipmentType.VAN,
+        "ctpat_required": False,
+        "b1_drivers_required": False,
+        "mexico_corridor": "",
+        "us_corridor": "",
+    }
+    ctx = {
+        "profile": profile,
+        "f": f,
+        "post_visibility_days": POST_VISIBILITY_DAYS,
+        "lane_type_choices": BrokerLoad.LaneType.choices,
+        "port_of_entry_choices": PortOfEntry.choices,
+        "load_type_choices": BrokerLoad.LoadType.choices,
+    }
+
+    if request.method == "POST":
+        f = {k: (request.POST.get(k) or "").strip() for k in LOAD_FIELDS}
+        f["ctpat_required"] = request.POST.get("ctpat_required") == "1"
+        f["b1_drivers_required"] = request.POST.get("b1_drivers_required") == "1"
+        f["mexico_corridor"] = (request.POST.get("mexico_corridor") or "").strip()
+        f["us_corridor"] = (request.POST.get("us_corridor") or "").strip()
+        ctx["f"] = f
+
+        if not f["lane_type"] or not f["current_city"]:
+            ctx["errors"] = _("Type and pickup city are required.")
+            return render(request, "register/broker/post_load.html", ctx)
+
+        if f["lane_type"] not in VALID_LOAD_LANE_TYPES:
+            ctx["errors"] = _("Select a valid type.")
+            return render(request, "register/broker/post_load.html", ctx)
+
+        if f["port_of_entry"] and f["port_of_entry"] not in VALID_PORTS:
+            ctx["errors"] = _("Select a valid port of entry.")
+            return render(request, "register/broker/post_load.html", ctx)
+
+        if f["equipment_type"] not in VALID_LOAD_EQUIPMENT:
+            ctx["errors"] = _("Select a valid equipment type.")
+            return render(request, "register/broker/post_load.html", ctx)
+
+        if f["load_type"] not in VALID_BROKER_LOAD_TYPES:
+            ctx["errors"] = _("Select a valid load type.")
+            return render(request, "register/broker/post_load.html", ctx)
+
+        try:
+            trailer_length = int(f["trailer_length_ft"] or "53")
+            if trailer_length < 1 or trailer_length > 75:
+                raise ValueError
+            weight_lbs = _parse_optional_int(f["weight_lbs"])
+        except ValueError:
+            ctx["errors"] = _("Check trailer length and weight values.")
+            return render(request, "register/broker/post_load.html", ctx)
+
+        BrokerLoad.objects.create(
+            profile=profile,
+            lane_type=f["lane_type"],
+            port_of_entry=f["port_of_entry"],
+            location_address=f["location_address"],
+            current_city=f["current_city"],
+            equipment_type=f["equipment_type"],
+            trailer_length_ft=trailer_length,
+            load_type=f["load_type"],
+            weight_lbs=weight_lbs,
+            reference_id=f["reference_id"],
+            mexico_corridor=f["mexico_corridor"],
+            us_corridor=f["us_corridor"],
+            ctpat_required=f["ctpat_required"],
+            b1_drivers_required=f["b1_drivers_required"],
+            load_notes=f["load_notes"],
+            post_status=BrokerLoad.PostStatus.OPEN,
+        )
+        messages.success(request, _("Load posted."))
+        return redirect("broker_dashboard")
+
+    return render(request, "register/broker/post_load.html", ctx)
+
+
+@role_required(UserProfile.ROLE_CARRIER)
+def carrier_load_board(request):
+    loads = visible_loads(
+        BrokerLoad.objects.select_related("profile", "profile__user").filter(
+            equipment_type=BrokerLoad.EquipmentType.VAN,
+        )
+    ).order_by("-created_at")
+
+    mexico_corridor_filter = (request.GET.get("mexico_corridor") or "").strip()
+    us_corridor_filter = (request.GET.get("us_corridor") or "").strip()
+    city_filter = (request.GET.get("city") or "").strip()
+    lane_type_filter = (request.GET.get("lane_type") or "").strip()
+    port_filter = (request.GET.get("port_of_entry") or "").strip()
+    ctpat_filter = request.GET.get("ctpat_required") in ("1", "yes", "true", "on")
+    b1_filter = request.GET.get("b1_drivers_required") in ("1", "yes", "true", "on")
+
+    if city_filter:
+        loads = loads.filter(
+            Q(current_city__icontains=city_filter)
+            | Q(location_address__icontains=city_filter)
+        )
+    if mexico_corridor_filter:
+        loads = loads.filter(mexico_corridor__icontains=mexico_corridor_filter)
+    if us_corridor_filter:
+        loads = loads.filter(us_corridor__icontains=us_corridor_filter)
+    if lane_type_filter and lane_type_filter in VALID_LOAD_LANE_TYPES:
+        loads = loads.filter(lane_type=lane_type_filter)
+    if port_filter and port_filter in VALID_PORTS:
+        loads = loads.filter(port_of_entry=port_filter)
+    if ctpat_filter:
+        loads = loads.filter(ctpat_required=True)
+    if b1_filter:
+        loads = loads.filter(b1_drivers_required=True)
+
+    stats = loads.aggregate(
+        post_count=Count("id"),
+        broker_count=Count("profile", distinct=True),
+        pickup_count=Count("current_city", distinct=True),
+    )
+
+    has_filters = any([
+        city_filter,
+        mexico_corridor_filter,
+        us_corridor_filter,
+        lane_type_filter,
+        port_filter,
+        ctpat_filter,
+        b1_filter,
+    ])
+
+    return render(request, "register/carrier/load_board.html", {
+        "loads": loads,
+        "city_filter": city_filter,
+        "mexico_corridor_filter": mexico_corridor_filter,
+        "us_corridor_filter": us_corridor_filter,
+        "lane_type_filter": lane_type_filter,
+        "port_filter": port_filter,
+        "ctpat_filter": ctpat_filter,
+        "b1_filter": b1_filter,
+        "stats": stats,
+        "has_filters": has_filters,
+        "post_visibility_days": POST_VISIBILITY_DAYS,
+        "lane_type_choices": BrokerLoad.LaneType.choices,
+        "port_of_entry_choices": PortOfEntry.choices,
+    })
 
 
 @role_required(UserProfile.ROLE_BROKER)

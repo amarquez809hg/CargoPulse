@@ -22,5 +22,8 @@ urlpatterns = [
     path("signup/broker/", views.broker_signup, name="broker_signup"),
     path("carrier/", views.carrier_dashboard, name="carrier_dashboard"),
     path("carrier/post/", views.carrier_post_truck, name="carrier_post"),
+    path("broker/", views.broker_dashboard, name="broker_dashboard"),
+    path("broker/post/", views.broker_post_load, name="broker_post_load"),
     path("broker/trucks/", views.broker_board, name="broker_board"),
+    path("carrier/loads/", views.carrier_load_board, name="carrier_load_board"),
 ]

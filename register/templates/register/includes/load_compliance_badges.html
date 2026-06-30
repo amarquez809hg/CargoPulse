@@ -1,0 +1,7 @@
+{% load i18n %}
+{% if ctpat_required or b1_drivers_required %}
+<div class="cp-compliance-badges">
+  {% if ctpat_required %}<span class="cp-badge-tag">{% trans "CTPAT required" %}</span>{% endif %}
+  {% if b1_drivers_required %}<span class="cp-badge-tag">{% trans "B1 drivers required" %}</span>{% endif %}
+</div>
+{% endif %}

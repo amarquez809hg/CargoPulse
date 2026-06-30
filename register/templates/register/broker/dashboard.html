@@ -1,6 +1,6 @@
 {% extends "register/base.html" %}
 {% load i18n cp_i18n cp_profile %}
-{% block title %}{% trans "Carrier Dashboard — Cargo Pulse" %}{% endblock %}
+{% block title %}{% trans "Broker Dashboard — Cargo Pulse" %}{% endblock %}
 {% block body %}
 <div class="cp-page">
   <div class="cp-shell cp-shell-wide">
@@ -15,32 +15,32 @@
       <div class="cp-card-body" style="padding-top:22px;">
         <div class="cp-header cp-header--dashboard">
           <div class="cp-header__main">
-            <h1>{% trans "Carrier dashboard" %}</h1>
-            <span class="cp-badge">{{ company.company_name }}</span>
+            <h1>{% trans "Broker dashboard" %}</h1>
+            <span class="cp-badge">{{ profile.brokerage_name|default:profile.display_name|default:profile.user.username }}</span>
           </div>
-          <a class="cp-dashboard-board-link" href="{% url 'carrier_load_board' %}">{% trans "Find loads" %} →</a>
+          <a class="cp-dashboard-board-link" href="{% url 'broker_board' %}">{% trans "Find trucks" %} →</a>
         </div>
 
         <div class="cp-dashboard-profile">
-          {% render_carrier_profile_card company=company compact=True %}
+          {% render_broker_profile_card profile=profile compact=True %}
         </div>
 
         <div class="cp-inline-actions">
-          <a class="gold-btn" href="{% url 'carrier_post' %}" style="text-decoration:none;text-align:center;display:inline-block;">{% trans "Post equipment" %}</a>
+          <a class="gold-btn" href="{% url 'broker_post_load' %}" style="text-decoration:none;text-align:center;display:inline-block;">{% trans "Post load" %}</a>
         </div>
 
         <p class="cp-hint cp-dashboard-hint">{% blocktrans with days=post_visibility_days %}Active listings expire {{ days }} days after posting.{% endblocktrans %}</p>
 
-        <div class="cp-section" style="margin-top:24px;">{% trans "Your postings" %}</div>
+        <div class="cp-section" style="margin-top:24px;">{% trans "Your loads" %}</div>
 
-        {% if posts %}
+        {% if loads %}
         <div class="cp-post-list">
-          {% for post in posts %}
-            {% render_equipment_post_card post=post list_row=True %}
+          {% for load in loads %}
+            {% render_load_card load=load list_row=True %}
           {% endfor %}
         </div>
         {% else %}
-        <p class="cp-empty-hint">{% trans "No equipment posted yet. Use" %} <strong>{% trans "Post equipment" %}</strong> {% trans "to list availability." %}</p>
+        <p class="cp-empty-hint">{% trans "No loads posted yet. Use" %} <strong>{% trans "Post load" %}</strong> {% trans "to list freight." %}</p>
         {% endif %}
       </div>
     </div>

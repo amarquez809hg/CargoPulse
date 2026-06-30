@@ -87,7 +87,7 @@
       {% if cp_user_role == "carrier" %}
       <a class="cp-header-cta" href="{% url 'carrier_post' %}">{% trans "Post equipment" %}</a>
       {% elif cp_user_role == "broker" %}
-      <a class="cp-header-cta" href="{% url 'broker_board' %}">{% trans "Equipment board" %}</a>
+      <a class="cp-header-cta" href="{% url 'broker_post_load' %}">{% trans "Post load" %}</a>
       {% endif %}
       {% else %}
       <a class="cp-header-link" href="{% url 'login' %}">{% trans "Log in" %}</a>

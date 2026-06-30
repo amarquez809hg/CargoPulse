@@ -1552,3 +1552,126 @@ msgstr "Monterrey, Saltillo, Nuevo Laredo"
 
 msgid "Houston, Dallas, San Antonio"
 msgstr "Houston, Dallas, San Antonio"
+
+msgid "Broker dashboard"
+msgstr "Panel del broker"
+
+msgid "Find trucks"
+msgstr "Buscar camiones"
+
+msgid "Post load"
+msgstr "Publicar carga"
+
+msgid "Your loads"
+msgstr "Tus cargas"
+
+msgid "No loads posted yet. Use"
+msgstr "Aún no hay cargas. Usa"
+
+msgid "to list freight."
+msgstr "para publicar carga."
+
+msgid "Broker account created. You can post loads now."
+msgstr "Cuenta de broker creada. Ya puedes publicar cargas."
+
+msgid "Type and pickup city are required."
+msgstr "Tipo y ciudad de recolección son obligatorios."
+
+msgid "Check trailer length and weight values."
+msgstr "Revisa largo del remolque y peso."
+
+msgid "Load posted."
+msgstr "Carga publicada."
+
+msgid "Available Loads — Cargo Pulse"
+msgstr "Cargas disponibles — Cargo Pulse"
+
+msgid "Available loads"
+msgstr "Cargas disponibles"
+
+msgid "Load board"
+msgstr "Tablero de cargas"
+
+msgid "Showing loads posted within the last %(days)s days."
+msgstr "Mostrando cargas publicadas en los últimos %(days)s días."
+
+msgid "Loads"
+msgstr "Cargas"
+
+msgid "Pickups"
+msgstr "Recolecciones"
+
+msgid "Pickup city"
+msgstr "Ciudad de recolección"
+
+msgid "City where freight picks up"
+msgstr "Ciudad donde se recoge la carga"
+
+msgid "CTPAT required"
+msgstr "CTPAT requerido"
+
+msgid "B1 drivers required"
+msgstr "Operadores B1 requeridos"
+
+msgid "Load listings"
+msgstr "Listado de cargas"
+
+msgid "No loads match your filters."
+msgstr "Ninguna carga coincide con tus filtros."
+
+msgid "No loads posted yet."
+msgstr "Aún no hay cargas publicadas."
+
+msgid "Find loads"
+msgstr "Buscar cargas"
+
+msgid "Post Load — Cargo Pulse"
+msgstr "Publicar carga — Cargo Pulse"
+
+msgid "Your internal load ID"
+msgstr "Tu ID interno de carga"
+
+msgid "Pickup"
+msgstr "Recolección"
+
+msgid "Pickup address"
+msgstr "Dirección de recolección"
+
+msgid "Street address or facility"
+msgstr "Dirección o instalación"
+
+msgid "Where freight picks up"
+msgstr "Dónde se recoge la carga"
+
+msgid "Freight"
+msgstr "Carga"
+
+msgid "Equipment required"
+msgstr "Equipo requerido"
+
+msgid "Load notes"
+msgstr "Notas de la carga"
+
+msgid "Appointment, team drivers, hazmat, etc."
+msgstr "Cita, operadores en equipo, hazmat, etc."
+
+msgid "Route requirements"
+msgstr "Requisitos de ruta"
+
+msgid "Cities in Mexico for this load"
+msgstr "Ciudades en México para esta carga"
+
+msgid "US cities for this load"
+msgstr "Ciudades en EE.UU. para esta carga"
+
+msgid "Carrier requirements (visible on your load listing)"
+msgstr "Requisitos del transportista (visibles en tu publicación)"
+
+msgid "Active loads"
+msgstr "Cargas activas"
+
+msgid "Board"
+msgstr "Tablero"
+
+msgid "Equipment · loads"
+msgstr "Equipo · cargas"

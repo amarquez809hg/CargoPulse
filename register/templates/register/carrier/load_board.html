@@ -1,6 +1,6 @@
 {% extends "register/base.html" %}
 {% load i18n cp_i18n cp_profile %}
-{% block title %}{% trans "Available Trucks — Cargo Pulse" %}{% endblock %}
+{% block title %}{% trans "Available Loads — Cargo Pulse" %}{% endblock %}
 {% block body %}
 <div class="cp-page">
   <div class="cp-shell cp-shell-wide cp-shell-board">
@@ -13,44 +13,44 @@
     <div class="cp-card">
       <div class="brand-accent-top"></div>
       <div class="cp-card-body" style="padding-top:22px;">
-        <a class="cp-back cp-back--inline" href="{% url 'broker_dashboard' %}">← {% trans "Back to dashboard" %}</a>
+        <a class="cp-back cp-back--inline" href="{% url 'carrier_dashboard' %}">← {% trans "Back to dashboard" %}</a>
 
         <div class="cp-header">
-          <h1>{% trans "Available trucks" %}</h1>
-          <span class="cp-badge">{% trans "Equipment board" %}</span>
+          <h1>{% trans "Available loads" %}</h1>
+          <span class="cp-badge">{% trans "Load board" %}</span>
         </div>
 
-        <p class="cp-hint">{% blocktrans with days=post_visibility_days %}Showing equipment posted within the last {{ days }} days.{% endblocktrans %}</p>
+        <p class="cp-hint">{% blocktrans with days=post_visibility_days %}Showing loads posted within the last {{ days }} days.{% endblocktrans %}</p>
 
         <div class="cp-stat-grid">
           <div class="cp-stat-card">
             <span class="cp-stat-value">{{ stats.post_count }}</span>
-            <span class="cp-stat-label">{% trans "Posts" %}</span>
+            <span class="cp-stat-label">{% trans "Loads" %}</span>
           </div>
           <div class="cp-stat-card">
-            <span class="cp-stat-value">{{ stats.carrier_count }}</span>
-            <span class="cp-stat-label">{% trans "Carriers" %}</span>
+            <span class="cp-stat-value">{{ stats.broker_count }}</span>
+            <span class="cp-stat-label">{% trans "Brokers" %}</span>
           </div>
           <div class="cp-stat-card">
-            <span class="cp-stat-value">{{ stats.origin_count }}</span>
-            <span class="cp-stat-label">{% trans "Origins" %}</span>
+            <span class="cp-stat-value">{{ stats.pickup_count }}</span>
+            <span class="cp-stat-label">{% trans "Pickups" %}</span>
           </div>
         </div>
 
-        <form class="cp-filter cp-filter--board" method="get" action="{% url 'broker_board' %}" id="cp-broker-filter-form" autocomplete="off">
+        <form class="cp-filter cp-filter--board" method="get" action="{% url 'carrier_load_board' %}" id="cp-carrier-load-filter-form" autocomplete="off">
           <div class="cp-filter-row cp-filter-row--top">
             <div class="cp-filter-field cp-filter-field--grow">
-              <label for="broker-origin-city">{% trans "Origin city" %}</label>
+              <label for="carrier-pickup-city">{% trans "Pickup city" %}</label>
               <input
-                id="broker-origin-city"
+                id="carrier-pickup-city"
                 name="city"
                 value="{{ city_filter }}"
-                placeholder="{% trans 'City where the truck is posted from' %}"
+                placeholder="{% trans 'City where freight picks up' %}"
               />
             </div>
             <div class="cp-filter-field">
-              <label for="broker-lane-type">{% trans "Lane type" %}</label>
-              <select id="broker-lane-type" name="lane_type">
+              <label for="carrier-lane-type">{% trans "Lane type" %}</label>
+              <select id="carrier-lane-type" name="lane_type">
                 <option value="">{% trans "All types" %}</option>
                 {% for value, label in lane_type_choices %}
                 <option value="{{ value }}"{% if lane_type_filter == value %} selected{% endif %}>{{ value|lane_type_label }}</option>
@@ -58,8 +58,8 @@
               </select>
             </div>
             <div class="cp-filter-field">
-              <label for="broker-port">{% trans "Border crossing" %}</label>
-              <select id="broker-port" name="port_of_entry">
+              <label for="carrier-port">{% trans "Border crossing" %}</label>
+              <select id="carrier-port" name="port_of_entry">
                 <option value="">{% trans "All ports" %}</option>
                 {% for value, label in port_of_entry_choices %}
                 <option value="{{ value }}"{% if port_filter == value %} selected{% endif %}>{{ label }}</option>
@@ -72,18 +72,18 @@
             <p class="cp-filter-corridors__title">{% trans "Corridor search" %}</p>
             <div class="cp-filter-corridors__grid">
               <div class="cp-filter-field">
-                <label for="broker-mexico-corridor">{% trans "Mexico corridor" %}</label>
+                <label for="carrier-mexico-corridor">{% trans "Mexico corridor" %}</label>
                 <input
-                  id="broker-mexico-corridor"
+                  id="carrier-mexico-corridor"
                   name="mexico_corridor"
                   value="{{ mexico_corridor_filter }}"
                   placeholder="{% trans 'Tijuana, Juarez, Nuevo Laredo' %}"
                 />
               </div>
               <div class="cp-filter-field">
-                <label for="broker-us-corridor">{% trans "US corridor" %}</label>
+                <label for="carrier-us-corridor">{% trans "US corridor" %}</label>
                 <input
-                  id="broker-us-corridor"
+                  id="carrier-us-corridor"
                   name="us_corridor"
                   value="{{ us_corridor_filter }}"
                   placeholder="{% trans 'Houston, Dallas, San Antonio' %}"
@@ -94,30 +94,30 @@
 
           <div class="cp-filter-row cp-filter-row--actions">
             <label class="cp-filter-check">
-              <input type="checkbox" name="ctpat_certified" value="1"{% if ctpat_filter %} checked{% endif %}/>
-              <span>{% trans "CTPAT certified" %}</span>
+              <input type="checkbox" name="ctpat_required" value="1"{% if ctpat_filter %} checked{% endif %}/>
+              <span>{% trans "CTPAT required" %}</span>
             </label>
             <label class="cp-filter-check">
-              <input type="checkbox" name="b1_drivers" value="1"{% if b1_filter %} checked{% endif %}/>
-              <span>{% trans "B1 drivers" %}</span>
+              <input type="checkbox" name="b1_drivers_required" value="1"{% if b1_filter %} checked{% endif %}/>
+              <span>{% trans "B1 drivers required" %}</span>
             </label>
             <button type="submit" class="cp-filter-submit">{% trans "Search" %}</button>
           </div>
         </form>
 
-        {% if trucks %}
-        <div class="cp-section">{% trans "Equipment listings" %}</div>
+        {% if loads %}
+        <div class="cp-section">{% trans "Load listings" %}</div>
         <div class="cp-post-list">
-          {% for truck in trucks %}
-            {% render_equipment_post_card post=truck show_contact=True %}
+          {% for load in loads %}
+            {% render_load_card load=load show_contact=True %}
           {% endfor %}
         </div>
         {% else %}
         <p style="color:#666;font-size:0.9rem;">
           {% if has_filters %}
-            {% trans "No trucks match your filters." %}
+            {% trans "No loads match your filters." %}
           {% else %}
-            {% trans "No trucks posted yet." %}
+            {% trans "No loads posted yet." %}
           {% endif %}
         </p>
         {% endif %}
@@ -127,7 +127,7 @@
 </div>
 <script>
 (function () {
-  var form = document.getElementById("cp-broker-filter-form");
+  var form = document.getElementById("cp-carrier-load-filter-form");
   if (!form) return;
 
   form.querySelectorAll("select, input[type='checkbox']").forEach(function (el) {

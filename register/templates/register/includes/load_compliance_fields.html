@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="cp-form-section">
+  <p class="cp-checkbox-heading">{% trans "Carrier requirements (visible on your load listing)" %}</p>
+  <label class="cp-checkbox-item">
+    <input type="checkbox" name="ctpat_required" value="1"{% if ctpat_required %} checked{% endif %}/>
+    <span>{% trans "CTPAT required" %}</span>
+  </label>
+  <label class="cp-checkbox-item">
+    <input type="checkbox" name="b1_drivers_required" value="1"{% if b1_drivers_required %} checked{% endif %}/>
+    <span>{% trans "B1 drivers required" %}</span>
+  </label>
+</div>

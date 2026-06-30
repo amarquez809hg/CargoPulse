@@ -1,0 +1,22 @@
+{% load i18n %}
+<div class="cp-form-section cp-corridor-fields">
+  <p class="cp-section-subtitle">{% trans "Route requirements" %}</p>
+
+  <label for="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}mexico_corridor">{% trans "Mexico corridor" %}</label>
+  <textarea
+    id="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}mexico_corridor"
+    name="mexico_corridor"
+    rows="2"
+    placeholder="{% trans 'Cities in Mexico for this load' %}"
+  >{{ mexico_corridor|default:'' }}</textarea>
+  <p class="cp-field-example">{% trans "Example: Tijuana, Juarez, Nuevo Laredo" %}</p>
+
+  <label for="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}us_corridor">{% trans "US corridor" %}</label>
+  <textarea
+    id="{% if corridor_id_prefix %}{{ corridor_id_prefix }}-{% endif %}us_corridor"
+    name="us_corridor"
+    rows="2"
+    placeholder="{% trans 'US cities for this load' %}"
+  >{{ us_corridor|default:'' }}</textarea>
+  <p class="cp-field-example">{% trans "Example: Houston, Dallas, San Antonio" %}</p>
+</div>

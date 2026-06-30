@@ -45,12 +45,12 @@
 
       <div class="cp-profile-card__stats">
         <div class="cp-profile-card__stat">
-          <span>{% trans "Searches" %}</span>
-          <strong>{% trans "Equipment board" %}</strong>
+          <span>{% trans "Active loads" %}</span>
+          <strong>{% if demo %}2{% else %}{{ active_loads }}{% endif %}</strong>
         </div>
         <div class="cp-profile-card__stat">
-          <span>{% trans "Filters" %}</span>
-          <strong>{% trans "Crossing · lane · equipment" %}</strong>
+          <span>{% trans "Board" %}</span>
+          <strong>{% trans "Equipment · loads" %}</strong>
         </div>
       </div>
       {% endif %}
