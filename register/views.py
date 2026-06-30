@@ -462,26 +462,9 @@ def broker_signup(request):
 
 
 @role_required(UserProfile.ROLE_CARRIER)
-@require_http_methods(["GET", "POST"])
+@require_http_methods(["GET"])
 def carrier_dashboard(request):
     company = get_object_or_404(TruckingCompany, user=request.user)
-
-    if request.method == "POST" and request.POST.get("form") == "profile":
-        company.mexico_corridor = (request.POST.get("mexico_corridor") or "").strip()
-        company.us_corridor = (request.POST.get("us_corridor") or "").strip()
-        company.ctpat_certified = request.POST.get("ctpat_certified") == "1"
-        company.b1_drivers = request.POST.get("b1_drivers") == "1"
-        company.save(
-            update_fields=[
-                "mexico_corridor",
-                "us_corridor",
-                "ctpat_certified",
-                "b1_drivers",
-            ]
-        )
-        messages.success(request, _("Profile updated."))
-        return redirect("carrier_dashboard")
-
     posts = visible_posts(company.posts.all())
     return render(request, "register/carrier/dashboard.html", {
         "company": company,
