@@ -64,22 +64,12 @@
 
           <div class="cp-form-section">
             <div class="cp-section">{% trans "Equipment" %}</div>
-            <label>{% trans "Equipment type" %} <span class="req">*</span></label>
-            <select name="equipment_type" required>
-              {% for value, label in equipment_type_choices %}
-              <option value="{{ value }}"{% if f.equipment_type == value or not f.equipment_type and value == "VAN" %} selected{% endif %}>{{ label }}</option>
-              {% endfor %}
-            </select>
+            <input type="hidden" name="equipment_type" value="VAN"/>
+            <input type="hidden" name="trailer_length_ft" value="53"/>
+            <input type="hidden" name="load_type" value="FULL"/>
 
-            <label>{% trans "Trailer length (ft.)" %} <span class="req">*</span></label>
-            <input name="trailer_length_ft" type="number" min="1" max="75" required value="{{ f.trailer_length_ft|default:'53' }}"/>
-
-            <label>{% trans "Load type" %} <span class="req">*</span></label>
-            <select name="load_type" required>
-              {% for value, label in load_type_choices %}
-              <option value="{{ value }}"{% if f.load_type == value or not f.load_type and value == "FULL" %} selected{% endif %}>{{ label }}</option>
-              {% endfor %}
-            </select>
+            <label>{% trans "Equipment" %}</label>
+            <p class="cp-hint" style="margin:0 0 12px;">{% trans "Full load · Van · 53'" %}</p>
 
             <label>{% trans "Weight (lbs.)" %}</label>
             <input name="weight_lbs" type="number" min="0" value="{{ f.weight_lbs|default:'' }}" placeholder="25000"/>
@@ -111,9 +101,6 @@
     form.port_of_entry.value = "{{ company.primary_port_of_entry|default:'LAREDO' }}";
     form.location_address.value = "{{ company.company_address|default:'Av. Industria 1200, Col. Centro'|escapejs }}";
     form.current_city.value = "Guadalajara";
-    form.equipment_type.value = "VAN";
-    form.trailer_length_ft.value = "53";
-    form.load_type.value = "FULL";
     form.weight_lbs.value = "25000";
     form.min_rate_per_mile.value = "2.50";
     form.equipment_notes.value = "53' dry van · mock test entry";

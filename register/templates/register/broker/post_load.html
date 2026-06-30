@@ -64,16 +64,10 @@
             <div class="cp-section">{% trans "Freight" %}</div>
             <input type="hidden" name="equipment_type" value="VAN"/>
             <input type="hidden" name="trailer_length_ft" value="53"/>
+            <input type="hidden" name="load_type" value="FULL"/>
 
             <label>{% trans "Equipment required" %}</label>
-            <p class="cp-hint" style="margin:0 0 12px;">{% trans "Van · 53'" %}</p>
-
-            <label>{% trans "Load type" %} <span class="req">*</span></label>
-            <select name="load_type" required>
-              {% for value, label in load_type_choices %}
-              <option value="{{ value }}"{% if f.load_type == value or not f.load_type and value == "FULL" %} selected{% endif %}>{{ label }}</option>
-              {% endfor %}
-            </select>
+            <p class="cp-hint" style="margin:0 0 12px;">{% trans "Full load · Van · 53'" %}</p>
 
             <label>{% trans "Weight (lbs.)" %}</label>
             <input name="weight_lbs" type="number" min="0" value="{{ f.weight_lbs|default:'' }}" placeholder="25000"/>
@@ -102,7 +96,6 @@
     form.port_of_entry.value = "LAREDO";
     form.location_address.value = "Industrial Park 1200";
     form.current_city.value = "Laredo";
-    form.load_type.value = "FULL";
     form.weight_lbs.value = "25000";
     form.load_notes.value = "53' dry van load · mock test entry";
     if (form.ctpat_required) form.ctpat_required.checked = true;

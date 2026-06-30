@@ -41,7 +41,7 @@
         </div>
         <div class="cp-post-row__fact">
           <span>{% trans "Load" %}</span>
-          <strong>{{ post.get_load_type_display }}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
+          <strong>{% trans "Full" %}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
         </div>
       </div>
 
@@ -74,11 +74,11 @@
         </div>
         <div class="cp-post-row__fact">
           <span>{% trans "Equipment" %}</span>
-          <strong>{{ post.get_equipment_type_display }} · {{ post.trailer_length_ft }}'</strong>
+          <strong>{% trans "Van" %} · 53'</strong>
         </div>
         <div class="cp-post-row__fact">
           <span>{% trans "Load" %}</span>
-          <strong>{{ post.get_load_type_display }}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
+          <strong>{% trans "Full" %}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
         </div>
       </div>
 
@@ -114,11 +114,11 @@
         </div>
         <div class="cp-profile-card__fact">
           <span>{% trans "Equipment" %}</span>
-          <strong>{{ post.get_equipment_type_display }} · {{ post.trailer_length_ft }}'</strong>
+          <strong>{% trans "Van" %} · 53'</strong>
         </div>
         <div class="cp-profile-card__fact">
           <span>{% trans "Load" %}</span>
-          <strong>{{ post.get_load_type_display }}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
+          <strong>{% trans "Full" %}{% if post.weight_lbs %} · {{ post.weight_lbs }} lbs{% endif %}</strong>
         </div>
         {% if post.min_rate_per_mile %}
         <div class="cp-profile-card__fact">

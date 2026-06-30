@@ -185,6 +185,10 @@ VALID_LOAD_EQUIPMENT = {c.value for c in BrokerLoad.EquipmentType}
 VALID_LOAD_TYPES = {c.value for c in TruckAvailability.LoadType}
 VALID_BROKER_LOAD_TYPES = {c.value for c in BrokerLoad.LoadType}
 
+FIXED_EQUIPMENT = TruckAvailability.EquipmentType.VAN
+FIXED_LOAD_TYPE = TruckAvailability.LoadType.FULL
+FIXED_TRAILER_LENGTH_FT = 53
+
 
 def _clear_messages(request):
     storage = messages.get_messages(request)
@@ -508,12 +512,13 @@ def carrier_post_truck(request):
         "post_visibility_days": POST_VISIBILITY_DAYS,
         "lane_type_choices": TruckAvailability.LaneType.choices,
         "port_of_entry_choices": PortOfEntry.choices,
-        "equipment_type_choices": TruckAvailability.EquipmentType.choices,
-        "load_type_choices": TruckAvailability.LoadType.choices,
     }
 
     if request.method == "POST":
         f = {k: (request.POST.get(k) or "").strip() for k in AVAILABILITY_FIELDS}
+        f["equipment_type"] = FIXED_EQUIPMENT
+        f["load_type"] = FIXED_LOAD_TYPE
+        f["trailer_length_ft"] = str(FIXED_TRAILER_LENGTH_FT)
         f["ctpat_certified"] = request.POST.get("ctpat_certified") == "1"
         f["b1_drivers"] = request.POST.get("b1_drivers") == "1"
         f["mexico_corridor"] = (request.POST.get("mexico_corridor") or "").strip()
@@ -532,22 +537,11 @@ def carrier_post_truck(request):
             ctx["errors"] = _("Select a valid port of entry.")
             return render(request, "register/carrier/post.html", ctx)
 
-        if f["equipment_type"] not in VALID_EQUIPMENT:
-            ctx["errors"] = _("Select a valid equipment type.")
-            return render(request, "register/carrier/post.html", ctx)
-
-        if f["load_type"] not in VALID_LOAD_TYPES:
-            ctx["errors"] = _("Select a valid load type.")
-            return render(request, "register/carrier/post.html", ctx)
-
         try:
-            trailer_length = int(f["trailer_length_ft"] or "53")
-            if trailer_length < 1 or trailer_length > 75:
-                raise ValueError
             weight_lbs = _parse_optional_int(f["weight_lbs"])
             min_rate = _parse_optional_decimal(f["min_rate_per_mile"])
         except (ValueError, InvalidOperation):
-            ctx["errors"] = _("Check trailer length, weight, and rate values.")
+            ctx["errors"] = _("Check weight and rate values.")
             return render(request, "register/carrier/post.html", ctx)
 
         company.ctpat_certified = f["ctpat_certified"]
@@ -569,9 +563,9 @@ def carrier_post_truck(request):
             port_of_entry=f["port_of_entry"],
             location_address=f["location_address"],
             current_city=f["current_city"],
-            equipment_type=f["equipment_type"],
-            trailer_length_ft=trailer_length,
-            load_type=f["load_type"],
+            equipment_type=FIXED_EQUIPMENT,
+            trailer_length_ft=FIXED_TRAILER_LENGTH_FT,
+            load_type=FIXED_LOAD_TYPE,
             weight_lbs=weight_lbs,
             min_rate_per_mile=min_rate,
             reference_id=f["reference_id"],
@@ -616,11 +610,13 @@ def broker_post_load(request):
         "post_visibility_days": POST_VISIBILITY_DAYS,
         "lane_type_choices": BrokerLoad.LaneType.choices,
         "port_of_entry_choices": PortOfEntry.choices,
-        "load_type_choices": BrokerLoad.LoadType.choices,
     }
 
     if request.method == "POST":
         f = {k: (request.POST.get(k) or "").strip() for k in LOAD_FIELDS}
+        f["equipment_type"] = FIXED_EQUIPMENT
+        f["load_type"] = FIXED_LOAD_TYPE
+        f["trailer_length_ft"] = str(FIXED_TRAILER_LENGTH_FT)
         f["ctpat_required"] = request.POST.get("ctpat_required") == "1"
         f["b1_drivers_required"] = request.POST.get("b1_drivers_required") == "1"
         f["mexico_corridor"] = (request.POST.get("mexico_corridor") or "").strip()
@@ -639,21 +635,10 @@ def broker_post_load(request):
             ctx["errors"] = _("Select a valid port of entry.")
             return render(request, "register/broker/post_load.html", ctx)
 
-        if f["equipment_type"] not in VALID_LOAD_EQUIPMENT:
-            ctx["errors"] = _("Select a valid equipment type.")
-            return render(request, "register/broker/post_load.html", ctx)
-
-        if f["load_type"] not in VALID_BROKER_LOAD_TYPES:
-            ctx["errors"] = _("Select a valid load type.")
-            return render(request, "register/broker/post_load.html", ctx)
-
         try:
-            trailer_length = int(f["trailer_length_ft"] or "53")
-            if trailer_length < 1 or trailer_length > 75:
-                raise ValueError
             weight_lbs = _parse_optional_int(f["weight_lbs"])
         except ValueError:
-            ctx["errors"] = _("Check trailer length and weight values.")
+            ctx["errors"] = _("Check weight value.")
             return render(request, "register/broker/post_load.html", ctx)
 
         BrokerLoad.objects.create(
@@ -662,9 +647,9 @@ def broker_post_load(request):
             port_of_entry=f["port_of_entry"],
             location_address=f["location_address"],
             current_city=f["current_city"],
-            equipment_type=f["equipment_type"],
-            trailer_length_ft=trailer_length,
-            load_type=f["load_type"],
+            equipment_type=FIXED_EQUIPMENT,
+            trailer_length_ft=FIXED_TRAILER_LENGTH_FT,
+            load_type=FIXED_LOAD_TYPE,
             weight_lbs=weight_lbs,
             reference_id=f["reference_id"],
             mexico_corridor=f["mexico_corridor"],
@@ -685,6 +670,7 @@ def carrier_load_board(request):
     loads = visible_loads(
         BrokerLoad.objects.select_related("profile", "profile__user").filter(
             equipment_type=BrokerLoad.EquipmentType.VAN,
+            load_type=BrokerLoad.LoadType.FULL,
         )
     ).order_by("-created_at")
 
@@ -752,6 +738,7 @@ def broker_board(request):
     trucks = visible_posts(
         TruckAvailability.objects.select_related("company").filter(
             equipment_type=TruckAvailability.EquipmentType.VAN,
+            load_type=TruckAvailability.LoadType.FULL,
         )
     ).order_by("-created_at")
 

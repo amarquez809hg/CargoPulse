@@ -1672,3 +1672,12 @@ msgstr "Tablero"
 
 msgid "Equipment · loads"
 msgstr "Equipo · cargas"
+
+msgid "Full load · Van · 53'"
+msgstr "Carga completa · Van · 53'"
+
+msgid "Check weight and rate values."
+msgstr "Revisa peso y tarifa."
+
+msgid "Check weight value."
+msgstr "Revisa el peso."

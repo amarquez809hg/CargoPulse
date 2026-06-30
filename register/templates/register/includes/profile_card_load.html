@@ -41,7 +41,7 @@
         </div>
         <div class="cp-post-row__fact">
           <span>{% trans "Load" %}</span>
-          <strong>{{ load.get_load_type_display }}{% if load.weight_lbs %} · {{ load.weight_lbs }} lbs{% endif %}</strong>
+          <strong>{% trans "Full" %}{% if load.weight_lbs %} · {{ load.weight_lbs }} lbs{% endif %}</strong>
         </div>
       </div>
 
@@ -73,11 +73,11 @@
         </div>
         <div class="cp-post-row__fact">
           <span>{% trans "Equipment" %}</span>
-          <strong>{{ load.get_equipment_type_display }} · {{ load.trailer_length_ft }}'</strong>
+          <strong>{% trans "Van" %} · 53'</strong>
         </div>
         <div class="cp-post-row__fact">
           <span>{% trans "Load" %}</span>
-          <strong>{{ load.get_load_type_display }}{% if load.weight_lbs %} · {{ load.weight_lbs }} lbs{% endif %}</strong>
+          <strong>{% trans "Full" %}{% if load.weight_lbs %} · {{ load.weight_lbs }} lbs{% endif %}</strong>
         </div>
       </div>
 
