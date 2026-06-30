@@ -83,6 +83,19 @@
 
           {% include "register/includes/load_compliance_fields.html" with ctpat_required=f.ctpat_required b1_drivers_required=f.b1_drivers_required %}
 
+          <div class="cp-form-section">
+            <div class="cp-section">{% trans "Contact" %}</div>
+            <label>{% trans "WhatsApp / phone" %} <span class="req">*</span></label>
+            <p class="cp-hint" style="margin:0 0 8px;">{% trans "Shown to carriers on this load listing." %}</p>
+            <div class="cp-phone">
+              <select name="whatsapp_code">
+                <option value="+1"{% if f.whatsapp_code == "+1" or not f.whatsapp_code %} selected{% endif %}>+1 US</option>
+                <option value="+52"{% if f.whatsapp_code == "+52" %} selected{% endif %}>+52 MX</option>
+              </select>
+              <input name="whatsapp_number" type="tel" required value="{{ f.whatsapp_number|default:'' }}" placeholder="{% trans 'Direct number for carriers' %}"/>
+            </div>
+          </div>
+
           <button type="submit" class="gold-btn">{% trans "Post load" %}</button>
         </form>
       </div>
@@ -106,6 +119,8 @@
     if (form.b1_drivers_required) form.b1_drivers_required.checked = true;
     if (form.mexico_corridor) form.mexico_corridor.value = "Tijuana, Juarez, Nuevo Laredo";
     if (form.us_corridor) form.us_corridor.value = "Houston, Dallas, San Antonio";
+    form.whatsapp_code.value = "+1";
+    form.whatsapp_number.value = "210555" + Date.now().toString().slice(-4);
   }
   document.getElementById("cp-mock-fill")?.addEventListener("click", fillMock);
   document.getElementById("cp-mock-submit")?.addEventListener("click", function () {

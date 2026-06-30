@@ -26,6 +26,7 @@ class UserProfile(models.Model):
     role = models.CharField(max_length=20, choices=ROLE_CHOICES)
     display_name = models.CharField(max_length=120, blank=True)
     brokerage_name = models.CharField(max_length=200, blank=True)
+    whatsapp = models.CharField(max_length=30, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

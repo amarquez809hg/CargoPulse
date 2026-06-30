@@ -34,6 +34,7 @@ def broker_profile_card(profile):
         "display_name": profile.display_name or user.username,
         "brokerage_name": profile.brokerage_name or _("Independent broker"),
         "email": user.email,
+        "whatsapp": profile.whatsapp,
         "active_loads": active_loads,
         "demo": False,
     }
@@ -72,6 +73,7 @@ def demo_broker_profile():
         "role_label": _("US freight broker"),
         "location_line": "Laredo, TX · US–Mexico lanes",
         "email": "ana@horizonfreight.com",
+        "whatsapp": "+1 210 555 0142",
         "board_focus": _("Crossings, dry van, reefer"),
         "active_loads": 2,
         "demo": True,

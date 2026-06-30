@@ -5,7 +5,7 @@ from .models import BrokerLoad, TruckAvailability, TruckingCompany, UserProfile
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "role", "display_name", "brokerage_name", "created_at")
+    list_display = ("user", "role", "display_name", "brokerage_name", "whatsapp", "created_at")
     list_filter = ("role",)
 
 

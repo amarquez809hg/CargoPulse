@@ -54,6 +54,7 @@
         </div>
         <div class="cp-post-row__contact">
           <a href="mailto:{{ load.profile.user.email }}" title="{{ load.profile.user.email }}">{{ load.profile.user.email|truncatechars:28 }}</a>
+          {% if load.profile.whatsapp %}<span>{{ load.profile.whatsapp }}</span>{% endif %}
         </div>
       </div>
 

@@ -1693,3 +1693,15 @@ msgstr "Tipo, ciudad de recolección y descripción de la carga son obligatorios
 
 msgid "Appointment times, special handling, etc."
 msgstr "Horarios de cita, manejo especial, etc."
+
+msgid "WhatsApp / phone"
+msgstr "WhatsApp / teléfono"
+
+msgid "Direct number for carriers"
+msgstr "Número directo para transportistas"
+
+msgid "WhatsApp or phone number is required."
+msgstr "WhatsApp o número de teléfono es obligatorio."
+
+msgid "Shown to carriers on this load listing."
+msgstr "Visible para transportistas en esta publicación."

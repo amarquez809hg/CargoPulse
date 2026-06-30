@@ -206,6 +206,17 @@ def _build_whatsapp(code, number):
     return f"{code}{number}"
 
 
+def _split_whatsapp(value):
+    value = (value or "").strip()
+    if value.startswith("+52"):
+        return "+52", value[3:]
+    if value.startswith("+1"):
+        return "+1", value[2:]
+    if value.startswith("+"):
+        return "+1", value[1:]
+    return "+1", value
+
+
 def _parse_optional_int(value):
     if not value:
         return None
@@ -442,12 +453,14 @@ def broker_signup(request):
     if request.user.is_authenticated:
         return _redirect_for_user(request.user)
 
-    f = {}
+    f = {"whatsapp_code": "+1", "whatsapp_number": ""}
     if request.method == "POST":
         f = {k: (request.POST.get(k) or "").strip() for k in (
             "username", "email", "password", "password2",
             "display_name", "brokerage_name",
         )}
+        f["whatsapp_code"] = (request.POST.get("whatsapp_code") or "+1").strip()
+        f["whatsapp_number"] = (request.POST.get("whatsapp_number") or "").strip()
 
         if f["password"] != f["password2"]:
             return render(request, "register/auth/signup_broker.html", {
@@ -461,6 +474,10 @@ def broker_signup(request):
             return render(request, "register/auth/signup_broker.html", {
                 "f": f, "error": _("Email already registered."),
             })
+        if not f["whatsapp_number"]:
+            return render(request, "register/auth/signup_broker.html", {
+                "f": f, "error": _("WhatsApp or phone number is required."),
+            })
 
         user = User.objects.create_user(
             username=f["username"],
@@ -472,6 +489,7 @@ def broker_signup(request):
             role=UserProfile.ROLE_BROKER,
             display_name=f["display_name"],
             brokerage_name=f["brokerage_name"],
+            whatsapp=_build_whatsapp(f["whatsapp_code"], f["whatsapp_number"]),
         )
         login(request, user)
         _clear_messages(request)
@@ -604,7 +622,13 @@ def broker_post_load(request):
         "b1_drivers_required": False,
         "mexico_corridor": "",
         "us_corridor": "",
+        "whatsapp_code": "+1",
+        "whatsapp_number": "",
     }
+    if profile.whatsapp:
+        code, number = _split_whatsapp(profile.whatsapp)
+        f["whatsapp_code"] = code
+        f["whatsapp_number"] = number
     ctx = {
         "profile": profile,
         "f": f,
@@ -622,10 +646,16 @@ def broker_post_load(request):
         f["b1_drivers_required"] = request.POST.get("b1_drivers_required") == "1"
         f["mexico_corridor"] = (request.POST.get("mexico_corridor") or "").strip()
         f["us_corridor"] = (request.POST.get("us_corridor") or "").strip()
+        f["whatsapp_code"] = (request.POST.get("whatsapp_code") or "+1").strip()
+        f["whatsapp_number"] = (request.POST.get("whatsapp_number") or "").strip()
         ctx["f"] = f
 
         if not f["lane_type"] or not f["current_city"] or not f["commodity"]:
             ctx["errors"] = _("Type, pickup city, and load description are required.")
+            return render(request, "register/broker/post_load.html", ctx)
+
+        if not f["whatsapp_number"]:
+            ctx["errors"] = _("WhatsApp or phone number is required.")
             return render(request, "register/broker/post_load.html", ctx)
 
         if f["lane_type"] not in VALID_LOAD_LANE_TYPES:
@@ -641,6 +671,9 @@ def broker_post_load(request):
         except ValueError:
             ctx["errors"] = _("Check weight value.")
             return render(request, "register/broker/post_load.html", ctx)
+
+        profile.whatsapp = _build_whatsapp(f["whatsapp_code"], f["whatsapp_number"])
+        profile.save(update_fields=["whatsapp"])
 
         BrokerLoad.objects.create(
             profile=profile,

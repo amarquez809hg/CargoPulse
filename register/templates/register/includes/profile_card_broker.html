@@ -63,6 +63,9 @@
       {% if not compact and not mini and email %}
       <div class="cp-profile-card__contact">
         <a href="mailto:{{ email }}">{{ email }}</a>
+        {% if demo and whatsapp or not demo and profile.whatsapp %}
+        <span>{% if demo %}{{ whatsapp }}{% else %}{{ profile.whatsapp }}{% endif %}</span>
+        {% endif %}
       </div>
       {% endif %}
     </div>

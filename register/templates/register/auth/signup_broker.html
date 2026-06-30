@@ -34,6 +34,14 @@
           <input name="display_name" value="{{ f.display_name|default:'' }}" placeholder="{% trans 'Optional' %}"/>
           <label>{% trans "Brokerage / company" %}</label>
           <input name="brokerage_name" value="{{ f.brokerage_name|default:'' }}" placeholder="{% trans 'Optional' %}"/>
+          <label>{% trans "WhatsApp / phone" %} <span class="req">*</span></label>
+          <div class="cp-phone">
+            <select name="whatsapp_code">
+              <option value="+1"{% if f.whatsapp_code == "+1" or not f.whatsapp_code %} selected{% endif %}>+1 US</option>
+              <option value="+52"{% if f.whatsapp_code == "+52" %} selected{% endif %}>+52 MX</option>
+            </select>
+            <input name="whatsapp_number" type="tel" required value="{{ f.whatsapp_number|default:'' }}" placeholder="{% trans 'Direct number for carriers' %}"/>
+          </div>
           <label>{% trans "Password" %} <span class="req">*</span></label>
           <input name="password" type="password" required autocomplete="new-password"/>
           <label>{% trans "Confirm password" %} <span class="req">*</span></label>
@@ -60,6 +68,8 @@
     form.email.value = "broker" + id + "@test.cargopulse.local";
     form.display_name.value = pick(names);
     form.brokerage_name.value = pick(firms);
+    form.whatsapp_code.value = "+1";
+    form.whatsapp_number.value = "210" + String(Math.floor(1000000 + Math.random() * 8999999));
     form.password.value = "TestPass123!";
     form.password2.value = "TestPass123!";
   }
